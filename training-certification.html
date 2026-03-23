@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Levitask — Training & Certification</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:#0a0a0a; --off-black:#111111; --surface:#161616; --surface-2:#1e1e1e;
+    --border:#2a2a2a; --border-light:#333333;
+    --text-primary:#f0ece4; --text-secondary:#8a8480; --text-muted:#4a4744;
+    --accent:#e8622a; --accent-dim:rgba(232,98,42,0.12); --accent-glow:rgba(232,98,42,0.06);
+    --green:#4a7c59; --green-bright:#6dbf86; --green-dim:rgba(74,124,89,0.15);
+  }
+
+  /* ─── MODULE INTRO ─── */
+  .module-intro { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:28px 32px; margin-bottom:32px; }
+  .module-intro-label { font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; font-weight:400; }
+  .module-intro-cols { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .module-intro-col-title { font-size:11px; font-weight:500; color:var(--text-primary); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:10px; }
+  .module-intro-item { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--text-secondary); padding:5px 0; border-bottom:1px solid var(--border); line-height:1.5; font-weight:300; }
+  .module-intro-item:last-child { border-bottom:none; }
+  .intro-dot { width:4px; height:4px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:6px; }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--black); color:var(--text-primary); font-family:'DM Sans',sans-serif; font-weight:300; min-height:100vh; display:flex; overflow-x:hidden; }
+
+  /* SIDEBAR */
+  .sidebar { width:240px; min-height:100vh; background:var(--off-black); border-right:1px solid var(--border); display:flex; flex-direction:column; position:fixed; left:0; top:0; bottom:0; z-index:100; overflow-y:auto; }
+  .sidebar::-webkit-scrollbar { width:3px; }
+  .sidebar::-webkit-scrollbar-thumb { background:var(--border-light); border-radius:2px; }
+  .sidebar-logo { padding:32px 28px 28px; border-bottom:1px solid var(--border); flex-shrink:0; }
+  .sidebar-logo img { height:28px; filter:brightness(0) invert(1); opacity:0.9; }
+  .sidebar-logo .portal-label { font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-top:8px; font-weight:400; }
+  .sidebar-nav { padding:24px 16px; flex:1; }
+  .nav-section-label { font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-muted); padding:0 12px; margin-bottom:8px; margin-top:20px; }
+  .nav-section-label:first-child { margin-top:0; }
+  .nav-item { display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:6px; font-size:13px; font-weight:400; color:var(--text-secondary); cursor:pointer; transition:all 0.2s; text-decoration:none; margin-bottom:2px; }
+  .nav-item:hover { background:var(--surface); color:var(--text-primary); }
+  .nav-item.active { background:var(--accent-dim); color:var(--accent); border:1px solid rgba(232,98,42,0.15); }
+  .nav-icon { width:16px; height:16px; opacity:0.7; flex-shrink:0; }
+  .nav-item.active .nav-icon { opacity:1; }
+  .sidebar-footer { padding:20px 16px; border-top:1px solid var(--border); }
+  .distributor-badge { display:flex; align-items:center; gap:10px; padding:10px 12px; background:var(--surface); border-radius:8px; border:1px solid var(--border); }
+  .distributor-avatar { width:32px; height:32px; background:var(--accent-dim); border-radius:50%; border:1px solid rgba(232,98,42,0.3); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:500; color:var(--accent); flex-shrink:0; }
+  .distributor-name { font-size:12px; font-weight:500; color:var(--text-primary); }
+  .distributor-role { font-size:10px; color:var(--text-muted); margin-top:1px; }
+
+  /* MAIN */
+  .main { margin-left:240px; flex:1; display:flex; flex-direction:column; min-height:100vh; }
+  .topbar { padding:20px 40px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; background:var(--off-black); position:sticky; top:0; z-index:50; }
+  .topbar-left { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:300; letter-spacing:0.02em; }
+  .topbar-left span { color:var(--text-muted); font-style:italic; }
+  .topbar-right { font-size:12px; color:var(--text-muted); }
+
+  /* CONTENT LAYOUT */
+  .content { display:flex; flex:1; }
+
+  /* MODULE NAV */
+  .module-nav { width:220px; flex-shrink:0; border-right:1px solid var(--border); padding:28px 0; position:sticky; top:61px; height:calc(100vh - 61px); overflow-y:auto; }
+  .module-nav::-webkit-scrollbar { width:3px; }
+  .module-nav::-webkit-scrollbar-thumb { background:var(--border-light); border-radius:2px; }
+  .module-nav-title { font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-muted); padding:0 24px; margin-bottom:16px; }
+  .module-group { margin-bottom:4px; }
+  .module-group-header { display:flex; align-items:center; gap:10px; padding:10px 20px; cursor:pointer; transition:all 0.2s; }
+  .module-group-header:hover { background:var(--surface); }
+  .module-group-header.active { background:var(--accent-glow); }
+  .module-group-num { width:22px; height:22px; border-radius:50%; background:var(--surface-2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:500; color:var(--text-muted); flex-shrink:0; transition:all 0.2s; }
+  .module-group-header.active .module-group-num { background:var(--accent-dim); border-color:var(--accent); color:var(--accent); }
+  .module-group.done .module-group-num { background:var(--green-dim); border-color:var(--green); color:var(--green-bright); }
+  .module-group-label { font-size:12px; font-weight:400; color:var(--text-secondary); flex:1; line-height:1.3; }
+  .module-group-header.active .module-group-label { color:var(--text-primary); }
+  .module-group-status { font-size:9px; color:var(--text-muted); letter-spacing:0.06em; }
+  .module-group-header.active .module-group-status { color:var(--accent); }
+  .module-group.locked .module-group-header { opacity:0.35; pointer-events:none; }
+  .module-group.done .module-group-status { color:var(--green-bright); }
+  .module-subsections { display:none; padding:4px 0 8px; }
+  .module-subsections.open { display:block; }
+  .subsection-link { display:block; padding:6px 20px 6px 52px; font-size:11px; color:var(--text-muted); cursor:pointer; transition:all 0.15s; }
+  .subsection-link:hover { color:var(--text-secondary); background:rgba(255,255,255,0.02); }
+  .subsection-link.active { color:var(--accent); }
+  .module-divider { height:1px; background:var(--border); margin:8px 20px; }
+
+  /* CERT ITEM */
+  .cert-item { display:flex; align-items:center; gap:10px; padding:10px 20px; cursor:pointer; transition:all 0.2s; opacity:0.35; pointer-events:none; }
+  .cert-item.unlocked { opacity:1; pointer-events:auto; }
+  .cert-item:hover { background:var(--surface); }
+  .cert-star { width:22px; height:22px; border-radius:50%; background:var(--surface-2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:10px; color:var(--text-muted); flex-shrink:0; }
+  .cert-label { font-size:12px; font-weight:400; color:var(--text-secondary); flex:1; }
+
+  /* MODULE CONTENT */
+  .module-content { flex:1; padding:40px 48px; max-width:860px; animation:fadeUp 0.25s ease both; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  /* COMPLETE BANNER */
+  .complete-banner { display:none; align-items:center; gap:10px; background:var(--green-dim); border:1px solid rgba(74,124,89,0.3); border-radius:8px; padding:14px 18px; margin-bottom:24px; font-size:13px; color:var(--green-bright); }
+  .complete-banner.show { display:flex; }
+  .complete-banner svg { width:16px; height:16px; stroke:var(--green-bright); fill:none; stroke-width:2; flex-shrink:0; }
+
+  /* MODULE HEADER */
+  .module-header { margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--border); }
+  .module-breadcrumb { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .breadcrumb-badge { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); background:var(--accent-dim); padding:3px 10px; border-radius:3px; border:1px solid rgba(232,98,42,0.2); }
+  .breadcrumb-sep { color:var(--text-muted); font-size:11px; }
+  .breadcrumb-sub { font-size:11px; color:var(--text-muted); }
+  .module-title { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; margin-bottom:8px; line-height:1.1; }
+  .module-lead { font-size:14px; color:var(--text-secondary); line-height:1.6; font-weight:300; max-width:600px; margin-bottom:16px; }
+  .module-meta { display:flex; align-items:center; gap:20px; }
+  .meta-item { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-muted); }
+  .meta-item svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:1.5; opacity:0.7; }
+
+  /* TABS */
+  .tabs { display:flex; gap:0; border-bottom:1px solid var(--border); margin-bottom:32px; overflow-x:auto; }
+  .tab { padding:11px 18px; font-size:12px; font-weight:400; color:var(--text-muted); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; transition:all 0.2s; display:flex; align-items:center; gap:7px; white-space:nowrap; }
+  .tab:hover { color:var(--text-secondary); }
+  .tab.active { color:var(--text-primary); border-bottom-color:var(--accent); }
+  .tab.done { color:var(--text-secondary); }
+  .tab-num { width:18px; height:18px; border-radius:50%; border:1px solid var(--border-light); display:flex; align-items:center; justify-content:center; font-size:9px; transition:all 0.2s; }
+  .tab.active .tab-num { background:var(--accent-dim); border-color:var(--accent); color:var(--accent); }
+  .tab.done .tab-num { background:var(--green-dim); border-color:var(--green); color:var(--green-bright); }
+
+  /* TAB PANELS */
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; animation:fadeUp 0.2s ease both; }
+
+  /* VIDEO BLOCK */
+  .video-block { background:var(--surface); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:32px; }
+  .video-player { position:relative; aspect-ratio:16/9; background:#0d0d0d; cursor:pointer; overflow:hidden; }
+  .video-pattern { position:absolute; inset:0; opacity:0.04; background-image:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,255,255,0.3) 40px,rgba(255,255,255,0.3) 41px),repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(255,255,255,0.3) 40px,rgba(255,255,255,0.3) 41px); }
+  .video-overlay { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%); }
+  .video-play-btn { width:64px; height:64px; background:rgba(232,98,42,0.9); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all 0.2s; border:none; cursor:pointer; }
+  .video-play-btn:hover { background:var(--accent); transform:scale(1.05); }
+  .video-play-btn svg { width:22px; height:22px; fill:white; margin-left:3px; }
+  .video-label { font-size:12px; color:rgba(240,236,228,0.6); letter-spacing:0.08em; text-transform:uppercase; }
+  .video-meta { padding:14px 20px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--border); }
+  .video-title-sm { font-size:13px; font-weight:400; color:var(--text-primary); }
+  .video-duration { font-size:11px; color:var(--text-muted); background:var(--surface-2); border:1px solid var(--border); padding:4px 10px; border-radius:3px; }
+
+  /* CONTENT ELEMENTS */
+  .content-section { margin-bottom:32px; }
+  .content-h3 { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:var(--text-primary); margin-bottom:12px; letter-spacing:0.01em; }
+  .content-p { font-size:13px; line-height:1.75; color:var(--text-secondary); margin-bottom:12px; font-weight:300; }
+  .content-divider { height:1px; background:var(--border); margin:28px 0; }
+  .callout { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:16px 20px; margin:16px 0; }
+  .callout p { font-size:13px; color:var(--text-secondary); line-height:1.65; margin:0 0 6px; font-weight:300; font-style:italic; }
+  .callout p:last-child { margin-bottom:0; }
+  .callout p strong { color:var(--text-primary); font-weight:500; font-style:normal; }
+  .callout.green { border-left-color:var(--green); }
+  .callout.green p { font-style:normal; }
+  .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:20px 0; }
+  .stats-row-3 { grid-template-columns:repeat(3,1fr); }
+  .stat-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:18px 14px; text-align:center; }
+  .stat-value { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--accent); line-height:1; }
+  .stat-label { font-size:10px; color:var(--text-muted); margin-top:5px; line-height:1.4; }
+  .card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:16px 0; }
+  .card-grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:16px 0; }
+  .content-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:18px; transition:border-color 0.2s; }
+  .content-card:hover { border-color:var(--border-light); }
+  .content-card.accent { border-left:2px solid var(--accent); }
+  .content-card.green { border-left:2px solid var(--green); }
+  .card-h { font-size:13px; font-weight:500; color:var(--text-primary); margin-bottom:7px; }
+  .card-p { font-size:12px; color:var(--text-secondary); line-height:1.6; font-weight:300; }
+  .timeline { position:relative; padding-left:24px; margin:16px 0; }
+  .timeline::before { content:''; position:absolute; left:5px; top:8px; bottom:8px; width:1px; background:var(--border); }
+  .timeline-item { position:relative; margin-bottom:18px; padding-left:18px; }
+  .timeline-item::before { content:''; position:absolute; left:-19px; top:6px; width:8px; height:8px; border-radius:50%; background:var(--accent); opacity:0.8; }
+  .timeline-year { font-size:11px; font-weight:500; color:var(--accent); letter-spacing:0.08em; margin-bottom:3px; }
+  .timeline-text { font-size:13px; color:var(--text-secondary); line-height:1.5; font-weight:300; }
+  .content-table { width:100%; border-collapse:collapse; margin:16px 0; font-size:12px; }
+  .content-table thead th { background:var(--surface-2); padding:10px 14px; text-align:left; font-size:9px; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); border-bottom:1px solid var(--border); }
+  .content-table tbody td { padding:11px 14px; color:var(--text-secondary); border-bottom:1px solid var(--border); font-weight:300; vertical-align:top; line-height:1.5; }
+  .content-table tbody tr:last-child td { border-bottom:none; }
+  .content-table tbody tr:hover td { background:var(--surface); }
+  .content-table td.accent { color:var(--accent); font-size:11px; }
+  .posture-compare { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
+  .posture-col { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:18px; }
+  .posture-col.bad { border-top:2px solid rgba(192,57,43,0.6); }
+  .posture-col.good { border-top:2px solid var(--accent); }
+  .posture-col-label { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:12px; font-weight:500; }
+  .posture-col.bad .posture-col-label { color:rgba(192,57,43,0.8); }
+  .posture-col.good .posture-col-label { color:var(--accent); }
+  .chain-item { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--text-secondary); padding:5px 0; border-bottom:1px solid var(--border); line-height:1.5; font-weight:300; }
+  .chain-item:last-child { border-bottom:none; }
+  .chain-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+  .chain-dot.red { background:rgba(192,57,43,0.8); }
+  .chain-dot.green { background:var(--accent); }
+  .study-list { display:flex; flex-direction:column; gap:10px; margin:16px 0; }
+  .study-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px 18px; display:grid; grid-template-columns:40px 1fr; gap:14px; align-items:start; }
+  .study-year { font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:300; color:var(--text-muted); text-align:center; padding-top:2px; }
+  .study-title { font-size:12px; font-weight:500; color:var(--text-primary); margin-bottom:4px; }
+  .study-ref { font-size:11px; color:var(--text-muted); font-style:italic; margin-bottom:4px; }
+  .study-desc { font-size:11px; color:var(--text-secondary); line-height:1.6; }
+  .study-link { display:inline-flex; align-items:center; gap:4px; font-size:11px; color:var(--accent); text-decoration:none; margin-top:4px; opacity:0.8; }
+  .study-link:hover { opacity:1; }
+  .study-tag { display:inline-block; font-size:9px; color:var(--accent); background:var(--accent-dim); border:1px solid rgba(232,98,42,0.2); border-radius:3px; padding:1px 7px; margin-left:6px; vertical-align:middle; letter-spacing:0.06em; }
+  .benefit-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  .benefit-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px; display:flex; flex-direction:column; gap:10px; }
+  .benefit-phys { font-size:12px; font-weight:500; color:var(--text-primary); }
+  .benefit-desc { font-size:11px; color:var(--text-secondary); line-height:1.6; }
+  .benefit-punchline { font-size:11px; color:var(--accent); margin-top:2px; }
+  .do-dont { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
+  .do-col { background:var(--green-dim); border:1px solid rgba(74,124,89,0.3); border-radius:8px; padding:16px; }
+  .dont-col { background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2); border-radius:8px; padding:16px; }
+  .col-header { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; font-weight:500; margin-bottom:10px; }
+  .do-col .col-header { color:var(--green-bright); }
+  .dont-col .col-header { color:#f87171; }
+  .col-item { font-size:12px; color:var(--text-secondary); padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.05); font-weight:300; }
+  .col-item:last-child { border-bottom:none; }
+  .demo-steps { display:flex; flex-direction:column; gap:10px; margin:16px 0; }
+  .demo-step { display:flex; gap:14px; align-items:flex-start; padding:14px; background:var(--surface); border:1px solid var(--border); border-radius:8px; }
+  .step-num { width:26px; height:26px; border-radius:50%; background:var(--accent-dim); border:1px solid rgba(232,98,42,0.3); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:500; color:var(--accent); flex-shrink:0; }
+  .step-content { flex:1; }
+  .step-title { font-size:12px; font-weight:500; color:var(--text-primary); margin-bottom:4px; }
+  .step-script { font-size:12px; color:var(--text-secondary); line-height:1.6; font-style:italic; font-weight:300; }
+  .step-note { font-size:11px; color:var(--text-muted); margin-top:4px; font-style:normal; }
+  .objection-table { width:100%; border-collapse:collapse; margin:16px 0; font-size:12px; }
+  .objection-table thead th { background:var(--surface-2); padding:10px 14px; text-align:left; font-size:9px; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); border-bottom:1px solid var(--border); }
+  .objection-table tbody td { padding:10px 14px; color:var(--text-secondary); border-bottom:1px solid var(--border); font-weight:300; vertical-align:top; line-height:1.5; }
+  .objection-table tbody tr:last-child td { border-bottom:none; }
+  .objection-table td:first-child { color:var(--text-primary); font-weight:400; width:35%; }
+  .roi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:16px 0; }
+  .roi-card { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:16px; }
+  .roi-card.highlight { border-color:rgba(232,98,42,0.3); background:var(--accent-glow); }
+  .roi-title { font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; }
+  .roi-value { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:var(--text-primary); line-height:1; margin-bottom:5px; }
+  .roi-card.highlight .roi-value { color:var(--accent); }
+  .roi-desc { font-size:11px; color:var(--text-secondary); line-height:1.5; font-weight:300; }
+  .bc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  .bc-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px; }
+  .bc-role { font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:4px; font-weight:400; }
+  .bc-name { font-size:12px; font-weight:500; color:var(--text-primary); margin-bottom:6px; }
+  .bc-desc { font-size:11px; color:var(--text-secondary); line-height:1.55; margin-bottom:6px; }
+  .bc-question { font-size:11px; color:var(--text-muted); font-style:italic; border-top:1px solid var(--border); padding-top:6px; line-height:1.5; }
+  .download-callout { display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px 18px; margin:16px 0; }
+  .download-info { display:flex; align-items:center; gap:12px; }
+  .download-icon { width:32px; height:32px; background:var(--accent-dim); border:1px solid rgba(232,98,42,0.2); border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .download-icon svg { width:14px; height:14px; stroke:var(--accent); fill:none; stroke-width:2; }
+  .download-title { font-size:13px; font-weight:400; color:var(--text-primary); margin-bottom:3px; }
+  .download-desc { font-size:11px; color:var(--text-muted); }
+  .download-btn { padding:8px 16px; background:var(--accent); color:white; border:none; border-radius:5px; font-size:12px; cursor:pointer; font-family:'DM Sans',sans-serif; white-space:nowrap; }
+  .download-btn:hover { opacity:0.88; }
+
+  /* BOTTOM NAV */
+  .bottom-nav { display:flex; align-items:center; justify-content:space-between; padding:24px 0; margin-top:20px; border-top:1px solid var(--border); }
+  .nav-btn { display:flex; align-items:center; gap:8px; padding:10px 20px; border-radius:6px; font-size:12px; font-weight:400; cursor:pointer; transition:all 0.2s; border:none; font-family:'DM Sans',sans-serif; letter-spacing:0.04em; }
+  .nav-btn-prev { background:transparent; color:var(--text-secondary); border:1px solid var(--border); }
+  .nav-btn-prev:hover { border-color:var(--border-light); color:var(--text-primary); }
+  .nav-btn-prev:disabled { opacity:0.3; cursor:default; }
+  .nav-btn-next { background:var(--accent); color:white; }
+  .nav-btn-next:hover { opacity:0.88; }
+  .nav-btn-complete { background:var(--green); color:white; }
+  .nav-btn-complete:hover { opacity:0.88; }
+  .btn-icon { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; }
+  .bottom-nav-center { font-size:12px; color:var(--text-muted); text-align:center; }
+
+  /* QUIZ STYLES */
+  .quiz-intro { margin-bottom:28px; }
+  .quiz-progress { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:16px 20px; display:flex; align-items:center; gap:16px; margin-bottom:28px; }
+  .quiz-progress-bar-wrap { flex:1; height:4px; background:var(--border); border-radius:2px; }
+  .quiz-progress-bar { height:4px; background:var(--accent); border-radius:2px; transition:width 0.4s ease; }
+  .quiz-progress-text { font-size:12px; color:var(--text-muted); white-space:nowrap; }
+  .quiz-question { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px; margin-bottom:16px; }
+  .quiz-q-num { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .quiz-q-text { font-size:14px; font-weight:400; color:var(--text-primary); margin-bottom:20px; line-height:1.5; }
+  .quiz-options { display:flex; flex-direction:column; gap:8px; }
+  .quiz-option { display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--surface-2); border:1px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.15s; }
+  .quiz-option:hover { border-color:var(--border-light); background:rgba(255,255,255,0.03); }
+  .quiz-option.selected { border-color:var(--accent); background:var(--accent-glow); }
+  .quiz-option.correct { border-color:var(--green); background:var(--green-dim); }
+  .quiz-option.wrong { border-color:rgba(192,57,43,0.5); background:rgba(192,57,43,0.06); }
+  .option-letter { width:24px; height:24px; border-radius:50%; border:1px solid var(--border-light); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:500; color:var(--text-muted); flex-shrink:0; }
+  .quiz-option.selected .option-letter { border-color:var(--accent); color:var(--accent); background:var(--accent-dim); }
+  .option-text { font-size:13px; color:var(--text-secondary); font-weight:300; }
+  .quiz-submit { display:flex; justify-content:flex-end; margin-top:20px; }
+  .quiz-btn { padding:11px 24px; border-radius:6px; font-size:13px; font-weight:400; cursor:pointer; border:none; font-family:'DM Sans',sans-serif; transition:all 0.2s; }
+  .quiz-btn-submit { background:var(--accent); color:white; }
+  .quiz-btn-submit:hover { opacity:0.88; }
+  .quiz-btn-submit:disabled { opacity:0.4; cursor:default; }
+  .quiz-result { display:none; text-align:center; padding:40px 24px; }
+  .quiz-result.show { display:block; }
+  .quiz-score { font-family:'Cormorant Garamond',serif; font-size:64px; font-weight:300; color:var(--accent); line-height:1; margin-bottom:8px; }
+  .quiz-score-label { font-size:14px; color:var(--text-secondary); margin-bottom:24px; }
+  .quiz-cert-btn { padding:14px 32px; background:var(--green); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer; font-family:'DM Sans',sans-serif; }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <img src="https://framerusercontent.com/images/Q9KOo0ZOBzGxdPVBwSfYfVx9dE.png" alt="Levitask">
+    <div class="portal-label">Distributor Portal</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Navigation</div>
+    <a class="nav-item" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>Dashboard</a>
+    <a class="nav-item active" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 3 3.5.5-2.5 2.5.5 3.5L8 9l-3 1.5.5-3.5L3 4.5l3.5-.5z"/></svg>Training & Certification<span style="margin-left:auto;font-size:9px;background:var(--accent-dim);color:var(--accent);padding:2px 6px;border-radius:3px;">1/5</span></a>
+    <a class="nav-item" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h10"/></svg>Product Knowledge</a>
+    <a class="nav-item" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11l4-4 3 3 3-4 4 4"/></svg>Sales Tools</a>
+    <a class="nav-item" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4M2 14h12"/></svg>Resources & Downloads</a>
+    <div class="nav-section-label">Support</div>
+    <a class="nav-item" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 7v5M8 4.5v.5"/></svg>Contact & Support</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="distributor-badge">
+      <div class="distributor-avatar">LB</div>
+      <div><div class="distributor-name">Loyal Brand</div><div class="distributor-role">Authorized Distributor</div></div>
+    </div>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-left">Training <span>& Certification</span></div>
+    <div class="topbar-right" id="topbar-progress">Module 1 of 5 · 0% complete</div>
+  </div>
+
+  <div class="content">
+
+    <!-- MODULE NAV -->
+    <nav class="module-nav">
+      <div class="module-nav-title">Modules</div>
+
+      <div class="module-group" id="mg-1">
+        <div class="module-group-header active" onclick="toggleModuleNav(1)">
+          <div class="module-group-num">1</div>
+          <div class="module-group-label">The Foundation</div>
+          <div class="module-group-status">Active</div>
+        </div>
+        <div class="module-subsections open" id="subs-1">
+          <div class="subsection-link active" onclick="goTo(1,0)">1.1 The Levitask Story</div>
+          <div class="subsection-link" onclick="goTo(1,1)">1.2 The 90° Problem</div>
+          <div class="subsection-link" onclick="goTo(1,2)">1.3 The Elevated Seating Solution</div>
+        </div>
+      </div>
+      <div class="module-divider"></div>
+
+      <div class="module-group locked" id="mg-2">
+        <div class="module-group-header" onclick="toggleModuleNav(2)">
+          <div class="module-group-num">2</div>
+          <div class="module-group-label">Product Mastery</div>
+          <div class="module-group-status">Locked</div>
+        </div>
+        <div class="module-subsections" id="subs-2">
+          <div class="subsection-link" onclick="goTo(2,0)">2.1 Vision X & Vision Y</div>
+          <div class="subsection-link" onclick="goTo(2,1)">2.2 Features & Adjustments</div>
+          <div class="subsection-link" onclick="goTo(2,2)">2.3 Materials & Build Quality</div>
+        </div>
+      </div>
+      <div class="module-divider"></div>
+
+      <div class="module-group locked" id="mg-3">
+        <div class="module-group-header" onclick="toggleModuleNav(3)">
+          <div class="module-group-num">3</div>
+          <div class="module-group-label">The Science</div>
+          <div class="module-group-status">Locked</div>
+        </div>
+        <div class="module-subsections" id="subs-3">
+          <div class="subsection-link" onclick="goTo(3,0)">3.1 Spine Biomechanics</div>
+          <div class="subsection-link" onclick="goTo(3,1)">3.2 The 6 Health Benefits</div>
+          <div class="subsection-link" onclick="goTo(3,2)">3.3 The Research</div>
+        </div>
+      </div>
+      <div class="module-divider"></div>
+
+      <div class="module-group locked" id="mg-4">
+        <div class="module-group-header" onclick="toggleModuleNav(4)">
+          <div class="module-group-num">4</div>
+          <div class="module-group-label">Why Levitask Wins</div>
+          <div class="module-group-status">Locked</div>
+        </div>
+        <div class="module-subsections" id="subs-4">
+          <div class="subsection-link" onclick="goTo(4,0)">4.1 The Competitive Landscape</div>
+          <div class="subsection-link" onclick="goTo(4,1)">4.2 Key Talking Points</div>
+          <div class="subsection-link" onclick="goTo(4,2)">4.3 Market Opportunity</div>
+        </div>
+      </div>
+      <div class="module-divider"></div>
+
+      <div class="module-group locked" id="mg-5">
+        <div class="module-group-header" onclick="toggleModuleNav(5)">
+          <div class="module-group-num">5</div>
+          <div class="module-group-label">Sales Enablement</div>
+          <div class="module-group-status">Locked</div>
+        </div>
+        <div class="module-subsections" id="subs-5">
+          <div class="subsection-link" onclick="goTo(5,0)">5.1 The Pitches</div>
+          <div class="subsection-link" onclick="goTo(5,1)">5.2 The Demo Method</div>
+          <div class="subsection-link" onclick="goTo(5,2)">5.3 Objection Handling</div>
+          <div class="subsection-link" onclick="goTo(5,3)">5.4 The B2B Business Case</div>
+        </div>
+      </div>
+      <div class="module-divider"></div>
+
+      <div class="cert-item" id="cert-nav">
+        <div class="cert-star">★</div>
+        <div class="cert-label">Certification Assessment</div>
+      </div>
+
+    </nav>
+
+    <!-- MODULE CONTENT -->
+    <div class="module-content" id="module-content">
+
+      <div class="complete-banner" id="complete-banner">
+        <svg viewBox="0 0 18 18"><path d="M3 9l4 4 8-8"/></svg>
+        <span id="complete-banner-text">Module complete — next module unlocked.</span>
+      </div>
+
+      <div class="module-header">
+        <div class="module-breadcrumb">
+          <span class="breadcrumb-badge" id="breadcrumb-badge">Module 1 of 5</span>
+          <span class="breadcrumb-sep">·</span>
+          <span class="breadcrumb-sub" id="breadcrumb-sub">Section 1.1</span>
+        </div>
+        <h1 class="module-title" id="module-title">The Levitask Story</h1>
+        <p class="module-lead" id="module-lead">The origin of Levitask, the vision behind Elevated Seating, and the three pillars that define who we are.</p>
+        <div id="module-intro-slot"></div>
+        <div class="module-meta">
+          <div class="meta-item"><svg viewBox="0 0 13 13"><circle cx="6.5" cy="6.5" r="5.5"/><path d="M6.5 4v3l2 1.5"/></svg><span id="meta-time">~6 min</span></div>
+          <div class="meta-item" style="margin-left:auto;"><span id="meta-progress">Section 1 of 3</span></div>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs"></div>
+      <div id="panels-container"></div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const MODULES = [
+  {
+    id: 1, title: "The Foundation", status: "active",
+    sections: [
+      {
+        title: "The Levitask Story",
+        label: "Section 1.1",
+        badge: "Module 1 of 5",
+        time: "~6 min",
+        lead: "The origin of Levitask, the vision behind Elevated Seating, and the pillars that define who we are.",
+        videoTitle: "Michael Gotfrid — The story behind Levitask",
+        videoDuration: "4:12",
+        videoBg: "linear-gradient(135deg, #1c1410 0%, #0d0d0d 100%)",
+        content: `
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-value">40+</div><div class="stat-label">Years of R&D by Klaus Kummer</div></div>
+            <div class="stat-card"><div class="stat-value">100+</div><div class="stat-label">Prototypes built and tested</div></div>
+            <div class="stat-card"><div class="stat-value">1</div><div class="stat-label">Product — perfected</div></div>
+            <div class="stat-card"><div class="stat-value">$560K+</div><div class="stat-label">Raised on Kickstarter</div></div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">The Origin Story</h3>
+            <p class="content-p">In the 1970s, a young cabinet maker from Germany named Klaus Kummer began studying under Dr. A.C. Mandal in Copenhagen — one of the first researchers to document the fundamental problems with flat seating. Mandal's discovery: the 90-degree sitting posture was never based on human anatomy. It was standardized during the Industrial Revolution as factories and offices scaled, and had never been questioned since.</p>
+            <p class="content-p">Klaus went on to study industrial design in Scandinavia and spent the next 40 years pursuing one goal: create a chair that allows humans to sit the way their bodies were designed to move. In 2023, he partnered with Michael Gotfrid to bring this vision to market. Together they founded Levitask — and with it, gave birth to the Vision Chair.</p>
+            <div class="callout"><p style="color:var(--text-primary);">"We accelerate human progress with elevated seating."</p><p style="font-style:normal;font-size:12px;color:var(--text-muted);margin-top:8px;">Michael Gotfrid — Co-founder &amp; CEO, Levitask</p><p style="font-style:normal;margin-top:10px;">Levitask exists to replace the broken 90-degree sitting standard with a posture system based on how the human body actually works.</p></div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Three Pillars</h3>
+            <div class="card-grid">
+              <div class="content-card accent"><div class="card-h">Technology No One Has</div><div class="card-p">The T-Mech™ knee-pivot mechanism (patent-pending) solves the sliding problem that defeated every previous forward-tilt design. First to market.</div></div>
+              <div class="content-card accent"><div class="card-h">40 Years of Research</div><div class="card-p">Klaus Kummer dedicated four decades to finding the optimal way to sit. Not a trend — a proven biomechanical principle validated by independent research.</div></div>
+              <div class="content-card accent"><div class="card-h">Proven Market Validation</div><div class="card-p">$560K+ pledged on Kickstarter. Ranked top 0.4% of projects globally. 600+ early adopters around the world trusted 40 years of research enough to back a chair they had never sat in.</div></div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Key Milestones</h3>
+            <div class="timeline">
+              <div class="timeline-item"><div class="timeline-year">1970s</div><div class="timeline-text">Klaus Kummer begins ergonomic research under Dr. A.C. Mandal in Copenhagen</div></div>
+              <div class="timeline-item"><div class="timeline-year">1980s - 2010s</div><div class="timeline-text">30+ years refining the concept - dozens of prototypes, one obsession: finding the optimal way to sit</div></div>
+              <div class="timeline-item"><div class="timeline-year">2013</div><div class="timeline-text">First patent filed - the Elevated Seating concept is officially born</div></div>
+              <div class="timeline-item"><div class="timeline-year">2018</div><div class="timeline-text">Industry rejection - the ergonomics world wasn't ready to abandon 90°</div></div>
+              <div class="timeline-item"><div class="timeline-year">2021</div><div class="timeline-text">Klaus meets Michael - Levitask is founded</div></div>
+              <div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-text">T-Mech™ patent filed - 40 years of research distilled into one mechanism</div></div>
+              <div class="timeline-item"><div class="timeline-year">2025</div><div class="timeline-text">Vision Chair launched - $560K+ raised on Kickstarter in weeks</div></div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Brand Values</h3>
+            <p class="content-p">These four values are not just principles - they are the lens through which every Levitask conversation should be framed. When you're unsure how to respond to a customer, come back to these.</p>
+            <div class="card-grid-2">
+              <div class="content-card"><div class="card-h">Truth Over Trend</div><div class="card-p">Every claim is backed by research and real biomechanical principles. If we can't prove it, we don't say it.</div></div>
+              <div class="content-card"><div class="card-h">Engineering Over Marketing</div><div class="card-p">The product leads. We invest in R&D, materials, and mechanisms - not gimmicks.</div></div>
+              <div class="content-card"><div class="card-h">Long-term Over Short-term</div><div class="card-p">We build for decades, not quarters. The Vision Chair is designed to last years. Every decision, from the mechanism to the packaging, is made with the long game in mind.</div></div>
+              <div class="content-card"><div class="card-h">Education Over Persuasion</div><div class="card-p">We don't pressure. We educate. When customers understand the science, the product sells itself.</div></div>
+            </div>
+          </div>`
+      },
+      {
+        title: "The 90° Problem",
+        label: "Section 1.2",
+        badge: "Module 1 of 5",
+        time: "~6 min",
+        lead: "For 50 years, the ergonomics industry has been optimizing the wrong angle. Here is where it came from, what it does to the body, and why nobody questioned it sooner.",
+        videoTitle: "Klaus Kummer — Why 90° is the root problem",
+        videoDuration: "5:04",
+        videoBg: "linear-gradient(135deg, #100c1c 0%, #0d0d0d 100%)",
+        content: `
+          <div class="content-section">
+            <h3 class="content-h3">Where 90° Came From</h3>
+            <p class="content-p">The 90-degree sitting posture was never designed by ergonomists or physicians. It was standardized during the Industrial Revolution as factories and offices scaled at speed. Desks, assembly lines, and typewriting stations were built for efficiency and space optimization — not for the human spine. The angle that emerged was a byproduct of furniture production constraints, not anatomy.</p>
+            <p class="content-p">By the early 20th century, the 90° seated posture had become the global default — taught in schools, enforced in offices, embedded in every chair ever manufactured. It was never questioned because it was never seen as a design choice. It was simply assumed to be correct.</p>
+            <div class="callout"><p>The 90° sitting standard was not designed for the human body. It was designed for the industrial workplace — and the human body has been adapting to it, at great cost, ever since.</p></div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">What It Does to the Body</h3>
+            <p class="content-p">When you sit at 90°, your hip flexors are compressed to their minimum length. This triggers an involuntary mechanical chain reaction that no amount of postural awareness or discipline can override.</p>
+            <div class="posture-compare">
+              <div class="posture-col bad">
+                <div class="posture-col-label">The chain reaction at 90°</div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Hip flexors compress to minimum length</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Pelvis rotates posteriorly — lumbar curve flattens</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Thoracic spine rounds forward, cervical spine follows</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Head moves in front of the body's centre of gravity</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>L4–L5 and L5–S1 discs absorb excessive compressive force</span></div>
+              </div>
+              <div class="posture-col bad" style="border-top-color:rgba(192,57,43,0.3);">
+                <div class="posture-col-label" style="color:var(--text-muted);">The result over time</div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Surrounding musculature contracts continuously to hold position</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Muscle fatigue sets in within minutes</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Back pain follows within hours of sustained sitting</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Chronic compression leads to disc degeneration over years</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>80% of office workers experience back pain in their lifetime</span></div>
+              </div>
+            </div>
+            <div class="callout"><p>This is not a question of discipline or posture awareness. It is physics. The body is being held in a position it was not designed to sustain — and no ergonomic chair built around 90° can change that.</p></div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Why Nobody Questioned It</h3>
+            <p class="content-p">The ergonomics industry spent 50 years optimizing the 90° position rather than rethinking it. Better lumbar support, deeper recline, more adjustability — every innovation was an attempt to make an uncomfortable posture more bearable. The assumption that 90° was correct was never challenged.</p>
+            <p class="content-p">Researchers did raise the alarm. Keegan showed in 1953 that 135° was the anatomically correct trunk-thigh angle. Mandal argued from 1976 onwards that forward-tilt seating was the solution. But their work remained academic — the market was too large, too standardized, and too invested in the existing paradigm to shift.</p>
+            <div class="card-grid">
+              <div class="content-card"><div class="card-h">The market couldn't move</div><div class="card-p">Billions of dollars in furniture manufacturing infrastructure was built around 90°. Changing the standard meant invalidating an entire industry.</div></div>
+              <div class="content-card"><div class="card-h">The science was ignored</div><div class="card-p">Mandal's research on forward-tilt seating was published in 1976. It took another 40 years before a product could solve the sliding problem and bring it to market.</div></div>
+              <div class="content-card"><div class="card-h">The problem was normalized</div><div class="card-p">Back pain became so common it stopped being seen as a design failure. It was treated as an inevitable consequence of office work — managed, not solved.</div></div>
+            </div>
+            <div class="callout green"><p><strong>The distributor takeaway:</strong> When a customer says "I've always had back pain at my desk" — that's not a personal failing. That's 50 years of the wrong design. The Vision Chair is the first product to address the root cause.</p></div>
+          </div>`
+      },
+      {
+        title: "The Elevated Seating Solution",
+        label: "Section 1.3",
+        badge: "Module 1 of 5",
+        time: "~5 min",
+        lead: "Not sitting. Not standing. Elevated. How opening the hip angle to 115° changes everything.",
+        videoTitle: "Klaus Kummer — Elevated Seating explained",
+        videoDuration: "3:58",
+        videoBg: "linear-gradient(135deg, #1a0e08 0%, #0d0d0d 100%)",
+        content: `
+          <div class="callout"><p style="color:var(--text-primary);">Elevated Seating is a posture-first design that opens the hip angle to 115-120°, halfway between sitting and standing. This forward opening rotates the pelvis anteriorly, which naturally restores the spine's S-curve - without any conscious effort from the user.</p></div>
+          <div class="content-section" style="margin-top:24px;">
+            <h3 class="content-h3">The Reversal - What Changes at 115°</h3>
+            <div class="posture-compare">
+              <div class="posture-col bad">
+                <div class="posture-col-label">Traditional Seating - 90°</div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Pelvis rotates backward</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Spine collapses - S-curve lost</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Lumbar support required to compensate</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Fatigue after 2-3 hours</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Treats the symptom, not the cause</span></div>
+              </div>
+              <div class="posture-col good">
+                <div class="posture-col-label">Elevated Seating - 115°</div>
+                <div class="chain-item"><div class="chain-dot green"></div><span>Hip flexors reach natural resting length</span></div>
+                <div class="chain-item"><div class="chain-dot green"></div><span>Pelvis rotates anteriorly - lumbar lordosis restores automatically</span></div>
+                <div class="chain-item"><div class="chain-dot green"></div><span>No lumbar support needed - posture is natural</span></div>
+                <div class="chain-item"><div class="chain-dot green"></div><span>Deep stabilising muscles engage passively without fatigue</span></div>
+                <div class="chain-item"><div class="chain-dot green"></div><span>Eliminates the root cause</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">The T-Mech - How It Works</h3>
+            <p class="content-p">The Vision Chair uses the T-Mech™, a patent-pending knee-pivot mechanism that tilts the seat forward. This forward tilt rotates the pelvis anteriorly, which naturally restores the spine's S-curve without any conscious effort from the user. And because the pivot point sits at the knee, the thighs stay in contact with the seat surface. No sliding. No discomfort.</p>
+            <div class="card-grid">
+              <div class="content-card accent"><div class="card-h">The Angle</div><div class="card-p">Seat tilts forward at up to +18°, opening the hip angle to 115-120°. The body responds automatically - no conscious effort required.</div></div>
+              <div class="content-card accent"><div class="card-h">The Mechanism</div><div class="card-p">Knee-pivot arc keeps thighs in contact with the seat throughout the full range of motion. The Anti Slip Matrix prevents forward sliding.</div></div>
+              <div class="content-card accent"><div class="card-h">The Result</div><div class="card-p">Pelvis rotates anteriorly, lumbar lordosis restores, thoracic and cervical spine realign. The body stops fighting the chair.</div></div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">The One Thing to Remember</h3>
+            <div class="callout"><p style="color:var(--text-primary);">Elevated Seating is not an improvement on existing chairs - it is a different premise entirely. By opening the hip angle to 115°, halfway between sitting and standing, it delivers the postural benefits of standing while keeping you seated. That is what no chair had ever achieved before.</p></div>
+          </div>`
+      }
+    ]
+  },
+    {
+    id: 2, title: "Product Mastery", status: "locked",
+    sections: [
+      {
+        title: "Vision X & Vision Y — Two Models, One Principle",
+        label: "Section 2.1",
+        badge: "Module 2 of 5",
+        time: "~5 min",
+        lead: "Both models rely on the same Elevated Seating principle and deliver the same benefits. Here is what sets them apart.",
+        videoTitle: "Product Overview — Vision X and Vision Y",
+        videoDuration: "5:00",
+        videoBg: "linear-gradient(135deg, #0e1a1c 0%, #0d0d0d 100%)",
+        content: `
+          <div class="callout"><p><strong>The core principle:</strong> Both Vision Y and Vision X deliver the same postural benefits using the T-Mech mechanism and the Elevated Seating principle. The decision between them comes down to feature set, size, and budget - not posture performance.</p></div>
+          <div class="content-section" style="margin-top:24px;">
+            <h3 class="content-h3">Model Comparison</h3>
+            <table class="content-table">
+              <thead><tr><th>Feature</th><th>Vision Y</th><th>Vision X</th></tr></thead>
+              <tbody>
+                <tr><td>Price</td><td style="color:var(--accent);">$2,200</td><td style="color:var(--accent);">$3,000</td></tr>
+                <tr><td>Headrest</td><td>Not included</td><td style="color:var(--accent);">Included — 2-axis adjustable</td></tr>
+                <tr><td>Backrest height</td><td>Standard</td><td style="color:var(--accent);">Tall</td></tr>
+                <tr><td>Seat height range</td><td colspan="2" style="text-align:center;color:var(--text-muted);font-style:italic;">358 mm – 465 mm (same on both models)</td></tr>
+                <tr><td>Weight capacity</td><td colspan="2" style="text-align:center;color:var(--text-muted);font-style:italic;">130 kg / 300 lbs (same on both models)</td></tr>
+                <tr><td>Armrest type</td><td colspan="2" style="text-align:center;color:var(--text-muted);font-style:italic;">Both: folding or fully adjustable (user choice)</td></tr>
+                <tr><td>Colours</td><td colspan="2" style="text-align:center;color:var(--text-muted);font-style:italic;">Both: Cosmic Gray · Deep Coal · Powder Coated Black</td></tr>
+                <tr><td>Assembly</td><td colspan="2" style="text-align:center;color:var(--text-muted);font-style:italic;">Both: ~15 min, tool-free</td></tr>
+                <tr><td>Warranty</td><td colspan="2" style="text-align:center;color:var(--text-muted);font-style:italic;">Both: 10 years</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Who Gets Which Model</h3>
+            <div class="card-grid-2">
+              <div class="content-card accent">
+                <div class="card-h">Vision Y — The Entry Point</div>
+                <div class="card-p">Best for: users under 185 cm, home office buyers, budget-conscious corporate pilots, first-time Elevated Seating users. Delivers the full T-Mech experience at a lower entry price. The smart starting point for most B2C customers.</div>
+              </div>
+              <div class="content-card accent">
+                <div class="card-h">Vision X — The Premium Version</div>
+                <div class="card-p">Best for: taller users (185 cm+), corporate accounts, users who work long hours and want neck support, premium home office setups. The 2-axis headrest and taller backrest justify the price premium for power users.</div>
+              </div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">The Distributor Framing</h3>
+            <div class="callout green"><p><strong>Never position one model as "better" than the other.</strong> Both chairs deliver the same core benefit. The Vision X has more features — not a better mechanism. Lead with benefit, then match features to user needs.</p></div>
+          </div>`
+      },
+      {
+        title: "Features & Adjustments — Setting Up the Chair",
+        label: "Section 2.2",
+        badge: "Module 2 of 5",
+        time: "~6 min",
+        lead: "Understanding every adjustment and feature — so you can walk a customer through setup and explain each component with confidence.",
+        videoTitle: "Product Walkthrough — Adjustments & Features",
+        videoDuration: "6:00",
+        videoBg: "linear-gradient(135deg, #0a1a12 0%, #0d0d0d 100%)",
+        content: `
+          <div class="content-section">
+            <h3 class="content-h3">The Seat — Anti Slip Matrix</h3>
+            <p class="content-p">Before any adjustment, the foundation is the seat surface itself. The Anti Slip Matrix — a micro-dot texture combined with a contour cradle cavity — physically prevents the user from sliding forward when the T-Mech is engaged. This is the mechanical answer to the sliding problem that defeated every previous forward-tilt design. Without it, Elevated Seating would not be possible.</p>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Adjustments — In Order of Setup</h3>
+            <div class="demo-steps">
+              <div class="demo-step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Seat Height — right-side lever</div><div class="step-script">Set first. Feet should rest flat on the floor. Range: 42–58 cm (Y) / 42–60 cm (X). This is the baseline before any other adjustment.</div></div></div>
+              <div class="demo-step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Seat Elevation (T-Mech) — left-side lever</div><div class="step-script">The core adjustment. Range: −5° to +18°. Start at 0° and increase gradually until the hip angle opens and feels natural. Important: slightly rise off the seat before engaging — the mechanism cannot move under full body weight.</div></div></div>
+              <div class="demo-step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Seat Depth & Backrest Height — dials</div><div class="step-script">Slightly loosen the respective dials to adjust. These are one-time adjustments — once set to the user's body, they rarely need to change. Seat depth: 2–3 fingers between back of knee and seat edge. Backrest: lumbar support at natural curve of lower back.</div></div></div>
+              <div class="demo-step"><div class="step-num">4</div><div class="step-content"><div class="step-title">Backrest Recline — automatic</div><div class="step-script">No lever required. The backrest reclines up to 125° automatically following the user's movement. The Vision Chair maintains the Elevated Seating angle throughout the full recline range.</div></div></div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Features</h3>
+            <div class="card-grid">
+              <div class="content-card"><div class="card-h">Folding Armrest</div><div class="card-p">Available on both models. Folds flat when not needed. Supports the forearm during typing to reduce shoulder tension.</div></div>
+              <div class="content-card"><div class="card-h">Fully Adjustable Armrest</div><div class="card-p">Available on both models. Multi-axis adjustment for height, depth, and angle. Set so shoulders are relaxed and elbows are at approximately 90° when typing.</div></div>
+              <div class="content-card"><div class="card-h">2-Axis Headrest <span class="study-tag">Vision X only</span></div><div class="card-p">Adjustable on 2 axes: vertical travel and depth. Set so the headrest supports the base of the skull without pushing the head forward.</div></div>
+            </div>
+            <div class="callout green"><p>Unlike conventional chairs, the Vision Chair has no "default" position. The right setup is the one that feels natural for each individual user's body. This is a key message for demos.</p></div>
+          </div>`
+      },
+      {
+        title: "Materials & Build Quality",
+        label: "Section 2.3",
+        badge: "Module 2 of 5",
+        time: "~4 min",
+        lead: "Every material in the Vision Chair was chosen with the same philosophy as its mechanism — nothing superfluous, nothing compromised.",
+        videoTitle: "Materials & Sustainability — Vision Chair",
+        videoDuration: "3:30",
+        videoBg: "linear-gradient(135deg, #141014 0%, #0d0d0d 100%)",
+        content: `
+          <div class="content-section">
+            <h3 class="content-h3">Material Philosophy</h3>
+            <p class="content-p">Premium craftsmanship and sustainable sourcing are not add-ons at Levitask — they are part of the design brief. Every component was selected for durability, user comfort, and end-of-life responsibility.</p>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Materials at a Glance</h3>
+            <table class="content-table">
+              <thead><tr><th>Component</th><th>Material</th><th>Note</th></tr></thead>
+              <tbody>
+                <tr><td>Backrest & Headrest</td><td>100% natural cotton — breathable</td><td>Premium feel, temperature neutral</td></tr>
+                <tr><td>Seat surface</td><td>Natural cotton + anti-slip layer</td><td>Contour cradle cavity for posture support</td></tr>
+                <tr><td>T-Mech, base & frame</td><td>Chromed steel & polished aluminium</td><td>Industrial durability, clean aesthetic</td></tr>
+                <tr><td>Shell</td><td>ABS plastic — recycled</td><td style="color:var(--green-bright);">♻ Recycled material</td></tr>
+                <tr><td>Armpad</td><td>Polyurethane — recycled</td><td style="color:var(--green-bright);">♻ Recycled material</td></tr>
+                <tr><td>Wheels</td><td>Chromed zinc alloy & TPU</td><td style="color:var(--green-bright);">⬡ Biodegradable compound</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">The Durability Argument</h3>
+            <div class="card-grid">
+              <div class="content-card accent"><div class="card-h">10-Year Warranty</div><div class="card-p">Full warranty covering mechanism and structural components. Longer than any competitor in the premium segment.</div></div>
+              <div class="content-card accent"><div class="card-h">User-Replaceable Parts</div><div class="card-p">Every component can be replaced by the user without tools or a service call. Zero maintenance overhead for the end customer.</div></div>
+              <div class="content-card accent"><div class="card-h">Lower TCO</div><div class="card-p">A chair designed to last 10–15 years with replaceable components costs significantly less per year than furniture replaced every 4–5 years.</div></div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Certifications</h3>
+            <div class="callout"><p><strong>Current status:</strong> Facility certifications completed. BIFMA X5.1 structural testing currently in progress — expected completion 2026. Do not claim BIFMA certification is complete until officially confirmed.</p></div>
+          </div>`
+      }
+    ]
+  },
+  {
+    id: 3, title: "The Science", status: "locked",
+    sections: [
+      {
+        title: "Spine Biomechanics — Why 90° Fails, Why 115° Works",
+        label: "Section 3.1",
+        badge: "Module 3 of 5",
+        time: "~6 min",
+        lead: "The anatomical and mechanical explanation for what happens to the spine and pelvis at each sitting angle.",
+        videoTitle: "Klaus Kummer — The biomechanics of sitting",
+        videoDuration: "6:00",
+        videoBg: "linear-gradient(135deg, #0e1218 0%, #0d0d0d 100%)",
+        content: `
+          <div class="content-section">
+            <h3 class="content-h3">The Hip Flexor Chain Reaction</h3>
+            <p class="content-p">When you sit at 90°, your hip flexors — the muscles connecting your femur to your pelvis — are compressed to their minimum length. This triggers an involuntary mechanical chain reaction that no amount of postural awareness can override.</p>
+            <div class="posture-compare">
+              <div class="posture-col bad">
+                <div class="posture-col-label">At 90° — the cascade</div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Hip flexors compress to minimum length</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Pelvis rotates posteriorly — lumbar curve flattens</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Thoracic spine rounds forward, cervical spine follows</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>Head moves in front of the body's centre of gravity</span></div>
+                <div class="chain-item"><div class="chain-dot red"></div><span>L4–L5 and L5–S1 discs absorb excessive compressive force</span></div>
+              </div>
+              <div class="posture-col good">
+                <div class="posture-col-label">At 115° — the reversal</div>
+                <div class="chain-item"><div class="chain-dot green"></div><span>Hip flexors reach natural resting length — they release</span></div>
+                <div class="chain-item"><div class="chain-dot green"></div><span>Pelvis rotates anteriorly — lumbar lordosis restores automatically</span></div>
+                <div class="chain-item"><div class="chain-dot green"></div><span>Thoracic spine decompresses, cervical spine realigns</span></div>
+                <div class="chain-item"><div class="chain-dot green"></div><span>Head returns above the body's centre of gravity</span></div>
+                <div class="chain-item"><div class="chain-dot green"></div><span>Disc load drops — approaching levels measured in standing</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">The Key Point for Distributors</h3>
+            <div class="callout"><p>This is not a question of discipline or posture awareness. It is physics. At 90°, the body is held in a position it was not designed to sustain. At 115°, it is simply sitting — the way it was designed to. This distinction is the most powerful argument you have in a sales conversation.</p></div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Why Lumbar Support Is Not the Answer</h3>
+            <p class="content-p">Lumbar support pushes the lower back forward to recreate the lordotic curve — but the pelvis is still tipped backward at 90°. It's the equivalent of propping up a leaning wall without fixing the foundation. The moment the user leans away from the backrest, the curve collapses again. The Vision Chair doesn't need lumbar support because the angle itself prevents the collapse from occurring in the first place.</p>
+          </div>`
+      },
+      {
+        title: "The 6 Health Benefits",
+        label: "Section 3.2",
+        badge: "Module 3 of 5",
+        time: "~4 min",
+        lead: "Six physiological effects of the 115° hip angle — from spinal decompression to improved energy levels.",
+        videoTitle: "The Health Benefits of Elevated Seating",
+        videoDuration: "4:00",
+        videoBg: "linear-gradient(135deg, #0a1810 0%, #0d0d0d 100%)",
+        content: `
+          <div class="content-section">
+            <p class="content-p">The 115° hip angle triggers a cascade of physiological benefits that go beyond spinal alignment. Understanding these benefits allows distributors to speak credibly to the full value of Elevated Seating — and to connect with users whose primary concern is not back pain but energy, focus, or digestive comfort.</p>
+          </div>
+          <div class="benefit-grid">
+            <div class="benefit-card">
+              <div class="benefit-phys">Balanced Pressure Distribution</div>
+              <div class="benefit-desc">Even weight distribution reduces pressure hotspots across the spine and lower body.</div>
+              <div class="benefit-punchline">→ No more back pain at the end of the day</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-phys">Spinal Alignment</div>
+              <div class="benefit-desc">Supports the spine's natural curvature, minimizing postural stress on vertebrae and discs.</div>
+              <div class="benefit-punchline">→ Sit for hours without the urge to fidget or get up</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-phys">Optimal Pelvic Rotation</div>
+              <div class="benefit-desc">Anterior tilt realigns the pelvis, anchoring the lumbar spine in its natural S-shape.</div>
+              <div class="benefit-punchline">→ Better posture without thinking about it</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-phys">Open Knee Angle</div>
+              <div class="benefit-desc">Expands lower body angles, improving circulation and reducing tension in hips and knees.</div>
+              <div class="benefit-punchline">→ No more heavy legs after a long day at your desk</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-phys">Decompressed Lungs</div>
+              <div class="benefit-desc">Upright posture reduces thoracic compression, enhancing diaphragm expansion and lung capacity.</div>
+              <div class="benefit-punchline">→ Deeper breathing — more energy through the day</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-phys">Pressure-Free Organs</div>
+              <div class="benefit-desc">Elevated angle minimizes compression of abdominal organs, reducing digestive discomfort during sitting.</div>
+              <div class="benefit-punchline">→ Less digestive discomfort during long working sessions</div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="callout green"><p><strong>How to use this in a conversation:</strong> Match the benefit to the customer's stated concern. Back pain sufferers respond to spinal alignment. Productivity-focused buyers respond to energy and focus. Corporate buyers respond to absenteeism reduction. You have six different entry points — use the one that resonates.</p></div>`
+      },
+      {
+        title: "The Research Behind Elevated Seating",
+        label: "Section 3.3",
+        badge: "Module 3 of 5",
+        time: "~5 min",
+        lead: "The independent scientific studies that validate the 115° principle — so distributors can speak to the evidence with confidence.",
+        videoTitle: "The Scientific Evidence — Elevated Seating",
+        videoDuration: "4:30",
+        videoBg: "linear-gradient(135deg, #0c1020 0%, #0d0d0d 100%)",
+        content: `
+          <div class="content-section">
+            <p class="content-p">Elevated Seating is not a marketing concept — it is grounded in decades of independent scientific research. The following studies form the core of the evidence base. All claims should be validated by Klaus Kummer before being presented to customers as definitive facts.</p>
+          </div>
+          <div class="study-list">
+            <div class="study-card">
+              <div class="study-year">1953</div>
+              <div><div class="study-title">Alterations of the lumbar curve related to posture and seating</div><div class="study-ref">Keegan, J.J. — Journal of Bone and Joint Surgery</div><div class="study-desc">Through X-ray analysis, Keegan found that the optimal trunk-thigh angle for maintaining lumbar lordosis is approximately 135°. The anatomical baseline that later researchers including Mandal built upon.</div></div>
+            </div>
+            <div class="study-card">
+              <div class="study-year">1981</div>
+              <div><div class="study-title">Disc pressure measurements</div><div class="study-ref">Nachemson, A.L. — Spine</div><div class="study-desc">Over 20 years of in vivo intradiscal pressure measurements establishing that sitting generates higher spinal loading than standing, and that posture variation significantly influences disc pressure.</div><a class="study-link" href="https://pubmed.ncbi.nlm.nih.gov/7209680/" target="_blank">Read the study →</a></div>
+            </div>
+            <div class="study-card">
+              <div class="study-year">1981</div>
+              <div><div class="study-title">The seated man (Homo Sedens) — the seated work position</div><div class="study-ref">Mandal, A.C. — Applied Ergonomics</div><div class="study-desc">Established that a forward seat tilt of approximately 20° ensures lumbar lordosis. Mandal argued the seated work position should approach a half-standing posture with a hip angle of 120–135° — the theoretical foundation for Elevated Seating.</div><a class="study-link" href="https://pubmed.ncbi.nlm.nih.gov/15676394/" target="_blank">Read the study →</a></div>
+            </div>
+            <div class="study-card">
+              <div class="study-year">1985</div>
+              <div><div class="study-title">A preliminary study of chairs with forward-sloping seats and sitting postures</div><div class="study-ref">Bridger, R.S. — South African Journal of Physiotherapy</div><div class="study-desc">Early controlled study identifying that forward-tilt seating aids in maintaining lumbar lordosis, reducing the spinal flattening commonly associated with flat or rear-sloping seats.</div><a class="study-link" href="https://journals.sagepub.com/doi/10.1177/001872088903100604" target="_blank">Read the 1989 follow-up →</a></div>
+            </div>
+            <div class="study-card">
+              <div class="study-year">2011</div>
+              <div><div class="study-title">Effect of different seat slopes on lower back muscle activity and fatigue</div><div class="study-ref">Park, J. & Yoon, H.</div><div class="study-desc">Found that forward-tilt seating significantly reduced lower back muscle fatigue and improved overall muscle endurance during prolonged sitting tasks — directly supporting the energy and comfort benefit of Elevated Seating.</div></div>
+            </div>
+            <div class="study-card">
+              <div class="study-year">2020</div>
+              <div><div class="study-title">Comparison of cervical muscle activity and spinal curvatures in different sitting positions</div><div class="study-ref">Yim, J., Park, J., Lohman, E. & Do, K. — Medicine</div><div class="study-desc">Forward-tilt seating reduced cervical erector spinae (CES) activity to 2.67% vs 5.45% on flat and 6.77% on rear-sloping seats — measurably less neck and upper back strain.</div><a class="study-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7360225/" target="_blank">Read the study →</a></div>
+            </div>
+          </div>
+          <div class="callout"><p><strong>Important:</strong> When presenting research to customers, always frame findings as supporting evidence — not as absolute proof of specific outcomes. The science validates the principle. Individual results will vary.</p></div>`
+      }
+    ]
+  },
+  {
+    id: 4, title: "Why Levitask Wins", status: "locked",
+    sections: [
+      {
+        title: "The Competitive Landscape",
+        label: "Section 4.1",
+        badge: "Module 4 of 5",
+        time: "~5 min",
+        lead: "An honest map of the seating market — what each category offers, where it falls short, and why Elevated Seating is a distinct category.",
+        videoTitle: "The Competitive Landscape — Where Levitask Fits",
+        videoDuration: "5:00",
+        videoBg: "linear-gradient(135deg, #181010 0%, #0d0d0d 100%)",
+        content: `
+          <div class="callout"><p><strong>The key positioning principle:</strong> Do not position the Vision Chair as a better ergonomic chair. Position it as a different category entirely. "Traditional ergonomic chairs are the best solution for sitting at 90°. We eliminated the 90° problem."</p></div>
+          <div class="content-section" style="margin-top:24px;">
+            <h3 class="content-h3">The Seating Market — 5 Categories</h3>
+            <table class="content-table">
+              <thead><tr><th>Category</th><th>Core Premise</th><th>Core Limitation</th></tr></thead>
+              <tbody>
+                <tr><td>Traditional ergonomic chairs</td><td>Better lumbar support at 90°</td><td>Treats the symptom, not the root cause. Trapped in the 90° paradigm. Users inevitably hunch.</td></tr>
+                <tr><td>Saddle chairs</td><td>Forward tilt, open hip angle</td><td>No back support, unable to recline. Uncomfortable for extended use. Not suitable for most office environments.</td></tr>
+                <tr><td>Balance stools / balls</td><td>Core activation through instability</td><td>Unsafe, structurally unsupported, fatigue-inducing. Not accepted in professional environments.</td></tr>
+                <tr><td>Kneeling chairs</td><td>Forward tilt + knee stoppers</td><td>Knee pressure over time, no backrest, socially incongruous in professional settings.</td></tr>
+                <tr><td>Gaming chairs</td><td>Premium aesthetics, heavy padding</td><td>Compensate bad posture with superficial comfort. Ignore the core problem entirely.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Where the Vision Chair Sits</h3>
+            <div class="card-grid">
+              <div class="content-card accent"><div class="card-h">vs Premium Ergonomic Chairs</div><div class="card-p">"They optimize 90° sitting. We eliminate it. They're incremental improvements. We're a paradigm shift. Same price range, fundamentally different approach."</div></div>
+              <div class="content-card accent"><div class="card-h">vs Saddle & Kneeling Chairs</div><div class="card-p">"They open the hip angle but remove backrest support and the ability to recline. We give you elevated posture AND full back support. That's the engineering breakthrough."</div></div>
+              <div class="content-card accent"><div class="card-h">vs Gaming Chairs</div><div class="card-p">"Gaming chairs compensate bad posture with superficial comfort. We prioritize long-term health over short-term comfort."</div></div>
+            </div>
+          </div>`
+      },
+      {
+        title: "Key Talking Points vs Each Category",
+        label: "Section 4.2",
+        badge: "Module 4 of 5",
+        time: "~4 min",
+        lead: "Specific counter-arguments for when a customer mentions a competitor — ready to use in any conversation.",
+        videoTitle: "How to Talk About Competitors",
+        videoDuration: "4:00",
+        videoBg: "linear-gradient(135deg, #181408 0%, #0d0d0d 100%)",
+        content: `
+          <div class="content-section">
+            <p class="content-p">When a customer mentions a competing product or category, your goal is not to dismiss it — it is to acknowledge the shared intent and clearly explain where the Vision Chair goes further. The language below has been validated by Michael and Nico from real sales conversations.</p>
+          </div>
+          <div class="do-dont">
+            <div class="do-col">
+              <div class="col-header">Language to use</div>
+              <div class="col-item">"Elevated Seating" — never "elevated chair"</div>
+              <div class="col-item">"A new category" — not "a better ergonomic chair"</div>
+              <div class="col-item">"Opens the hip angle" — not "tilts the seat"</div>
+              <div class="col-item">"Restores the spine's natural S-curve"</div>
+              <div class="col-item">"Halfway between sitting and standing"</div>
+              <div class="col-item">"Less pain. More energy. Deeper focus."</div>
+            </div>
+            <div class="dont-col">
+              <div class="col-header">Language to avoid</div>
+              <div class="col-item">"Ergonomic chair" as a category label for Vision</div>
+              <div class="col-item">"Better lumbar support"</div>
+              <div class="col-item">"Corrects your posture"</div>
+              <div class="col-item">"Cures back pain"</div>
+              <div class="col-item">"Like a standing desk but seated"</div>
+              <div class="col-item">Any unverified stat or claim not on this portal</div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">When They Mention a Specific Brand</h3>
+            <div class="callout green"><p><strong>Rule:</strong> Never name a competitor negatively. Acknowledge the category, explain the difference, and redirect to the principle. "That's a great chair within the 90° paradigm. What Levitask does is step outside that paradigm entirely."</p></div>
+          </div>`
+      },
+      {
+        title: "The Market Opportunity — Why Now",
+        label: "Section 4.3",
+        badge: "Module 4 of 5",
+        time: "~4 min",
+        lead: "The macro forces creating the right conditions for a seated posture revolution — and why the timing favors Levitask distributors.",
+        videoTitle: "The Market Opportunity — Why Levitask Wins Now",
+        videoDuration: "4:00",
+        videoBg: "linear-gradient(135deg, #0e1818 0%, #0d0d0d 100%)",
+        content: `
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-value">#1</div><div class="stat-label">Cause of disability worldwide — back pain (WHO)</div></div>
+            <div class="stat-card"><div class="stat-value">70%</div><div class="stat-label">Of waking hours spent sitting</div></div>
+            <div class="stat-card"><div class="stat-value">8–10h</div><div class="stat-label">Per day at desk work</div></div>
+            <div class="stat-card"><div class="stat-value">80%</div><div class="stat-label">Of office workers experience back pain</div></div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Six Converging Trends</h3>
+            <div class="card-grid-2">
+              <div class="content-card"><div class="card-h">1. Health & Wellness Focus</div><div class="card-p">HR departments are now measured on employee wellbeing. Musculoskeletal disorders are the #1 cause of workplace absenteeism. Ergonomics has moved from a facilities decision to a strategic HR investment.</div></div>
+              <div class="content-card"><div class="card-h">2. Standing Desk Adoption</div><div class="card-p">The standing desk movement educated millions on the dangers of static sitting. Elevated Seating is the natural next step — posture benefit of standing, delivered while seated.</div></div>
+              <div class="content-card"><div class="card-h">3. ESG & Wellbeing Reporting</div><div class="card-p">Companies are increasingly required to report on employee wellbeing. Ergonomic infrastructure is a reportable, auditable ESG signal.</div></div>
+              <div class="content-card"><div class="card-h">4. War for Talent</div><div class="card-p">Premium workspace signals that an employer takes employee health seriously. Top candidates notice. The Vision Chair is a visible investment in people.</div></div>
+              <div class="content-card"><div class="card-h">5. Sustainability Movement</div><div class="card-p">A 10-year warranty with user-replaceable parts is a fundamentally different financial proposition than furniture replaced every 4–5 years. Lower TCO is a hard business argument.</div></div>
+              <div class="content-card"><div class="card-h">6. Remote Work Revolution</div><div class="card-p">Home office upgrades became a priority for millions of workers who now own their workspace. High-intent B2C channel that barely existed at scale before 2020.</div></div>
+            </div>
+          </div>
+          <div class="callout"><p><strong>The timing argument:</strong> The technology behind Elevated Seating has existed for years — but the market conditions to commercialise it at scale have only recently converged. This is the window.</p></div>`
+      }
+    ]
+  },
+  {
+    id: 5, title: "Sales Enablement", status: "locked",
+    sections: [
+      {
+        title: "The Pitches — Quick & Structured",
+        label: "Section 5.1",
+        badge: "Module 5 of 5",
+        time: "~5 min",
+        lead: "Two pitch formats for two different contexts — ready to memorize and deploy in any sales conversation.",
+        videoTitle: "How to Pitch the Vision Chair",
+        videoDuration: "5:00",
+        videoBg: "linear-gradient(135deg, #1a100e 0%, #0d0d0d 100%)",
+        content: `
+          <div class="content-section">
+            <h3 class="content-h3">Quick Pitch — 30 seconds</h3>
+            <p class="content-p">Use in cold introductions, networking events, and any context where you have under a minute. Memorize this verbatim.</p>
+            <div class="callout"><p>"The seating industry has relied for too long on one flawed principle: the 90° angle. The human body was never designed to sit at 90° for hours, it's a posture that fights your spine, not supports it. Levitask invented a new way to sit: Elevated Seating. The Vision Chair opens your hip angle to 115°, halfway between sitting and standing, restoring your spine's natural S-curve automatically, without any effort. Same price as a premium ergonomic chair. Fundamentally different result."</p></div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Structured Pitch — 2–3 minutes</h3>
+            <p class="content-p">Use for structured sales conversations, presentations, and any context where you have 2+ minutes. Follow the 4-act structure.</p>
+            <div class="demo-steps">
+              <div class="demo-step"><div class="step-num" style="font-size:9px;font-weight:600;">PROB</div><div class="step-content"><div class="step-title">The Problem</div><div class="step-script">"Most people sit 8 to 10 hours a day in 90° chairs. Traditional ergonomic chairs lock you in this posture, compressing your spine, restricting blood circulation and putting pressure on your lungs and organs. The result: back pain, muscle fatigue, and a loss of energy and focus. 80% of people experience this in their lifetime."</div></div></div>
+              <div class="demo-step"><div class="step-num" style="font-size:9px;font-weight:600;">SOL</div><div class="step-content"><div class="step-title">Our Solution</div><div class="step-script">"Elevated Seating. A new seating concept that opens your body angle to 115°, halfway between sitting and standing. Elevated Seating decompresses your spine, frees your lungs, and improves blood circulation, giving you more energy and sharper focus throughout the day."</div></div></div>
+              <div class="demo-step"><div class="step-num" style="font-size:9px;font-weight:600;">HOW</div><div class="step-content"><div class="step-title">How It Works</div><div class="step-script">"The Vision Chair uses the T-Mech™, a patent-pending knee-pivot mechanism that tilts the seat forward. This forward tilt rotates the pelvis anteriorly, which naturally restores the spine's S-curve without any conscious effort from the user. And because the pivot point sits at the knee, the thighs stay in contact with the seat surface. No sliding. No discomfort."</div></div></div>
+              <div class="demo-step"><div class="step-num" style="font-size:9px;font-weight:600;">RES</div><div class="step-content"><div class="step-title">The Result</div><div class="step-script">"Less pain. More energy. Deeper focus."</div></div></div>
+            </div>
+          </div>`
+      },
+      {
+        title: "The Demo Method",
+        label: "Section 5.2",
+        badge: "Module 5 of 5",
+        time: "~5 min",
+        lead: "The physical experience closes the Vision Chair. This is how to run a demo that converts.",
+        videoTitle: "How to Run a Vision Chair Demo",
+        videoDuration: "5:00",
+        videoBg: "linear-gradient(135deg, #0a1818 0%, #0d0d0d 100%)",
+        content: `
+          <div class="callout"><p><strong>The core principle:</strong> The Vision Chair sells itself in the demo. Your job is to set up the experience correctly, then stay quiet and let the chair do the work.</p></div>
+          <div class="content-section" style="margin-top:24px;">
+            <h3 class="content-h3">The 5-Minute Demo Script</h3>
+            <div class="demo-steps">
+              <div class="demo-step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Set the frame (30 sec)</div><div class="step-script">"Before you try it, I want to explain one thing. Most chairs try to make 90° sitting more comfortable. This chair eliminates the 90° problem. Sit however feels natural — don't try to sit 'correctly'."</div></div></div>
+              <div class="demo-step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Let them sit at 0° (30 sec)</div><div class="step-script">"How does that feel? Notice where your back is — your lower back is probably rounding slightly. That's what happens at 90°."</div><div class="step-note">Let them feel the baseline before activating Elevated Seating.</div></div></div>
+              <div class="demo-step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Activate the T-Mech (30 sec)</div><div class="step-script">"Now I'm going to lift the seat slightly — just rise a centimetre off the seat so the mechanism can move freely. Feel that? Your pelvis just rotated forward. Your lower back curve just came back — without any effort from you."</div></div></div>
+              <div class="demo-step"><div class="step-num">4</div><div class="step-content"><div class="step-title">Let them explore (2 min)</div><div class="step-script">"Take a minute — move around, recline, adjust the height. Notice how the backrest follows you automatically."</div><div class="step-note">Silent observation. Don't talk. Let the chair sell itself.</div></div></div>
+              <div class="demo-step"><div class="step-num">5</div><div class="step-content"><div class="step-title">The close question (30 sec)</div><div class="step-script">"What did you notice? [pause] That's exactly what 115° does to the body. The question isn't whether it works — you just felt it. The question is: how many people in your office should feel that?"</div></div></div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Showroom Setup Tips</h3>
+            <div class="card-grid-2">
+              <div class="content-card"><div class="card-h">Place next to a conventional chair</div><div class="card-p">The contrast is your most powerful visual argument. Have them sit in the conventional chair first, then switch to the Vision Chair.</div></div>
+              <div class="content-card"><div class="card-h">Pre-set at neutral (0°)</div><div class="card-p">The T-Mech activation moment should be clear and dramatic. Start flat so the difference is immediately noticeable.</div></div>
+              <div class="content-card"><div class="card-h">Keep a desk nearby</div><div class="card-p">People need context to feel how the posture changes during actual work. An empty chair demo is less powerful than a working position demo.</div></div>
+              <div class="content-card"><div class="card-h">Leave a demo unit with prospects</div><div class="card-p">Extended trial (1–2 weeks) converts at significantly higher rates than single-session demos. Where possible, offer a trial period.</div></div>
+            </div>
+          </div>`
+      },
+      {
+        title: "Objection Handling",
+        label: "Section 5.3",
+        badge: "Module 5 of 5",
+        time: "~5 min",
+        lead: "Every objection is a question in disguise. The 10 most common pushbacks — with ready-to-use responses.",
+        videoTitle: "Handling Objections — Live Examples",
+        videoDuration: "5:00",
+        videoBg: "linear-gradient(135deg, #181410 0%, #0d0d0d 100%)",
+        content: `
+          <div class="content-section">
+            <p class="content-p">The goal when handling an objection is not to overcome it — it is to understand what the prospect really needs to move forward, and provide that. The responses below are starting points, not scripts.</p>
+          </div>
+          <table class="objection-table">
+            <thead><tr><th>Objection</th><th>Response</th></tr></thead>
+            <tbody>
+              <tr><td>"It's too expensive."</td><td>"At $0.55/day over 10 years, it costs less than a daily coffee. And one prevented back injury pays for 25 chairs."</td></tr>
+              <tr><td>"I already have an ergonomic chair."</td><td>"Traditional ergonomic chairs make 90° sitting more comfortable. We eliminate the 90° problem entirely. Different categories."</td></tr>
+              <tr><td>"I've never heard of Levitask."</td><td>"We're a new brand built on 40 years of research. The technology was developed by Klaus Kummer, who spent four decades studying the root cause of seated back pain."</td></tr>
+              <tr><td>"I'll slide forward."</td><td>"That's exactly what every previous forward-tilt design failed to solve. The Anti Slip Matrix physically prevents sliding. That's the patent-pending innovation."</td></tr>
+              <tr><td>"I need to try it first."</td><td>"Absolutely right. Most people feel the difference in under 30 seconds. Can we set up a showroom visit or send a demo unit?"</td></tr>
+              <tr><td>"Does it have certifications?"</td><td>"BIFMA X5.1 testing is underway — results expected in 2026. The chair is backed by a 10-year warranty in the meantime."</td></tr>
+              <tr><td>"My team won't adopt it."</td><td>"We recommend starting with a 5-chair pilot for volunteers. The internal champions who love it will do the selling for you."</td></tr>
+              <tr><td>"We already have standing desks."</td><td>"Standing desks address static sitting, but most people still sit 70–80% of the day. Elevated Seating is the natural complement."</td></tr>
+              <tr><td>"I need to check with my manager."</td><td>"Understood. I can prepare a one-page ROI summary for that conversation. Want me to send that today?"</td></tr>
+              <tr><td>"Can I get a volume discount?"</td><td>"For orders above standard quantities, custom pricing is available. Contact Nico before quoting a corporate client."</td></tr>
+            </tbody>
+          </table>`
+      },
+      {
+        title: "The B2B Business Case",
+        label: "Section 5.4",
+        badge: "Module 5 of 5",
+        time: "~5 min",
+        lead: "The financial argument for corporate buyers — numbers, process, and a four-step approach to closing enterprise accounts.",
+        videoTitle: "The B2B Business Case — Closing Corporate Accounts",
+        videoDuration: "5:00",
+        videoBg: "linear-gradient(135deg, #0e1810 0%, #0d0d0d 100%)",
+        content: `
+          <div class="content-section">
+            <h3 class="content-h3">The ROI Argument</h3>
+            <div class="roi-grid">
+              <div class="roi-card"><div class="roi-title">Cost of back pain</div><div class="roi-value">$50K+</div><div class="roi-desc">Per chronic claim over employee lifetime. Plus 12 days absenteeism/year and 20–30% productivity loss.</div></div>
+              <div class="roi-card"><div class="roi-title">Vision Chair — daily cost</div><div class="roi-value">$0.55</div><div class="roi-desc">Per day over 10 years. One-time investment, user-replaceable parts, zero maintenance overhead.</div></div>
+              <div class="roi-card highlight"><div class="roi-title">Break-even point</div><div class="roi-value">1 claim</div><div class="roi-desc">One prevented chronic claim pays for 25 chairs. Reduced absenteeism alone typically covers investment within 12 months.</div></div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">Know Your Stakeholders — The Buying Center</h3>
+            <div class="bc-grid">
+              <div class="bc-card"><div class="bc-role">Initiator</div><div class="bc-name">The Trigger</div><div class="bc-desc">First identified the problem. Often an employee with back pain or an HR manager who read a report.</div><div class="bc-question">"Who first raised the idea of looking at ergonomic solutions?"</div></div>
+              <div class="bc-card"><div class="bc-role">Influencer</div><div class="bc-name">The Advisor</div><div class="bc-desc">No formal authority but shapes the decision. Win them and they sell for you internally.</div><div class="bc-question">"Who else has strong opinions on workspace setup?"</div></div>
+              <div class="bc-card"><div class="bc-role">Decider</div><div class="bc-name">The Decision Maker</div><div class="bc-desc">Has final authority. Usually HR Director or COO. May escalate to CFO for larger purchases.</div><div class="bc-question">"Who gives final approval on investments like this?"</div></div>
+              <div class="bc-card"><div class="bc-role">Buyer</div><div class="bc-name">The Purchaser</div><div class="bc-desc">Handles the transaction. Focused on price and process, not the product itself.</div><div class="bc-question">"Who handles the actual purchasing process?"</div></div>
+              <div class="bc-card"><div class="bc-role">User</div><div class="bc-name">The End User</div><div class="bc-desc">The person who sits in the chair. Their buy-in via a pilot creates internal champions.</div><div class="bc-question">"Can we set up a demo for the team members who'll use it?"</div></div>
+              <div class="bc-card"><div class="bc-role">Gatekeeper</div><div class="bc-name">The Blocker</div><div class="bc-desc">Controls access to decision makers. Treat with respect — they can kill your deal.</div><div class="bc-question">"Is there anyone I should loop in before we go further?"</div></div>
+            </div>
+          </div>
+          <div class="content-divider"></div>
+          <div class="content-section">
+            <h3 class="content-h3">The 4-Step Enterprise Approach</h3>
+            <div class="demo-steps">
+              <div class="demo-step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Identify the right entry point</div><div class="step-script">HR Director, Wellness Manager, or Facilities Manager. Avoid IT and Procurement as first contact — they evaluate cost, not value.</div></div></div>
+              <div class="demo-step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Propose a pilot program</div><div class="step-script">Start with 5–10 chairs for a specific team. Pilot reduces perceived risk and creates internal champions who sell for you.</div></div></div>
+              <div class="demo-step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Measure and report</div><div class="step-script">After 60–90 days, survey pilot users. Quantify satisfaction, back pain reduction, and focus levels. Present to decision makers.</div></div></div>
+              <div class="demo-step"><div class="step-num">4</div><div class="step-content"><div class="step-title">Scale the conversation</div><div class="step-script">With pilot data in hand, make the financial case to CFO or procurement. One prevented claim pays for 25 chairs.</div></div></div>
+            </div>
+            <div class="callout"><p><strong>Volume pricing:</strong> For orders above standard quantities, custom pricing and dedicated support are available. Contact Nico directly before quoting a corporate client.</p></div>
+          </div>`
+      }
+    ]
+  }
+];
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
+let currentModule = 1;
+let currentSection = 0;
+let completedModules = new Set();
+
+// Flattened list of all [module, section] pairs for prev/next
+function buildNav() {
+  const nav = [];
+  MODULES.forEach(m => m.sections.forEach((s, i) => nav.push([m.id, i])));
+  nav.push(['cert', 0]);
+  return nav;
+}
+const NAV = buildNav();
+
+function navIndex() {
+  if (currentModule === 'cert') return NAV.findIndex(n => n[0] === 'cert');
+  return NAV.findIndex(n => n[0] === currentModule && n[1] === currentSection);
+}
+
+// ─── MODULE INTROS ─────────────────────────────────────────────────────────────
+
+  const MODULE_INTROS = {
+    1: `<div class="module-intro">
+        <div class="module-intro-label">Module 1 — What you will learn</div>
+        <div class="module-intro-cols">
+          <div>
+            <div class="module-intro-col-title">Objectives</div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Understand why Levitask exists — the problem it was built to solve</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Be able to explain the 90° problem in your own words, without any support material</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Understand the Elevated Seating principle at a mechanical and anatomical level</span></div>
+          </div>
+          <div>
+            <div class="module-intro-col-title">What you will be able to do</div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Tell the Klaus & Michael story credibly in any conversation</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Explain why 90° causes back pain — mechanically, not just conceptually</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Explain what Elevated Seating is and how it works in under 2 minutes</span></div>
+          </div>
+        </div>
+      </div>`,
+    2: `<div class="module-intro">
+        <div class="module-intro-label">Module 2 — What you will learn</div>
+        <div class="module-intro-cols">
+          <div>
+            <div class="module-intro-col-title">Objectives</div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Know Vision X and Vision Y inside out — specs, differences, and which customer each is for</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Understand every adjustment and feature so you can walk a customer through setup with confidence</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Know the materials, certifications, patents, and durability arguments</span></div>
+          </div>
+          <div>
+            <div class="module-intro-col-title">What you will be able to do</div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Recommend the right model for any customer profile without hesitation</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Set up the Vision Chair correctly and explain each adjustment during a demo</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Answer questions about build quality, certifications, and warranty with precision</span></div>
+            </div>
+        </div>
+      </div>`,
+    3: `<div class="module-intro">
+        <div class="module-intro-label">Module 3 — What you will learn</div>
+        <div class="module-intro-cols">
+          <div>
+            <div class="module-intro-col-title">Objectives</div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Understand the biomechanical chain reaction at 90° and how 115° reverses it</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Know the 6 physiological benefits and how to present each to the right customer</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Be familiar with the key scientific studies so you can reference them with confidence</span></div>
+          </div>
+          <div>
+            <div class="module-intro-col-title">What you will be able to do</div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Explain spine biomechanics clearly and credibly — without oversimplifying or overclaiming</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Match each health benefit to the right customer concern (back pain, energy, focus, digestion)</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Name the studies that support the 115° principle and explain what each one found</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Know which claims are validated and which require Klaus's sign-off before use</span></div>
+          </div>
+        </div>
+      </div>`,
+    4: `<div class="module-intro">
+        <div class="module-intro-label">Module 4 — What you will learn</div>
+        <div class="module-intro-cols">
+          <div>
+            <div class="module-intro-col-title">Objectives</div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Know where the Vision Chair sits relative to every competing seating category</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Master the language and talking points for each competitive comparison</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Understand the macro market trends that make this the right moment to distribute Levitask</span></div>
+          </div>
+          <div>
+            <div class="module-intro-col-title">What you will be able to do</div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Never position the Vision Chair as a "better ergonomic chair" — always as a new category</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Respond instantly when a customer mentions Herman Miller, a saddle chair, or a gaming chair</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Present the market opportunity using data that corporate buyers find compelling</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Explain why the timing favors Levitask distributors right now</span></div>
+          </div>
+        </div>
+      </div>`,
+    5: `<div class="module-intro">
+        <div class="module-intro-label">Module 5 — What you will learn</div>
+        <div class="module-intro-cols">
+          <div>
+            <div class="module-intro-col-title">Objectives</div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Memorize both pitch formats and know which one to use in each context</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Master the 5-step demo script and understand why each step matters</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Know how to respond to the 10 most common objections without hesitation</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Understand how to build a B2B business case and navigate a corporate buying process</span></div>
+          </div>
+          <div>
+            <div class="module-intro-col-title">What you will be able to do</div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Deliver both the Quick Pitch and the Structured Pitch fluently and convincingly</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Run a demo that converts — letting the chair do the work at the right moment</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Respond to every major objection with a calibrated, confident answer</span></div>
+            <div class="module-intro-item"><div class="intro-dot"></div><span>Present the ROI argument to a CFO or HR Director and propose a pilot program with confidence</span></div>
+          </div>
+        </div>
+      </div>`
+  };
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+function renderPanel(m, s) {
+  const mod = MODULES.find(x => x.id === m);
+  if (!mod) return;
+  const sec = mod.sections[s];
+  const isLast = s === mod.sections.length - 1;
+  const totalSections = mod.sections.length;
+
+  // Tabs
+  document.getElementById('tabs').innerHTML = mod.sections.map((sec, i) =>
+    `<div class="tab ${i === s ? 'active' : ''}" onclick="goTo(${m},${i})">
+      <span class="tab-num">${i + 1}</span>${sec.title.split(' ').slice(0, 4).join(' ')}${sec.title.split(' ').length > 4 ? '...' : ''}
+    </div>`).join('');
+
+  // Header
+  document.getElementById('breadcrumb-badge').textContent = sec.badge;
+  document.getElementById('breadcrumb-sub').textContent = sec.label;
+  document.getElementById('module-title').textContent = sec.title;
+  document.getElementById('module-lead').textContent = sec.lead;
+  document.getElementById('meta-time').textContent = sec.time;
+  document.getElementById('meta-progress').textContent = `Section ${s+1} of ${totalSections}`;
+  document.getElementById('topbar-progress').textContent = `Module ${m} of 5 · ${Math.round((completedModules.size / 5) * 100)}% complete`;
+
+  // Panel
+  const prevBtn = s > 0
+    ? `<button class="nav-btn nav-btn-prev" onclick="goTo(${m},${s-1})"><svg class="btn-icon" viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg>Previous</button>`
+    : m > 1
+    ? `<button class="nav-btn nav-btn-prev" onclick="goToPrevModule()"><svg class="btn-icon" viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg>Previous Module</button>`
+    : `<button class="nav-btn nav-btn-prev" disabled style="opacity:0.3;cursor:default;"><svg class="btn-icon" viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg>Previous</button>`;
+
+  const nextBtn = !isLast
+    ? `<button class="nav-btn nav-btn-next" onclick="goTo(${m},${s+1})">Next Section<svg class="btn-icon" viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg></button>`
+    : `<button class="nav-btn nav-btn-complete" onclick="completeModule(${m})">Mark Module ${m} Complete<svg class="btn-icon" viewBox="0 0 14 14"><path d="M2 7l4 4 6-6"/></svg></button>`;
+
+  const moduleIntroHTML = s === 0 ? (MODULE_INTROS[m] || '') : '';
+  const introSlot = document.getElementById('module-intro-slot');
+  if (introSlot) introSlot.innerHTML = moduleIntroHTML;
+
+  document.getElementById('panels-container').innerHTML = `
+    <div class="tab-panel active">
+      <div class="video-block">
+        <div class="video-player">
+          <div class="video-pattern"></div>
+          <div style="background:${sec.videoBg};position:absolute;inset:0;width:100%;height:100%;"></div>
+          <div class="video-overlay">
+            <button class="video-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+            <div class="video-label">Video placeholder · ${sec.videoDuration}</div>
+          </div>
+        </div>
+        <div class="video-meta">
+          <div class="video-title-sm">${sec.videoTitle}</div>
+          <div class="video-duration">${sec.videoDuration}</div>
+        </div>
+      </div>
+      <div class="text-content">${sec.content}</div>
+      <div class="bottom-nav">
+        ${prevBtn}
+        <div class="bottom-nav-center">${sec.label} · ${sec.time}</div>
+        ${nextBtn}
+      </div>
+    </div>`;
+}
+
+function renderCert() {
+  document.getElementById('breadcrumb-badge').textContent = 'Certification';
+  document.getElementById('breadcrumb-sub').textContent = 'Assessment';
+  document.getElementById('module-title').textContent = 'Certification Assessment';
+  document.getElementById('module-lead').textContent = 'Demonstrate your knowledge across all 5 modules. Score 80% or above to receive your Levitask Authorized Distributor certificate.';
+  document.getElementById('meta-time').textContent = '~20 min';
+  document.getElementById('meta-progress').textContent = '20 questions';
+  document.getElementById('tabs').innerHTML = '';
+
+  const questions = [
+    { q: "What is the hip angle achieved by the Vision Chair's Elevated Seating position?", opts: ["90°", "100°", "115°", "135°"], correct: 2 },
+    { q: "Which mechanism prevents the user from sliding forward when the seat is tilted?", opts: ["Lumbar support", "Anti Slip Matrix", "Knee stoppers", "Seat belt"], correct: 1 },
+    { q: "What is the T-Mech's pivot point located at?", opts: ["The seat centre", "The hip", "The knee", "The foot"], correct: 2 },
+    { q: "When was Levitask founded?", opts: ["2019", "2021", "2023", "2025"], correct: 2 },
+    { q: "Which model includes a 2-axis adjustable headrest as standard?", opts: ["Vision Y", "Vision X", "Both models", "Neither model"], correct: 1 },
+    { q: "What is the warranty duration for the Vision Chair?", opts: ["2 years", "5 years", "7 years", "10 years"], correct: 3 },
+    { q: "The Vision Y seat height range is:", opts: ["38–52 cm", "42–58 cm", "42–62 cm", "45–65 cm"], correct: 1 },
+    { q: "Which researcher's work in Copenhagen influenced Klaus Kummer's research?", opts: ["Keegan", "Mandal", "Nachemson", "Bridger"], correct: 1 },
+    { q: "What is the correct instruction before engaging the T-Mech lever?", opts: ["Lean back against the backrest", "Slightly rise off the seat", "Put feet flat on the floor", "Fold the armrests"], correct: 1 },
+    { q: "Back pain is ranked as the world's #1 cause of:", opts: ["Hospitalization", "Disability", "Absenteeism only", "Surgical intervention"], correct: 1 },
+    { q: "How many early backers did the Kickstarter campaign attract?", opts: ["212", "412", "612", "812"], correct: 2 },
+    { q: "The positioning principle for the Vision Chair vs premium ergonomic chairs is:", opts: ["We're a better ergonomic chair", "We're in the same category but cheaper", "We've eliminated the problem they're solving for", "We focus on gaming and sports"], correct: 2 },
+    { q: "What does the Anti Slip Matrix physically consist of?", opts: ["Rubber grip pads and straps", "Micro-dot texture and contour cradle cavity", "Memory foam and magnetic locks", "Carbon fibre weave"], correct: 1 },
+    { q: "At $3,000 / 10 years, the daily cost of the Vision X is approximately:", opts: ["$0.25", "$0.55", "$0.82", "$1.20"], correct: 2 },
+    { q: "Which certification is currently under testing and expected in 2026?", opts: ["ISO 9001", "GREENGUARD Gold", "BIFMA X5.1", "CE Mark"], correct: 2 },
+    { q: "The correct order of adjustments when setting up the Vision Chair is:", opts: ["Backrest → Seat depth → Height → T-Mech", "Height → T-Mech → Seat depth → Backrest", "T-Mech → Height → Backrest → Seat depth", "Seat depth → Height → T-Mech → Backrest"], correct: 1 },
+    { q: "One prevented chronic back pain claim pays for approximately how many Vision Chairs?", opts: ["5 chairs", "10 chairs", "25 chairs", "50 chairs"], correct: 2 },
+    { q: "Which material in the Vision Chair's shell is recycled?", opts: ["Cotton", "Aluminium", "ABS plastic", "Steel"], correct: 2 },
+    { q: "In the demo script, after activating the T-Mech, what should the distributor do?", opts: ["Immediately explain all features", "Ask for the order", "Stay quiet and let the customer explore", "Start talking about the science"], correct: 2 },
+    { q: "The tagline summarizing the Vision Chair's core benefit is:", opts: ["Sit better, work better", "Less pain. More energy. Deeper focus.", "Standing is the new sitting", "Engineered for humans"], correct: 1 }
+  ];
+
+  let selectedAnswers = {};
+  let submitted = false;
+
+  function renderQuiz() {
+    let html = `
+      <div class="quiz-intro"><p class="content-p">Complete all 20 questions. You need to score 80% or above (16 correct) to pass and receive your certification. Take your time — you can review each question before submitting.</p></div>
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar-wrap"><div class="quiz-progress-bar" id="quiz-pb" style="width:0%"></div></div>
+        <div class="quiz-progress-text" id="quiz-pt">0 / 20 answered</div>
+      </div>`;
+
+    questions.forEach((q, i) => {
+      html += `<div class="quiz-question" id="qq-${i}">
+        <div class="quiz-q-num">Question ${i+1} of 20</div>
+        <div class="quiz-q-text">${q.q}</div>
+        <div class="quiz-options">`;
+      const letters = ['A','B','C','D'];
+      q.opts.forEach((opt, j) => {
+        const sel = selectedAnswers[i] === j;
+        const cls = submitted ? (j === q.correct ? 'correct' : (sel ? 'wrong' : '')) : (sel ? 'selected' : '');
+        html += `<div class="quiz-option ${cls}" onclick="selectAnswer(${i},${j})">
+          <div class="option-letter">${letters[j]}</div>
+          <div class="option-text">${opt}</div>
+        </div>`;
+      });
+      html += `</div></div>`;
+    });
+
+    const answered = Object.keys(selectedAnswers).length;
+    html += `<div class="quiz-submit">
+      <button class="quiz-btn quiz-btn-submit" id="quiz-submit-btn" onclick="submitQuiz()" ${answered < 20 ? 'disabled' : ''}>
+        Submit Assessment
+      </button>
+    </div>
+    <div class="quiz-result" id="quiz-result"></div>`;
+
+    document.getElementById('panels-container').innerHTML = `<div class="tab-panel active">${html}<div class="bottom-nav"><button class="nav-btn nav-btn-prev" onclick="goTo(5,3)"><svg class="btn-icon" viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg>Back to Module 5</button><div class="bottom-nav-center">Certification Assessment</div><div></div></div></div>`;
+
+    // Attach select function
+    window.selectAnswer = function(qi, oi) {
+      if (submitted) return;
+      selectedAnswers[qi] = oi;
+      const answered = Object.keys(selectedAnswers).length;
+      document.getElementById('quiz-pb').style.width = (answered / 20 * 100) + '%';
+      document.getElementById('quiz-pt').textContent = answered + ' / 20 answered';
+      if (answered >= 20) document.getElementById('quiz-submit-btn').disabled = false;
+      // Re-render options for this question
+      const letters = ['A','B','C','D'];
+      questions[qi].opts.forEach((opt, j) => {
+        const el = document.querySelectorAll(`#qq-${qi} .quiz-option`)[j];
+        el.className = 'quiz-option' + (j === oi ? ' selected' : '');
+      });
+    };
+
+    window.submitQuiz = function() {
+      submitted = true;
+      let correct = 0;
+      questions.forEach((q, i) => { if (selectedAnswers[i] === q.correct) correct++; });
+      const passed = correct >= 16;
+      document.getElementById('quiz-result').innerHTML = `
+        <div class="quiz-score">${correct}/20</div>
+        <div class="quiz-score-label">${passed ? 'Congratulations — you passed!' : 'Not quite — review the modules and try again.'}</div>
+        ${passed ? '<button class="quiz-cert-btn" onclick="showCertificate()">Download Your Certificate</button>' : '<button class="quiz-btn quiz-btn-submit" style="margin:0 auto;display:block;" onclick="location.reload()">Retake Assessment</button>'}`;
+      document.getElementById('quiz-result').classList.add('show');
+      // Re-render to show correct/wrong
+      renderQuiz();
+    };
+
+    window.showCertificate = function() {
+      alert('Certificate download will be available once the portal is live. Well done!');
+    };
+  }
+
+  renderQuiz();
+}
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────────────
+function goTo(m, s) {
+  const mod = MODULES.find(x => x.id === m);
+  if (!mod || mod.status === 'locked') return;
+
+  currentModule = m;
+  currentSection = s;
+
+  // Update left nav
+  document.querySelectorAll('.module-group-header').forEach(h => h.classList.remove('active'));
+  document.querySelectorAll('.subsection-link').forEach(l => l.classList.remove('active'));
+  document.querySelectorAll('.module-subsections').forEach(ss => ss.classList.remove('open'));
+
+  const header = document.querySelector(`#mg-${m} .module-group-header`);
+  if (header) header.classList.add('active');
+  const subs = document.getElementById(`subs-${m}`);
+  if (subs) { subs.classList.add('open'); subs.querySelectorAll('.subsection-link')[s]?.classList.add('active'); }
+
+  document.getElementById('complete-banner').classList.remove('show');
+  renderPanel(m, s);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goToPrevModule() {
+  if (currentModule > 1) {
+    const prevMod = MODULES.find(x => x.id === currentModule - 1);
+    goTo(prevMod.id, prevMod.sections.length - 1);
+  }
+}
+
+function toggleModuleNav(num) {
+  const mod = MODULES.find(x => x.id === num);
+  if (mod && mod.status === 'locked') return;
+  const subs = document.getElementById('subs-' + num);
+  if (subs) subs.classList.toggle('open');
+}
+
+function completeModule(m) {
+  completedModules.add(m);
+  const nextMod = MODULES.find(x => x.id === m + 1);
+  if (nextMod) {
+    nextMod.status = 'active';
+    const mg = document.getElementById('mg-' + (m + 1));
+    if (mg) {
+      mg.classList.remove('locked');
+      mg.querySelector('.module-group-status').textContent = 'Unlocked';
+      mg.querySelector('.module-group-header').style.opacity = '1';
+      mg.querySelector('.module-group-header').style.pointerEvents = 'auto';
+    }
+    document.getElementById('complete-banner-text').textContent = `Module ${m} complete — Module ${m+1} is now unlocked.`;
+    document.getElementById('complete-banner').classList.add('show');
+    // After a short delay, move to next module
+    setTimeout(() => goTo(m + 1, 0), 1200);
+  } else {
+    // All modules done — unlock cert
+    document.getElementById('cert-nav').classList.add('unlocked');
+    document.getElementById('complete-banner-text').textContent = 'All modules complete — Certification Assessment is now unlocked!';
+    document.getElementById('complete-banner').classList.add('show');
+    document.getElementById('topbar-progress').textContent = 'All modules complete · Ready for certification';
+    setTimeout(() => { currentModule = 'cert'; renderCert(); }, 1200);
+  }
+  if (completedModules.size === 5) {
+    const mg = MODULES.find(x => x.id === m);
+    if (mg) { const h = document.querySelector(`#mg-${m} .module-group-header`); if(h) h.closest('.module-group').classList.add('done'); }
+  }
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+// REVIEW MODE — all modules unlocked for content review
+MODULES.forEach(m => { m.status = 'active'; });
+document.querySelectorAll('.module-group').forEach(mg => {
+  mg.classList.remove('locked');
+  const h = mg.querySelector('.module-group-header');
+  if (h) { h.style.opacity = '1'; h.style.pointerEvents = 'auto'; }
+  const s = mg.querySelector('.module-group-status');
+  if (s) s.textContent = 'Unlocked';
+});
+document.getElementById('cert-nav').classList.add('unlocked');
+renderPanel(1, 0);
+</script>
+</body>
+</html>

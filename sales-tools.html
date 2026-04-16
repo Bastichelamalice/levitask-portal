@@ -137,6 +137,16 @@
 
   /* DEMO STEPS */
   .demo-steps { display:flex; flex-direction:column; gap:10px; margin:16px 0; }
+  .tool-video-block { background:var(--surface); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:20px; }
+  .tool-video-player { position:relative; aspect-ratio:16/9; background:#0d0d0d; cursor:pointer; overflow:hidden; }
+  .tool-video-pattern { position:absolute; inset:0; opacity:0.04; background-image:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,255,255,0.3) 40px,rgba(255,255,255,0.3) 41px),repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(255,255,255,0.3) 40px,rgba(255,255,255,0.3) 41px); }
+  .tool-video-overlay { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%); }
+  .tool-video-play-btn { width:64px; height:64px; background:rgba(232,98,42,0.9); border-radius:50%; display:flex; align-items:center; justify-content:center; border:none; cursor:pointer; }
+  .tool-video-play-btn svg { width:22px; height:22px; fill:white; margin-left:3px; }
+  .tool-video-label { font-size:12px; color:rgba(240,236,228,0.6); letter-spacing:0.08em; text-transform:uppercase; }
+  .tool-video-meta { padding:14px 20px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--border); }
+  .tool-video-title { font-size:13px; font-weight:400; color:var(--text-primary); }
+  .tool-video-duration { font-size:11px; color:var(--text-muted); }
   .demo-step { display:flex; gap:14px; align-items:flex-start; padding:16px; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; }
   .step-num { width:28px; height:28px; border-radius:50%; background:var(--accent-dim); border:1px solid rgba(232,98,42,0.3); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:500; color:var(--accent); flex-shrink:0; }
   .step-content { flex:1; }
@@ -207,13 +217,13 @@
   </div>
   <nav class="sidebar-nav">
     <div class="nav-section-label">Navigation</div>
-    <a class="nav-item" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>Dashboard</a>
-    <a class="nav-item" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 3 3.5.5-2.5 2.5.5 3.5L8 9l-3 1.5.5-3.5L3 4.5l3.5-.5z"/></svg>Training & Certification</a>
-    <a class="nav-item" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h10"/></svg>Product Knowledge</a>
-    <a class="nav-item active" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11l4-4 3 3 3-4 4 4"/></svg>Sales Tools</a>
-    <a class="nav-item" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4M2 14h12"/></svg>Resources & Downloads</a>
+    <a class="nav-item" href="distributor-portal-dashboard (2).html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>Dashboard</a>
+    <a class="nav-item" href="training-certification.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 3 3.5.5-2.5 2.5.5 3.5L8 9l-3 1.5.5-3.5L3 4.5l3.5-.5z"/></svg>Training & Certification</a>
+    <a class="nav-item" href="product-knowledge.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h10"/></svg>Product Knowledge</a>
+    <a class="nav-item active" href="sales-tools.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11l4-4 3 3 3-4 4 4"/></svg>Sales Tools</a>
+    <a class="nav-item" href="distributor-portal-resources (1).html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4M2 14h12"/></svg>Resources & Downloads</a>
     <div class="nav-section-label">Support</div>
-    <a class="nav-item" href="#"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 7v5M8 4.5v.5"/></svg>Contact & Support</a>
+    <a class="nav-item" href="distributor-portal-contact (2).html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 7v5M8 4.5v.5"/></svg>Contact & Support</a>
   </nav>
   <div class="sidebar-footer">
     <div class="distributor-badge">
@@ -239,7 +249,6 @@
       </div>
       <div class="theme-sublink" data-anchor="anchor-elevator">Elevator Pitch</div>
       <div class="theme-sublink" data-anchor="anchor-personas">Value by Persona</div>
-      <div class="theme-sublink" data-anchor="anchor-discovery">Discovery Questions</div>
       <div class="theme-divider"></div>
 
       <div class="theme-link" onclick="showSection('qualification', this)">
@@ -258,17 +267,11 @@
       <div class="theme-link" onclick="showSection('demo', this)">
         <span class="theme-link-dot"></span>The Demo Method
       </div>
-      <div class="theme-sublink" data-anchor="anchor-script">5-Min Script</div>
-      <div class="theme-sublink" data-anchor="anchor-closing">Closing Techniques</div>
+      <div class="theme-sublink" data-anchor="anchor-script">The Demo — Part 1: You Present</div>
+      <div class="theme-sublink" data-anchor="anchor-closing">The Demo — Part 2: They Experience</div>
       <div class="theme-sublink" data-anchor="anchor-tips">Showroom Tips</div>
       <div class="theme-divider"></div>
 
-      <div class="theme-link" onclick="showSection('b2b', this)">
-        <span class="theme-link-dot"></span>B2B Business Case
-      </div>
-      <div class="theme-sublink" data-anchor="anchor-roi">ROI Breakdown</div>
-      <div class="theme-sublink" data-anchor="anchor-enterprise">Enterprise Guide</div>
-      <div class="theme-sublink" data-anchor="anchor-emails">Email Templates</div>
     </nav>
 
     <div class="sales-content">
@@ -287,7 +290,7 @@
         <div class="cards-list">
 
           <!-- Elevator Pitch -->
-          <div class="tool-card" id="anchor-elevator" onclick="toggleCard(this)">
+          <div class="tool-card" id="anchor-elevator" onclick="toggleCard(this, event)">
             <div class="tool-card-header">
               <span class="tool-tag tag-script">Script</span>
               <div class="tool-meta">
@@ -317,7 +320,7 @@
           </div>
 
           <!-- Value by Persona -->
-          <div class="tool-card" id="anchor-personas" onclick="toggleCard(this)">
+          <div class="tool-card" id="anchor-personas" onclick="toggleCard(this, event)">
             <div class="tool-card-header">
               <span class="tool-tag tag-table">Table</span>
               <div class="tool-meta">
@@ -326,113 +329,117 @@
               </div>
             </div>
             <div class="tool-card-footer">
-              <div class="tool-footer-meta"><svg viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3.5v2.5l1.5 1"/></svg> 5 personas</div>
+              <div class="tool-footer-meta"><svg viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3.5v2.5l1.5 1"/></svg> 2 tables + 6 persona cards</div>
               <div class="expand-btn">View <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></div>
             </div>
             <div class="tool-card-body"><div class="tool-card-body-inner">
+              <div class="body-h">B2B Personas</div>
               <table class="body-table">
-                <thead><tr><th>#</th><th>Audience</th><th>Lead With</th><th>Key Message</th></tr></thead>
+                <thead><tr><th>Persona</th><th>Buying Center Role</th><th>Lead With</th><th>Key Message</th></tr></thead>
                 <tbody>
-                  <tr><td>1</td><td>End consumer — back pain</td><td class="accent-cell">Pain relief</td><td>"This chair addresses back pain at its root cause — the angle, not the padding."</td></tr>
-                  <tr><td>2</td><td>End consumer — productivity</td><td class="accent-cell">Performance</td><td>"Feel like you're standing while you're sitting. More energy, more focus, all day."</td></tr>
-                  <tr><td>3</td><td>HR / Wellness Manager</td><td class="accent-cell">ROI + absenteeism</td><td>"Back pain is the #1 cause of workplace absenteeism. One prevented claim pays for 25 chairs."</td></tr>
-                  <tr><td>4</td><td>Architect / Designer</td><td class="accent-cell">Innovation + aesthetics</td><td>"40 years of German engineering meets a new seating category. It's not an ergonomic chair — it's a paradigm shift."</td></tr>
-                  <tr><td>5</td><td>IT / Procurement</td><td class="accent-cell">Total cost of ownership</td><td>"User-replaceable parts. 10-year warranty. Zero maintenance overhead. Lower TCO than the competition."</td></tr>
+                  <tr><td>Human Resources</td><td class="accent-cell">Influencer</td><td>Absenteeism, wellbeing &amp; retention</td><td>"Back pain is the #1 cause of workplace absenteeism. One prevented chronic case costs more than multiple Vision Chairs. And employees who feel cared for stay longer."</td></tr>
+                  <tr><td>Facilities / Office Manager</td><td class="accent-cell">Initiator</td><td>Workspace quality &amp; employee wellbeing</td><td>"Don't wait for a furniture cycle — create the conversation. Introducing Elevated Seating is both a competitive advantage and a visible investment in employee wellbeing."</td></tr>
+                  <tr><td>Procurement</td><td class="accent-cell">Buyer</td><td>Total cost of ownership</td><td>"10-year warranty. Lower replacement cost than furniture replaced every 4–5 years. The numbers work."</td></tr>
+                  <tr><td>C-Level / CEO</td><td class="accent-cell">Decider</td><td>Productivity, talent attraction &amp; culture</td><td>"Productivity starts with how people feel at their desk. The Vision Chair is infrastructure for high performance — and a signal to top talent that this company invests in the people who work here."</td></tr>
+                  <tr><td>Employee / End User</td><td class="accent-cell">User</td><td>Day-to-day comfort &amp; energy</td><td>Not a decision-maker, but a powerful internal influencer. Their enthusiasm — or resistance — shapes the outcome.</td></tr>
                 </tbody>
               </table>
-              <div class="body-h">Persona Deep Dive</div>
-              <div class="persona-grid">
-                <div class="persona-card">
-                  <div class="persona-name">Individual Buyer</div>
-                  <div class="persona-lead">Lead: personal pain story</div>
-                  <ul class="persona-points">
-                    <li>Back pain isn't a comfort problem — it's a design problem</li>
-                    <li>Posture corrects automatically, no effort required</li>
-                    <li>Premium materials, 10+ year lifespan</li>
-                    <li>612 Kickstarter backers already switched</li>
-                  </ul>
-                  <div class="persona-close">Close: "Can I show you?"</div>
+              <p style="font-size:11px;color:var(--text-muted);font-style:italic;margin-top:10px;">The buying center roles above are a framework to guide your approach — not a fixed rule. In practice, one person may play multiple roles, or some roles may not exist in smaller organizations. For a full breakdown, see Section 2.1.</p>
+              <div class="body-h" style="margin-top:24px;">B2C Personas</div>
+              <table class="body-table">
+                <thead><tr><th>Persona</th><th>Lead With</th><th>Key Message</th></tr></thead>
+                <tbody>
+                  <tr><td>Individual Buyer — Back Pain</td><td class="accent-cell">Pain relief</td><td>"Your back doesn't hurt because your chair isn't comfortable enough. It hurts because the angle is wrong. The Vision Chair fixes the angle."</td></tr>
+                  <tr><td>Individual Buyer — Productivity</td><td class="accent-cell">Energy &amp; focus</td><td>"Most people don't realise how much energy their chair is costing them — until they sit in one that doesn't. At 115°, your lungs &amp; spine decompress, your blood circulation improves, and your muscles stop fighting the chair. The energy drain you've normalised disappears."</td></tr>
+                </tbody>
+              </table>
+
+              <div class="body-h" style="margin-top:28px;">Persona Cards</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+
+                <div style="background:var(--surface);border-radius:8px;border:1px solid var(--border);border-left:3px solid var(--accent);padding:16px;">
+                  <div style="font-size:12px;font-weight:500;color:var(--text-primary);margin-bottom:2px;">Human Resources</div>
+                  <div style="font-size:10px;color:var(--accent);margin-bottom:12px;">B2B — Influencer</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Pain Point</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">Measured on absenteeism and employee wellbeing KPIs. Back pain is their #1 reported issue.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Key Argument</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">Back pain is the #1 cause of workplace absenteeism — and HR is measured on it. The Vision Chair is a preventive investment that reduces physical strain, signals care for employee health, and strengthens retention.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Typical Objection</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">"We already have ergonomic chairs." → "Traditional chairs make 90° sitting more comfortable. We eliminate the 90° problem entirely."</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Closing Move</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Propose a 5-chair pilot for one team. Internal champions who love it will sell for you.</div>
                 </div>
-                <div class="persona-card">
-                  <div class="persona-name">Corporate Buyer (HR / Wellness)</div>
-                  <div class="persona-lead">Lead: business impact</div>
-                  <ul class="persona-points">
-                    <li>One chronic claim can exceed $50K+ (lifetime)</li>
-                    <li>One prevented claim pays for 25 chairs</li>
-                    <li>BIFMA certification underway — expected 2026</li>
-                    <li>NeoCon 2026 — Booth 7-8088</li>
-                  </ul>
-                  <div class="persona-close">Close: "Let's set up a pilot program."</div>
+
+                <div style="background:var(--surface);border-radius:8px;border:1px solid var(--border);border-left:3px solid var(--accent);padding:16px;">
+                  <div style="font-size:12px;font-weight:500;color:var(--text-primary);margin-bottom:2px;">Facilities / Office Manager</div>
+                  <div style="font-size:10px;color:var(--accent);margin-bottom:12px;">B2B — Initiator</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Pain Point</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">Responsible for workspace quality and furniture cycles. Evaluated on cost efficiency and employee satisfaction.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Key Argument</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">Same price range as premium ergonomic chairs. Fundamentally different outcome. Easy to justify in a standard furniture refresh.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Typical Objection</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">"The budget is already allocated." → "This fits within a standard furniture upgrade budget — no special approval needed."</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Closing Move</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Ask when their next furniture review cycle is. That's your window.</div>
                 </div>
-                <div class="persona-card">
-                  <div class="persona-name">Facilities Manager</div>
-                  <div class="persona-lead">Lead: technical specs</div>
-                  <ul class="persona-points">
-                    <li>Only knee-pivot tilt mechanism on the market</li>
-                    <li>Tool-free assembly, ~15 minutes</li>
-                    <li>All components user-replaceable</li>
-                    <li>BIFMA X5.1 testing in progress</li>
-                  </ul>
-                  <div class="persona-close">Close: "Let me send spec sheets + demo unit."</div>
+
+                <div style="background:var(--surface);border-radius:8px;border:1px solid var(--border);border-left:3px solid var(--accent);padding:16px;">
+                  <div style="font-size:12px;font-weight:500;color:var(--text-primary);margin-bottom:2px;">Procurement</div>
+                  <div style="font-size:10px;color:var(--accent);margin-bottom:12px;">B2B — Buyer</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Pain Point</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">Evaluates every purchase on ROI, TCO, and risk. Will kill the deal if the numbers don't work.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Key Argument</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">A 10-year warranty against a standard 4–5 year furniture replacement cycle. The long-term cost per year is significantly lower than conventional seating — and that's before factoring in absenteeism reduction.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Typical Objection</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">"It's too expensive." → "Compare it against your current furniture replacement cycle and one absenteeism case. The numbers work."</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Closing Move</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Offer a one-page ROI summary for their decision makers. Make it easy to approve.</div>
                 </div>
-                <div class="persona-card">
-                  <div class="persona-name">Remote / Home Office Worker</div>
-                  <div class="persona-lead">Lead: daily comfort</div>
-                  <ul class="persona-points">
-                    <li>Designed for 8+ hour comfort</li>
-                    <li>Same Elevated Seating mechanism as corporate version</li>
-                    <li>Compact Vision Y for smaller spaces — from $2,200</li>
-                    <li>Ready in 15 minutes, no help needed</li>
-                  </ul>
-                  <div class="persona-close">Close: "Try it for 30 seconds."</div>
+
+                <div style="background:var(--surface);border-radius:8px;border:1px solid var(--border);border-left:3px solid var(--accent);padding:16px;">
+                  <div style="font-size:12px;font-weight:500;color:var(--text-primary);margin-bottom:2px;">C-Level / CEO</div>
+                  <div style="font-size:10px;color:var(--accent);margin-bottom:12px;">B2B — Decider</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Pain Point</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">Responsible for organizational performance, talent retention, and culture. Rarely thinks about chairs — until someone makes the business case.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Key Argument</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">A workforce sitting 8 hours a day in chairs that drain their energy is a productivity problem, whether the CEO frames it that way or not. The Vision Chair removes that drain — and the decision to invest in it communicates something clear about how this company treats its people.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Typical Objection</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">"Is this really a priority right now?" → "It already is — you're just not measuring it. Back pain is the #1 cause of missed workdays. The cost is there, whether you invest in solving it or not."</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Closing Move</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Connect it to an existing priority — talent strategy, ESG reporting, or a return-to-office initiative. Make it strategic, not a furniture decision.</div>
                 </div>
+
+                <div style="background:var(--surface);border-radius:8px;border:1px solid var(--border);border-left:3px solid var(--accent);padding:16px;">
+                  <div style="font-size:12px;font-weight:500;color:var(--text-primary);margin-bottom:2px;">Individual Buyer — Back Pain</div>
+                  <div style="font-size:10px;color:var(--accent);margin-bottom:12px;">B2C — End User</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Pain Point</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">Chronic back pain after long work sessions. Has tried lumbar supports, standing desks, stretching — nothing lasts.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Key Argument</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">Every chair they've tried treats the symptom. The Vision Chair treats the cause — the 90° angle their spine was never designed to sustain.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Typical Objection</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">"I'm not sure it will fix my back pain." → "We can't promise medical outcomes. We can say the Vision Chair removes the mechanical cause of most seated back pain."</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Closing Move</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Get them in the chair. Most people feel the difference in under 30 seconds.</div>
+                </div>
+
+                <div style="background:var(--surface);border-radius:8px;border:1px solid var(--border);border-left:3px solid var(--accent);padding:16px;">
+                  <div style="font-size:12px;font-weight:500;color:var(--text-primary);margin-bottom:2px;">Individual Buyer — Productivity</div>
+                  <div style="font-size:10px;color:var(--accent);margin-bottom:12px;">B2C — End User</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Pain Point</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">Energy drops in the afternoon. Struggles to maintain focus during long work sessions. Not in pain — just not performing at their best.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Key Argument</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">At 115°, lungs decompress, circulation improves, muscles stop fighting the chair. The result is sustained energy — not a fix for tiredness, but a removal of a hidden drain.</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Typical Objection</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">"I don't have back pain — do I still need this?" → "The Vision Chair isn't just for back pain. It's for anyone who wants to feel at the end of the day the way they felt at 9am."</div>
+                  <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Closing Move</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Frame it as performance infrastructure, not medical equipment.</div>
+                </div>
+
               </div>
             </div></div>
           </div>
 
           <!-- Discovery Questions -->
-          <div class="tool-card" id="anchor-discovery" onclick="toggleCard(this)">
-            <div class="tool-card-header">
-              <span class="tool-tag tag-guide">Guide</span>
-              <div class="tool-meta">
-                <div class="tool-title">Discovery Questions — Uncover the Need</div>
-                <div class="tool-desc">Questions to ask before pitching. The goal is to make the prospect articulate their own problem — then position the Vision Chair as the answer.</div>
-              </div>
-            </div>
-            <div class="tool-card-footer">
-              <div class="tool-footer-meta"><svg viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3.5v2.5l1.5 1"/></svg> 12 questions</div>
-              <div class="expand-btn">Read <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></div>
-            </div>
-            <div class="tool-card-body"><div class="tool-card-body-inner">
-              <p class="body-p">Don't pitch before you've listened. These questions surface pain before you present the solution — making the Vision Chair feel like an answer, not a sale.</p>
-              <div class="discovery-group">
-                <div class="discovery-label">Opening — establish context</div>
-                <div class="discovery-q"><span class="discovery-num">1.</span>How many hours a day does your team typically spend seated at their desks?</div>
-                <div class="discovery-q"><span class="discovery-num">2.</span>Do you have employees who've raised concerns about back pain or discomfort at work?</div>
-                <div class="discovery-q"><span class="discovery-num">3.</span>What's your current office chair setup — do you have a standard model or do employees choose their own?</div>
-              </div>
-              <div class="discovery-group">
-                <div class="discovery-label">Dig deeper — qualify the pain</div>
-                <div class="discovery-q"><span class="discovery-num">4.</span>Have you ever tracked absenteeism related to back or musculoskeletal issues?</div>
-                <div class="discovery-q"><span class="discovery-num">5.</span>When you bought your current chairs, what was the main decision criteria — price, aesthetics, certification, or something else?</div>
-                <div class="discovery-q"><span class="discovery-num">6.</span>How long ago did you last invest in ergonomic furniture — and what prompted that decision?</div>
-              </div>
-              <div class="discovery-group">
-                <div class="discovery-label">B2C — individual buyer</div>
-                <div class="discovery-q"><span class="discovery-num">7.</span>Do you experience any back or neck discomfort after a long day at your desk?</div>
-                <div class="discovery-q"><span class="discovery-num">8.</span>What do you currently do to manage that — lumbar pillow, standing desk, breaks?</div>
-                <div class="discovery-q"><span class="discovery-num">9.</span>If you could change one thing about how you feel at the end of your workday, what would it be?</div>
-              </div>
-              <div class="discovery-group">
-                <div class="discovery-label">Forward-looking — open the door</div>
-                <div class="discovery-q"><span class="discovery-num">10.</span>Is ergonomics something that comes up in your HR or wellness conversations?</div>
-                <div class="discovery-q"><span class="discovery-num">11.</span>Are you familiar with the concept of sitting posture being a root cause of back pain — not just a symptom?</div>
-                <div class="discovery-q"><span class="discovery-num">12.</span>If there was a solution that addressed the posture problem at its source, would that be worth exploring?</div>
-              </div>
-              <div class="callout green"><p><strong>Rule of thumb:</strong> Ask 3–4 questions maximum before transitioning to the pitch. If the prospect mentions back pain, discomfort, or productivity loss unprompted — that's your signal to pivot.</p></div>
-            </div></div>
-          </div>
-
         </div>
       </div>
 
@@ -445,7 +452,7 @@
         <div class="cards-list">
 
           <!-- Buying Center -->
-          <div class="tool-card" id="anchor-buying-center" onclick="toggleCard(this)">
+          <div class="tool-card" id="anchor-buying-center" onclick="toggleCard(this, event)">
             <div class="tool-card-header">
               <span class="tool-tag tag-framework">Framework</span>
               <div class="tool-meta">
@@ -485,16 +492,16 @@
                   <div class="bc-question">Ask: "Who handles the actual purchasing process?"</div>
                 </div>
                 <div class="bc-card">
-                  <div class="bc-role">User</div>
-                  <div class="bc-name">The End User</div>
-                  <div class="bc-desc">The person who will actually sit in the chair. Their buy-in matters — a pilot program that gets rave reviews from users will sell the deal faster than any presentation.</div>
-                  <div class="bc-question">Ask: "Can we set up a demo for a few of the team members who'll use it?"</div>
-                </div>
-                <div class="bc-card">
                   <div class="bc-role">Gatekeeper</div>
                   <div class="bc-name">The Blocker</div>
                   <div class="bc-desc">Controls access to decision makers. Often an assistant, office manager, or IT director who has to approve new vendors. Treat them with respect — they can kill your deal.</div>
                   <div class="bc-question">Ask: "Is there anyone I should loop in before we go further?"</div>
+                </div>
+                <div class="bc-card">
+                  <div class="bc-role">User</div>
+                  <div class="bc-name">The End User</div>
+                  <div class="bc-desc">The person who will actually sit in the chair. Their buy-in matters — a pilot program that gets rave reviews from users will sell the deal faster than any presentation.</div>
+                  <div class="bc-question">Ask: "Can we set up a demo for a few of the team members who'll use it?"</div>
                 </div>
               </div>
               <div class="callout"><p><strong>The 2-question rule:</strong> 2–3 well-placed questions in the first 5 minutes will reveal the full structure. "Who else is involved in this decision?" and "Who gives final sign-off?" will map the buying center faster than any research.</p></div>
@@ -502,7 +509,7 @@
           </div>
 
           <!-- Qualification Checklist -->
-          <div class="tool-card" id="anchor-checklist" onclick="toggleCard(this)">
+          <div class="tool-card" id="anchor-checklist" onclick="toggleCard(this, event)">
             <div class="tool-card-header">
               <span class="tool-tag tag-guide">Guide</span>
               <div class="tool-meta">
@@ -565,7 +572,7 @@
         </div>
         <div class="cards-list">
 
-          <div class="tool-card" id="anchor-objections" onclick="toggleCard(this)">
+          <div class="tool-card" id="anchor-objections" onclick="toggleCard(this, event)">
             <div class="tool-card-header">
               <span class="tool-tag tag-table">Table</span>
               <div class="tool-meta">
@@ -581,8 +588,8 @@
               <table class="body-table">
                 <thead><tr><th>#</th><th>Objection</th><th>Response</th></tr></thead>
                 <tbody>
-                  <tr><td>1</td><td class="accent-cell">"It's too expensive."</td><td>"At $0.55/day over 10 years, it costs less than a daily coffee. And one prevented back injury pays for 25 chairs."</td></tr>
-                  <tr><td>2</td><td class="accent-cell">"I already have an ergonomic chair."</td><td>"Traditional ergonomic chairs make 90° sitting more comfortable. We eliminate the 90° problem entirely. They're not competing — they're different categories."</td></tr>
+                  <tr><td>1</td><td class="accent-cell">"It's too expensive."</td><td>"Priced for a 10-year lifespan — the daily cost is negligible. The daily benefit isn't. And one prevented back injury pays for multiple Vision Chairs."</td></tr>
+                  <tr><td>2</td><td class="accent-cell">"I already have an ergonomic chair."</td><td>"Traditional ergonomic chairs are sophisticated solutions to the wrong problem. They optimize 90° sitting — we eliminate it. That's not competition. That's a different category."</td></tr>
                   <tr><td>3</td><td class="accent-cell">"I've never heard of Levitask."</td><td>"We're a new brand built on 40 years of engineering research. The technology was developed by Klaus Kummer, who spent decades studying the flaws in conventional seating."</td></tr>
                   <tr><td>4</td><td class="accent-cell">"It looks uncomfortable — I'll slide forward."</td><td>"That's exactly what every previous forward-tilt design failed to solve. The Anti Slip Matrix — a micro-dot texture combined with a contour cavity — physically prevents sliding. That's the patent-pending innovation."</td></tr>
                   <tr><td>5</td><td class="accent-cell">"I need to try it before buying."</td><td>"Absolutely — that's the right instinct. Most people feel the difference in under 30 seconds. Can we set up a showroom visit or send a demo unit?"</td></tr>
@@ -590,12 +597,12 @@
                   <tr><td>7</td><td class="accent-cell">"My team won't adopt it — they're used to regular chairs."</td><td>"Adoption typically takes 1–2 weeks. We recommend starting with a 5-chair pilot for volunteers — the internal champions who love it will do the selling for you."</td></tr>
                   <tr><td>8</td><td class="accent-cell">"I'm not sure it will fix my back pain."</td><td>"We can't promise medical outcomes. What we can say is that the Vision Chair removes the mechanical cause of most seated back pain — the 90° hip angle. Many users report significant improvement within weeks."</td></tr>
                   <tr><td>9</td><td class="accent-cell">"It looks unusual — will it fit my office aesthetic?"</td><td>"The Vision Chair was designed to look as distinctive as it performs. It signals innovation and investment in people — which is exactly the message most forward-thinking companies want to send."</td></tr>
-                  <tr><td>10</td><td class="accent-cell">"What if it breaks? Can we get parts?"</td><td>"Every component is user-replaceable. No tools, no service call. That's by design — it's part of our lower TCO argument."</td></tr>
-                  <tr><td>11</td><td class="accent-cell">"We already have standing desks."</td><td>"Standing desks address static sitting — but most people end up sitting 70–80% of the day anyway. Elevated Seating is the natural complement: posture benefit of standing, delivered while seated."</td></tr>
+                  <tr><td>10</td><td class="accent-cell">"What if it breaks? Can we get parts?"</td><td>"Built to last 10 years — and if anything ever needs replacing, we've got spare parts covered. No hassle, no service call. We take care of it."</td></tr>
+                  <tr><td>11</td><td class="accent-cell">"We already have standing desks."</td><td>"Great news — the Vision Chair is the perfect complement to height-adjustable desks. Standing desks solve the problem of sitting too long, but most people still end up seated 70–80% of their day. That's where the Vision Chair steps in: it brings the postural benefits of standing to every moment you're seated. Together, they cover the full workday."</td></tr>
                   <tr><td>12</td><td class="accent-cell">"I need to get buy-in from my manager / CFO."</td><td>"Understood. I can prepare a one-page ROI summary for that conversation — one prevented claim pays for 25 chairs. Want me to send that today?"</td></tr>
-                  <tr><td>13</td><td class="accent-cell">"Is this just a fad?"</td><td>"The research behind Elevated Seating goes back to the 1950s — Keegan, Mandal, NASA's neutral body posture work. The mechanism is new. The science is not."</td></tr>
-                  <tr><td>14</td><td class="accent-cell">"What's the delivery lead time?"</td><td>"Contact Nico directly for current availability and lead times in your region — he can confirm stock and logistics."</td></tr>
-                  <tr><td>15</td><td class="accent-cell">"Can I get a discount for volume?"</td><td>"For orders above standard quantities, custom pricing is available. Reach out to Nico before quoting a corporate client."</td></tr>
+                  <tr><td>13</td><td class="accent-cell">"Is this just a fad?"</td><td>"The research behind Elevated Seating goes back to 1953 — Keegan, Mandal, decades of independent biomechanics studies. The mechanism is new. The science has been proven for 70 years."</td></tr>
+                  <tr><td>14</td><td class="accent-cell">"Is it suitable for everyone in the team?"</td><td>"The Vision Chair accommodates users from 155cm to 195cm+ and supports up to 130kg. Both models cover the vast majority of office populations. For teams with specific needs, we recommend a demo session — most people find their ideal setup within a few minutes."</td></tr>
+                  <tr><td>15</td><td class="accent-cell">"How long does it take to get used to?"</td><td>"Most people feel the difference immediately — the hip angle opens and the spine decompresses in seconds. That said, like any postural change, the body fully adapts over 1–2 weeks. We recommend starting at a moderate elevation angle and increasing gradually. After 2 weeks, most users don't want to go back."</td></tr>
                 </tbody>
               </table>
             </div></div>
@@ -612,199 +619,93 @@
         </div>
         <div class="cards-list">
 
-          <!-- 5-Min Script -->
-          <div class="tool-card" id="anchor-script" onclick="toggleCard(this)">
+          <!-- Demo Script Part 1 -->
+          <div class="tool-card" id="anchor-script" onclick="toggleCard(this, event)">
             <div class="tool-card-header">
               <span class="tool-tag tag-script">Script</span>
               <div class="tool-meta">
-                <div class="tool-title">5-Minute Demo Script</div>
-                <div class="tool-desc">A structured walkthrough for in-person demos. Takes the prospect from curiosity to conviction in under 5 minutes.</div>
+                <div class="tool-title">The Demo Script — Part 1: You Present</div>
+                <div class="tool-desc">A step-by-step script for presenting the Vision Chair — based on how our co-founder Michael demos it.</div>
               </div>
             </div>
             <div class="tool-card-footer">
-              <div class="tool-footer-meta"><svg viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3.5v2.5l1.5 1"/></svg> 5 steps</div>
+              <div class="tool-footer-meta"><svg viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3.5v2.5l1.5 1"/></svg> 6 steps · ~5 min</div>
               <div class="expand-btn">Read <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></div>
             </div>
             <div class="tool-card-body"><div class="tool-card-body-inner">
+              <div class="tool-video-block">
+                <div class="tool-video-player" style="background:linear-gradient(135deg, #100e08 0%, #0d0d0d 100%);">
+                  <div class="tool-video-pattern"></div>
+                  <div class="tool-video-overlay">
+                    <button class="tool-video-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+                    <div class="tool-video-label">Video placeholder · 5:00</div>
+                  </div>
+                </div>
+                <div class="tool-video-meta">
+                  <div class="tool-video-title">Demo Video — Michael presenting the Vision Chair</div>
+                  <div class="tool-video-duration">5:00</div>
+                </div>
+              </div>
               <div class="demo-steps">
                 <div class="demo-step">
                   <div class="step-num">1</div>
                   <div class="step-content">
                     <div class="step-title">Set the frame (30 sec)</div>
-                    <div class="step-time">Before they sit down</div>
-                    <div class="step-script">"Before you try it, I want to explain one thing. Most chairs try to make 90° sitting more comfortable. This chair eliminates the 90° problem. Sit however feels natural — don't try to sit 'correctly'."</div>
+                    <div class="step-script">"This is the Vision Chair — the world's first Elevated Seating device. Most ergonomic chairs try to make 90° sitting more comfortable. This chair eliminates the 90° problem entirely. Let me show you how."</div>
+                    <div class="step-note">Stay standing next to the chair. Don't sit yet — let them observe first.</div>
                   </div>
                 </div>
                 <div class="demo-step">
                   <div class="step-num">2</div>
                   <div class="step-content">
-                    <div class="step-title">Let them sit at 0° (30 sec)</div>
-                    <div class="step-time">Chair flat — T-Mech at neutral</div>
-                    <div class="step-script">"How does that feel? Notice where your back is — your lower back is probably rounding slightly. That's what happens at 90°."</div>
-                    <div class="step-note">Let them feel the baseline before activating Elevated Seating.</div>
+                    <div class="step-title">Sit down — show the open hip angle (1 min)</div>
+                    <div class="step-script">"When I sit here, notice what happens automatically — my pelvis rotates forward, my spine finds its natural S-curve. No effort, no conscious posture correction. The relationship between my thigh and torso is now at 115–120°, which allows for proper blood circulation, relieves pressure from the organs, and lets the lungs breathe properly."</div>
+                    <div class="step-note">Point to your hip and pelvis as you explain. Pause and let them observe.</div>
                   </div>
                 </div>
                 <div class="demo-step">
                   <div class="step-num">3</div>
                   <div class="step-content">
-                    <div class="step-title">Activate the T-Mech (30 sec)</div>
-                    <div class="step-time">Ask them to slightly rise, then engage</div>
-                    <div class="step-script">"Now I'm going to lift the seat slightly — just rise a centimetre off the seat so the mechanism can move freely. Feel that? Your pelvis just rotated forward. Your lower back curve just came back — without any effort from you."</div>
+                    <div class="step-title">The knee pivot — your key differentiator (45 sec)</div>
+                    <div class="step-script">"What makes this truly unique is where the mechanism pivots — around the knee. Watch: when I recline all the way back, my feet stay flat on the floor and my thighs stay in contact with the seat. Try that with any other forward-tilt chair and your knees lift off. That's the patent."</div>
+                    <div class="step-note">Recline slowly to demonstrate. This is your strongest differentiator vs saddle chairs and kneeling chairs.</div>
                   </div>
                 </div>
                 <div class="demo-step">
                   <div class="step-num">4</div>
                   <div class="step-content">
-                    <div class="step-title">Let them explore (2 min)</div>
-                    <div class="step-time">Silent observation</div>
-                    <div class="step-script">"Take a minute — move around, recline, adjust the height. Notice how the backrest follows you automatically."</div>
-                    <div class="step-note">This is your most powerful minute. Don't talk. Let the chair sell itself.</div>
+                    <div class="step-title">Stand up — show the adjustments (1 min)</div>
+                    <div class="step-script">"The chair accommodates users from 155 to 195cm through three simple adjustments — all one-time, set and forget. Backrest height and depth via this lever. Seat depth via this knob. And for taller users, a longer stem pipe."</div>
+                    <div class="step-note">Demonstrate each adjustment physically. Keep it simple — this is not a technical briefing.</div>
                   </div>
                 </div>
                 <div class="demo-step">
                   <div class="step-num">5</div>
                   <div class="step-content">
-                    <div class="step-title">The close question (30 sec)</div>
-                    <div class="step-time">After they stand up</div>
-                    <div class="step-script">"What did you notice? … [pause] … That's exactly what 115° does to the body. The question isn't whether it works — you just felt it. The question is: how many people in your [office / team / home] should feel that?"</div>
+                    <div class="step-title">The HAD cross-sell opportunity (30 sec)</div>
+                    <div class="step-script">"The Vision Chair is designed to work with height-adjustable desks. Because you're sitting higher, the desk needs to go up too — from the standard 75cm to 80–90cm depending on height. That's a natural cross-sell opportunity for you."</div>
+                    <div class="step-note">Frame this as a business opportunity, not a limitation.</div>
+                  </div>
+                </div>
+                <div class="demo-step">
+                  <div class="step-num">6</div>
+                  <div class="step-content">
+                    <div class="step-title">Materials & warranty (30 sec)</div>
+                    <div class="step-script">"Aircraft-grade aluminum frame. Biodegradable TPU casters. 10-year warranty on the mechanism and structure, 3 years on the fabric. This is the most premium product in the category."</div>
+                    <div class="step-note">End on confidence. Let the quality speak.</div>
                   </div>
                 </div>
               </div>
             </div></div>
           </div>
 
-          <!-- Closing Techniques -->
-          <div class="tool-card" id="anchor-closing" onclick="toggleCard(this)">
+          <!-- Demo Script Part 2 -->
+          <div class="tool-card" id="anchor-closing" onclick="toggleCard(this, event)">
             <div class="tool-card-header">
               <span class="tool-tag tag-script">Script</span>
               <div class="tool-meta">
-                <div class="tool-title">Closing Techniques — Move the Deal Forward</div>
-                <div class="tool-desc">Specific closing lines for the most common end-of-demo scenarios.</div>
-              </div>
-            </div>
-            <div class="tool-card-footer">
-              <div class="tool-footer-meta"><svg viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3.5v2.5l1.5 1"/></svg> 6 scenarios</div>
-              <div class="expand-btn">Read <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></div>
-            </div>
-            <div class="tool-card-body"><div class="tool-card-body-inner">
-              <p class="body-p">The Vision Chair sells itself in the demo. The job of the close is to remove friction and create a clear next step — not to pressure. Always close with a question.</p>
-              <div class="closing-grid">
-                <div class="closing-card">
-                  <div class="closing-situation">After a strong demo reaction</div>
-                  <div class="closing-line">"You clearly felt the difference. What would need to happen for you to have one of these in your office by next month?"</div>
-                </div>
-                <div class="closing-card">
-                  <div class="closing-situation">"I need to think about it"</div>
-                  <div class="closing-line">"Of course. What specifically would help you make that decision — more specs, a price breakdown, or would it help to have a colleague try it too?"</div>
-                </div>
-                <div class="closing-card">
-                  <div class="closing-situation">"I need to check with my manager"</div>
-                  <div class="closing-line">"Understood. I can prepare a one-page summary for that conversation. Would it help if I joined that call to answer technical questions?"</div>
-                </div>
-                <div class="closing-card">
-                  <div class="closing-situation">Corporate — after demo</div>
-                  <div class="closing-line">"The fastest way to prove value internally is a pilot. What if we set up 5 chairs for your team for 30 days? The data from that conversation will close the larger order."</div>
-                </div>
-                <div class="closing-card">
-                  <div class="closing-situation">"The price is a stretch"</div>
-                  <div class="closing-line">"Let me put it this way: at $0.55 a day over 10 years, it costs less than a daily coffee. And if it prevents one back issue — which the research supports — it pays for itself many times over."</div>
-                </div>
-                <div class="closing-card">
-                  <div class="closing-situation">No clear next step</div>
-                  <div class="closing-line">"Before we wrap — can we agree on a specific next step? Even a 15-minute follow-up call next week works. I want to make sure this doesn't fall through the cracks for you."</div>
-                </div>
-              </div>
-            </div></div>
-          </div>
-
-          <!-- Showroom Tips -->
-          <div class="tool-card" id="anchor-tips" onclick="toggleCard(this)">
-            <div class="tool-card-header">
-              <span class="tool-tag tag-guide">Guide</span>
-              <div class="tool-meta">
-                <div class="tool-title">Showroom Tips — Environment & Setup</div>
-                <div class="tool-desc">How to set up your demo environment and behaviour to maximise conversion.</div>
-              </div>
-            </div>
-            <div class="tool-card-footer">
-              <div class="tool-footer-meta"><svg viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3.5v2.5l1.5 1"/></svg> 8 tips</div>
-              <div class="expand-btn">Read <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></div>
-            </div>
-            <div class="tool-card-body"><div class="tool-card-body-inner">
-              <div class="tips-list">
-                <div class="tip-item"><span class="tip-bullet">→</span>Place the Vision Chair next to a conventional ergonomic chair. The contrast is your most powerful visual argument — let them sit in the conventional one first.</div>
-                <div class="tip-item"><span class="tip-bullet">→</span>Have the chair pre-set at a neutral position (T-Mech at 0°) so the activation moment is clear and dramatic.</div>
-                <div class="tip-item"><span class="tip-bullet">→</span>Keep a desk at working height nearby — people need context to feel how the posture changes during actual work.</div>
-                <div class="tip-item"><span class="tip-bullet">→</span>Don't demonstrate all adjustments upfront. Let them sit first. Adjustments come after they've felt the core benefit.</div>
-                <div class="tip-item"><span class="tip-bullet">→</span>For corporate visits, bring printed leave-behinds — the one-page spec sheet and ROI summary. Decision makers need something physical to share internally.</div>
-                <div class="tip-item"><span class="tip-bullet">→</span>When multiple people try the chair in a session, let each person adjust it themselves rather than adjusting it for them. The act of customisation builds ownership.</div>
-                <div class="tip-item"><span class="tip-bullet">→</span>If possible, leave a demo unit with a prospect for 1–2 weeks. Extended trial converts at significantly higher rates than single-session demos.</div>
-                <div class="tip-item"><span class="tip-bullet">→</span>After the demo, send a follow-up within 24 hours. Reference something specific they said during the sit. Personalisation signals that you were listening.</div>
-              </div>
-            </div></div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- ══════════════════════ B2B BUSINESS CASE ══════════════════════ -->
-      <div class="tool-section" id="b2b">
-        <div class="section-header">
-          <div class="section-icon"><svg viewBox="0 0 17 17"><path d="M2 12l4-5 3 3 3-4 4 4"/></svg></div>
-          <div><div class="section-title">B2B Business Case</div><div class="section-lead">The numbers and process for closing corporate accounts.</div></div>
-        </div>
-        <div class="cards-list">
-
-          <!-- ROI -->
-          <div class="tool-card" id="anchor-roi" onclick="toggleCard(this)">
-            <div class="tool-card-header">
-              <span class="tool-tag tag-table">Table</span>
-              <div class="tool-meta">
-                <div class="tool-title">ROI Breakdown — The Financial Case</div>
-                <div class="tool-desc">Concrete numbers to make the business case to a CFO, HR director, or procurement team.</div>
-              </div>
-            </div>
-            <div class="tool-card-footer">
-              <div class="tool-footer-meta"><svg viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3.5v2.5l1.5 1"/></svg> 3 metrics</div>
-              <div class="expand-btn">View <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></div>
-            </div>
-            <div class="tool-card-body"><div class="tool-card-body-inner">
-              <div class="roi-grid">
-                <div class="roi-card">
-                  <div class="roi-card-title">Cost of back pain</div>
-                  <div class="roi-card-value">$50K+</div>
-                  <div class="roi-card-desc">Per chronic claim over employee lifetime. Plus 12 days absenteeism/year and 20–30% productivity loss.</div>
-                </div>
-                <div class="roi-card">
-                  <div class="roi-card-title">Vision Chair investment</div>
-                  <div class="roi-card-value">$0.55</div>
-                  <div class="roi-card-desc">Per day over 10 years. One-time investment, user-replaceable parts, zero maintenance overhead.</div>
-                </div>
-                <div class="roi-card highlight">
-                  <div class="roi-card-title">Break-even point</div>
-                  <div class="roi-card-value">1 claim</div>
-                  <div class="roi-card-desc">One prevented chronic claim pays for 25 chairs. Reduced absenteeism alone typically covers investment within 12 months.</div>
-                </div>
-              </div>
-              <table class="body-table" style="margin-top:20px;">
-                <thead><tr><th>#</th><th>Impact Area</th><th>Annual Cost / Employee</th></tr></thead>
-                <tbody>
-                  <tr><td>1</td><td>Absenteeism</td><td>12 days lost · ~$4,800 avg.</td></tr>
-                  <tr><td>2</td><td>Reduced productivity</td><td>20–30% output loss when present</td></tr>
-                  <tr><td>3</td><td>Healthcare / insurance</td><td>$50,000+ per chronic claim (lifetime)</td></tr>
-                  <tr><td>4</td><td>Employee turnover</td><td>Poor ergonomics cited in 35% of exits</td></tr>
-                </tbody>
-              </table>
-            </div></div>
-          </div>
-
-          <!-- Enterprise Guide -->
-          <div class="tool-card" id="anchor-enterprise" onclick="toggleCard(this)">
-            <div class="tool-card-header">
-              <span class="tool-tag tag-guide">Guide</span>
-              <div class="tool-meta">
-                <div class="tool-title">Enterprise & Volume Orders — How to Navigate</div>
-                <div class="tool-desc">Positioning, process, and approach for corporate accounts and bulk orders.</div>
+                <div class="tool-title">The Demo Script — Part 2: They Experience</div>
+                <div class="tool-desc">Guidelines for when the customer sits in the chair — what to observe, what to say, and how to guide their experience.</div>
               </div>
             </div>
             <div class="tool-card-footer">
@@ -813,98 +714,64 @@
             </div>
             <div class="tool-card-body"><div class="tool-card-body-inner">
               <div class="demo-steps">
-                <div class="demo-step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Identify the right entry point</div><div class="step-script">HR Director, Wellness Manager, or Facilities Manager. Avoid IT and Procurement as first contact — they evaluate cost, not value.</div></div></div>
-                <div class="demo-step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Propose a pilot program</div><div class="step-script">Start with 5–10 chairs for a specific team or floor. Pilot reduces perceived risk and creates internal champions who sell for you.</div></div></div>
-                <div class="demo-step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Measure and report</div><div class="step-script">After 60–90 days, survey pilot users. Quantify satisfaction, back pain reduction, and focus levels. Present to decision makers.</div></div></div>
-                <div class="demo-step"><div class="step-num">4</div><div class="step-content"><div class="step-title">Scale the conversation</div><div class="step-script">With pilot data in hand, make the financial case to CFO or procurement. One prevented claim pays for 25 chairs.</div></div></div>
+                <div class="demo-step">
+                  <div class="step-num">1</div>
+                  <div class="step-content">
+                    <div class="step-title">Hand over the chair (30 sec)</div>
+                    <div class="step-script">"Now it's your turn — sit however feels natural. Don't try to correct your posture."</div>
+                    <div class="step-note">Step back. Give them space. Don't hover.</div>
+                  </div>
+                </div>
+                <div class="demo-step">
+                  <div class="step-num">2</div>
+                  <div class="step-content">
+                    <div class="step-title">Let them feel the baseline (30 sec)</div>
+                    <div class="step-script">"Notice where your lower back is right now."</div>
+                    <div class="step-note">Don't explain yet. Let them feel the 90° position before activating anything.</div>
+                  </div>
+                </div>
+                <div class="demo-step">
+                  <div class="step-num">3</div>
+                  <div class="step-content">
+                    <div class="step-title">Activate the T-Mech (30 sec)</div>
+                    <div class="step-script">"Now — slightly rise off the seat, just a centimetre, so the mechanism can move freely. Feel that? Your pelvis just rotated forward. Your lower back curve just came back — without any effort from you."</div>
+                    <div class="step-note">Guide their hand to the lever if needed. Watch their face — the reaction usually happens in seconds.</div>
+                    <div class="step-note" style="color:var(--accent);font-weight:500;margin-top:6px;">⚠ Important: the T-Mech cannot engage under full body weight. Always ask the customer to slightly rise off the seat before activating the lever — even just 1–2cm is enough.</div>
+                  </div>
+                </div>
+                <div class="demo-step">
+                  <div class="step-num">4</div>
+                  <div class="step-content">
+                    <div class="step-title">Let them explore and close (2 min)</div>
+                    <div class="step-script">"Take your time — move around, recline, adjust the height. Notice how the backrest follows you automatically." <br><br>Then after 1–2 minutes: "What did you notice? … [pause] … That's exactly what 115° does to the body. The question isn't whether it works — you just felt it. The question is: how many people in your team should feel that?"</div>
+                    <div class="step-note">Don't talk during the exploration. Let the chair sell itself. The close question lands best after silence.</div>
+                  </div>
+                </div>
               </div>
-              <div class="callout" style="margin-top:20px;"><p style="font-style:normal;"><strong>Volume pricing —</strong> For orders above standard quantities, custom pricing and dedicated support are available. Contact Nico directly to discuss terms before quoting a corporate client.</p></div>
             </div></div>
           </div>
 
-          <!-- Email Templates -->
-          <div class="tool-card" id="anchor-emails" onclick="toggleCard(this)">
+          <!-- Showroom Tips -->
+          <div class="tool-card" id="anchor-tips" onclick="toggleCard(this, event)">
             <div class="tool-card-header">
-              <span class="tool-tag tag-script">Script</span>
+              <span class="tool-tag tag-guide">Guide</span>
               <div class="tool-meta">
-                <div class="tool-title">Email Templates — Post-Demo & Follow-Up</div>
-                <div class="tool-desc">Ready-to-send templates for the most critical touchpoints: after a demo, after a meeting, and the ROI summary send.</div>
+                <div class="tool-title">Showroom Tips — Environment & Setup</div>
+                <div class="tool-desc">How to set up your demo environment and behaviour to maximise conversion.</div>
               </div>
             </div>
             <div class="tool-card-footer">
-              <div class="tool-footer-meta"><svg viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3.5v2.5l1.5 1"/></svg> 3 templates</div>
-              <div class="expand-btn">View <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></div>
+              <div class="tool-footer-meta"><svg viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3.5v2.5l1.5 1"/></svg> 6 tips</div>
+              <div class="expand-btn">Read <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></div>
             </div>
             <div class="tool-card-body"><div class="tool-card-body-inner">
-
-              <div class="body-h">Template 1 — Post-Demo Follow-Up (B2C)</div>
-              <div class="email-template">
-                <div class="email-header">
-                  <div class="email-field">Subject: <span>Good to meet you — and your thoughts on the Vision Chair</span></div>
-                </div>
-                <div class="email-body">Hi [First Name],
-
-Great meeting you today — and thank you for taking the time to try the Vision Chair.
-
-I noticed you [reference something specific: "seemed surprised when the backrest followed your movement" / "mentioned the hip angle felt different immediately"]. That reaction is something I hear often — it's hard to understand until you actually sit in it.
-
-A few things to remember from our conversation:
-— The Vision Chair opens your hip angle to 115°, which naturally restores the spine's curve without any effort
-— Vision Y starts at $2,200 / Vision X at $3,000 — both backed by a 10-year warranty
-— Tool-free assembly, ~15 minutes
-
-If you'd like to discuss further or have questions for a partner, I'm happy to help.
-
-Best,
-[Your name]</div>
+              <div class="tips-list">
+                <div class="tip-item"><span class="tip-bullet">→</span>Have a height-adjustable desk available for the demo — the Vision Chair is designed to work with one, and showing the combination live is your strongest cross-sell argument.</div>
+                <div class="tip-item"><span class="tip-bullet">→</span>Place the Vision Chair next to a conventional ergonomic chair. The contrast is your most powerful visual argument — let them sit in the conventional one first.</div>
+                <div class="tip-item"><span class="tip-bullet">→</span>Have the chair pre-set at an elevated position (T-Mech™ at 12–14°) in your showroom. The forward tilt is visually striking next to conventional chairs — it creates curiosity and draws people in before you say a word.</div>
+                <div class="tip-item"><span class="tip-bullet">→</span>For corporate visits, bring printed leave-behinds — the one-page spec sheet and ROI summary. Decision makers need something physical to share internally.</div>
+                <div class="tip-item"><span class="tip-bullet">→</span>When multiple people try the chair in a session, let each person adjust it themselves rather than adjusting it for them. The act of customisation builds ownership.</div>
               </div>
-
-              <div class="body-h">Template 2 — Post-Meeting Follow-Up (B2B)</div>
-              <div class="email-template">
-                <div class="email-header">
-                  <div class="email-field">Subject: <span>Vision Chair — next steps for [Company Name]</span></div>
-                </div>
-                <div class="email-body">Hi [First Name],
-
-Thank you for your time today. Here's a quick summary of where we landed:
-
-The core opportunity: back pain is the #1 cause of workplace absenteeism. The Vision Chair addresses the root cause — the 90° sitting angle — rather than adding lumbar support to an already flawed position.
-
-What we discussed:
-— A 5-chair pilot program for [team / floor] over 30–60 days
-— Survey framework to measure satisfaction and back pain reduction
-— ROI presentation for [CFO / Procurement] once pilot data is in hand
-
-I've attached a one-page spec sheet and ROI summary. I'd suggest sharing these with [name of decision maker] before our next call.
-
-Proposed next step: 30-min call [day] to align on pilot logistics.
-
-Best,
-[Your name]</div>
-              </div>
-
-              <div class="body-h">Template 3 — The ROI One-Pager Send</div>
-              <div class="email-template">
-                <div class="email-header">
-                  <div class="email-field">Subject: <span>The business case for the Vision Chair — one page</span></div>
-                </div>
-                <div class="email-body">Hi [First Name],
-
-As promised — the one-page ROI summary for your internal conversation.
-
-The short version:
-— Back pain costs companies ~$4,800/employee/year in absenteeism alone
-— One prevented chronic claim ($50K+) pays for 25 Vision Chairs
-— At $0.55/day per chair over 10 years, the math is straightforward
-
-The attached document breaks this down in a format your [CFO / HR Director / procurement team] will find useful.
-
-Happy to join that conversation if it would help. Just let me know.
-
-Best,
-[Your name]</div>
-              </div>
-
             </div></div>
           </div>
 
@@ -916,7 +783,8 @@ Best,
 </main>
 
 <script>
-  function toggleCard(card) {
+  function toggleCard(card, event) {
+    if (event && !event.target.closest('.tool-card-header, .expand-btn')) return;
     const body = card.querySelector('.tool-card-body');
     const isExpanded = card.classList.contains('expanded');
     card.classList.toggle('expanded', !isExpanded);

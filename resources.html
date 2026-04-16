@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Levitask — Resources & Downloads</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111111;
+    --surface: #161616;
+    --surface-2: #1e1e1e;
+    --border: #2a2a2a;
+    --border-light: #333333;
+    --text-primary: #f0ece4;
+    --text-secondary: #8a8480;
+    --text-muted: #4a4744;
+    --accent: #e8622a;
+    --accent-dim: rgba(232, 98, 42, 0.12);
+    --accent-glow: rgba(232, 98, 42, 0.06);
+    --green: #4a7c59;
+    --green-bright: #6dbf86;
+    --green-dim: rgba(74, 124, 89, 0.15);
+    --blue: #3a7bd5;
+    --blue-dim: rgba(58, 123, 213, 0.12);
+    --purple: #7c5cbf;
+    --purple-dim: rgba(124, 92, 191, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-weight: 300; min-height: 100vh; display: flex; }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar { width: 240px; min-height: 100vh; background: var(--off-black); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; left: 0; top: 0; bottom: 0; z-index: 100; }
+  .sidebar-logo { padding: 32px 28px 28px; border-bottom: 1px solid var(--border); }
+  .sidebar-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.9; }
+  .sidebar-logo .portal-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-top: 8px; font-weight: 400; }
+  .sidebar-nav { padding: 24px 16px; flex: 1; }
+  .nav-section-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); padding: 0 12px; margin-bottom: 8px; margin-top: 20px; }
+  .nav-section-label:first-child { margin-top: 0; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 6px; font-size: 13px; font-weight: 400; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; text-decoration: none; margin-bottom: 2px; }
+  .nav-item:hover { background: var(--surface); color: var(--text-primary); }
+  .nav-item.active { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(232,98,42,0.15); }
+  .nav-icon { width: 16px; height: 16px; opacity: 0.7; flex-shrink: 0; }
+  .nav-item.active .nav-icon { opacity: 1; }
+  .sidebar-footer { padding: 20px 16px; border-top: 1px solid var(--border); }
+  .distributor-badge { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--surface); border-radius: 8px; border: 1px solid var(--border); }
+  .distributor-avatar { width: 32px; height: 32px; background: var(--accent-dim); border-radius: 50%; border: 1px solid rgba(232,98,42,0.3); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+  .distributor-name { font-size: 12px; font-weight: 500; color: var(--text-primary); }
+  .distributor-role { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+
+  /* ─── MAIN ─── */
+  .main { margin-left: 240px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+  .topbar { padding: 20px 40px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--off-black); position: sticky; top: 0; z-index: 50; }
+  .topbar-left { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.02em; }
+  .topbar-left span { color: var(--text-muted); font-style: italic; }
+
+  /* ─── LAYOUT ─── */
+  .page-layout { display: flex; flex: 1; }
+
+  /* ─── LEFT NAV ─── */
+  .cat-nav { width: 220px; flex-shrink: 0; border-right: 1px solid var(--border); padding: 32px 0; position: sticky; top: 61px; height: calc(100vh - 61px); overflow-y: auto; }
+  .cat-nav-title { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); padding: 0 24px; margin-bottom: 16px; }
+  .cat-link { display: flex; align-items: center; gap: 10px; padding: 10px 24px; font-size: 13px; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; border-left: 2px solid transparent; }
+  .cat-link:hover { color: var(--text-primary); background: var(--surface); }
+  .cat-link.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-glow); }
+  .cat-link-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); flex-shrink: 0; transition: background 0.2s; }
+  .cat-link.active .cat-link-dot { background: var(--accent); }
+  .cat-count { margin-left: auto; font-size: 10px; color: var(--text-muted); background: var(--surface-2); border: 1px solid var(--border); padding: 1px 7px; border-radius: 3px; }
+  .cat-link.active .cat-count { background: var(--accent-dim); border-color: rgba(232,98,42,0.2); color: var(--accent); }
+  .cat-divider { height: 1px; background: var(--border); margin: 12px 24px; }
+  .cat-sublink { display: block; padding: 6px 24px 6px 40px; font-size: 11px; color: var(--text-muted); pointer-events: none; cursor: default; transition: color 0.2s; }
+  .cat-sublink.scrolled { color: var(--accent); }
+
+  /* ─── CONTENT ─── */
+  .downloads-content { flex: 1; padding: 40px 48px; max-width: 900px; animation: fadeUp 0.3s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ─── PAGE HEADER ─── */
+  .page-header { margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+  .page-header-text {}
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; line-height: 1.1; margin-bottom: 10px; }
+  .page-title em { font-style: italic; color: var(--accent); }
+  .page-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; max-width: 480px; font-weight: 300; }
+  .page-stats { display: flex; gap: 20px; flex-shrink: 0; }
+  .page-stat { text-align: center; }
+  .page-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--text-primary); line-height: 1; }
+  .page-stat-lbl { font-size: 10px; color: var(--text-muted); margin-top: 3px; }
+
+  /* ─── SEARCH + FILTER ─── */
+  .toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .search-bar { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 9px 14px; flex: 1; transition: border-color 0.2s; }
+  .search-bar:focus-within { border-color: var(--border-light); }
+  .search-bar svg { width: 13px; height: 13px; stroke: var(--text-muted); fill: none; stroke-width: 1.5; flex-shrink: 0; }
+  .search-bar input { background: none; border: none; outline: none; font-size: 13px; color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-weight: 300; flex: 1; }
+  .search-bar input::placeholder { color: var(--text-muted); }
+
+  .filter-group { display: flex; gap: 6px; }
+  .filter-btn { padding: 6px 12px; border-radius: 4px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 11px; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .filter-btn:hover { border-color: var(--border-light); color: var(--text-secondary); }
+  .filter-btn.active { background: var(--accent-dim); border-color: rgba(232,98,42,0.3); color: var(--accent); }
+
+  /* ─── CATEGORY SECTIONS ─── */
+  .cat-section { display: none; }
+  .cat-section.active { display: block; animation: fadeUp 0.25s ease both; }
+
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+  .section-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid; }
+  .section-icon svg { width: 17px; height: 17px; fill: none; stroke-width: 1.5; }
+  .icon-marketing { background: var(--accent-dim); border-color: rgba(232,98,42,0.2); }
+  .icon-marketing svg { stroke: var(--accent); }
+  .icon-sales { background: var(--green-dim); border-color: rgba(74,124,89,0.3); }
+  .icon-sales svg { stroke: var(--green-bright); }
+  .icon-product { background: var(--blue-dim); border-color: rgba(58,123,213,0.2); }
+  .icon-product svg { stroke: var(--blue); }
+  .icon-legal { background: var(--purple-dim); border-color: rgba(124,92,191,0.2); }
+  .icon-legal svg { stroke: var(--purple); }
+
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; }
+  .section-meta { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+  /* ─── RESOURCE GRID ─── */
+  .resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+  .resource-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
+  .resource-card:hover { border-color: var(--border-light); }
+
+  /* preview area */
+  .resource-preview { height: 120px; background: var(--surface-2); position: relative; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); overflow: hidden; }
+  .preview-pattern { position: absolute; inset: 0; opacity: 0.03; background-image: repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(255,255,255,0.5) 20px, rgba(255,255,255,0.5) 21px), repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(255,255,255,0.5) 20px, rgba(255,255,255,0.5) 21px); }
+  .preview-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; border: 1px solid; }
+  .preview-icon svg { width: 22px; height: 22px; fill: none; stroke-width: 1.5; }
+  .pi-pdf { background: rgba(232,98,42,0.1); border-color: rgba(232,98,42,0.3); }
+  .pi-pdf svg { stroke: var(--accent); }
+  .pi-pptx { background: rgba(232,98,42,0.1); border-color: rgba(232,98,42,0.3); }
+  .pi-pptx svg { stroke: var(--accent); }
+  .pi-img { background: var(--green-dim); border-color: rgba(74,124,89,0.3); }
+  .pi-img svg { stroke: var(--green-bright); }
+  .pi-doc { background: var(--blue-dim); border-color: rgba(58,123,213,0.2); }
+  .pi-doc svg { stroke: var(--blue); }
+
+  .preview-badge { position: absolute; top: 10px; right: 10px; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; font-weight: 400; z-index: 1; }
+  .badge-pdf { background: rgba(232,98,42,0.15); color: var(--accent); border: 1px solid rgba(232,98,42,0.2); }
+  .badge-pptx { background: rgba(232,98,42,0.15); color: var(--accent); border: 1px solid rgba(232,98,42,0.2); }
+  .badge-img { background: var(--green-dim); color: var(--green-bright); border: 1px solid rgba(74,124,89,0.3); }
+  .badge-zip { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(58,123,213,0.2); }
+  .badge-new { position: absolute; top: 10px; left: 10px; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; background: var(--accent); color: white; z-index: 1; }
+
+  /* card body */
+  .resource-body { padding: 16px 18px; }
+  .resource-title { font-size: 13px; font-weight: 400; color: var(--text-primary); margin-bottom: 5px; line-height: 1.35; }
+  .resource-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.55; font-weight: 300; margin-bottom: 14px; }
+  .resource-footer { display: flex; align-items: center; justify-content: space-between; }
+  .resource-meta { display: flex; align-items: center; gap: 12px; }
+  .resource-size { font-size: 10px; color: var(--text-muted); }
+  .resource-date { font-size: 10px; color: var(--text-muted); }
+  .download-btn { display: flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--accent); color: white; border: none; border-radius: 4px; font-size: 11px; font-weight: 400; cursor: pointer; transition: opacity 0.2s; font-family: 'DM Sans', sans-serif; letter-spacing: 0.04em; white-space: nowrap; }
+  .download-btn:hover { opacity: 0.85; }
+  .download-btn svg { width: 12px; height: 12px; stroke: white; fill: none; stroke-width: 2; }
+  .download-btn.secondary { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); }
+  .download-btn.secondary:hover { border-color: var(--border-light); color: var(--text-primary); }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <img src="https://framerusercontent.com/images/Q9KOo0ZOBzGxdPVBwSfYfVx9dE.png" alt="Levitask">
+    <div class="portal-label">Distributor Portal</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Navigation</div>
+    <a class="nav-item" href="dashboard.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>Dashboard</a>
+    <a class="nav-item" href="training-certification-V2.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 3 3.5.5-2.5 2.5.5 3.5L8 9l-3 1.5.5-3.5L3 4.5l3.5-.5z"/></svg>Training & Certification</a>
+    <a class="nav-item" href="product-knowledge.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h10"/></svg>Product Knowledge</a>
+    <a class="nav-item" href="sales-tools.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11l4-4 3 3 3-4 4 4"/></svg>Sales Tools</a>
+    <a class="nav-item active" href="resources.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4M2 14h12"/></svg>Resources & Downloads</a>
+    <div class="nav-section-label">Support</div>
+    <a class="nav-item" href="contact.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 7v5M8 4.5v.5"/></svg>Contact & Support</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="distributor-badge">
+      <div class="distributor-avatar">LB</div>
+      <div><div class="distributor-name">Loyal Brand</div><div class="distributor-role">Authorized Distributor</div></div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-left">Resources <span>& Downloads</span></div>
+    <div style="font-size:12px;color:var(--text-muted);">24 files · Last updated Mar 2, 2026</div>
+  </div>
+
+  <div class="page-layout">
+
+    <!-- LEFT NAV -->
+    <nav class="cat-nav">
+      <div class="cat-nav-title">Categories</div>
+
+      <div class="cat-link active" onclick="showCat('marketing', this)">
+        <span class="cat-link-dot"></span>
+        Marketing
+        <span class="cat-count">8</span>
+      </div>
+      <div class="cat-sublink" data-anchor="anchor-brand">Brand Assets</div>
+      <div class="cat-sublink" data-anchor="anchor-visuals">Product Visuals</div>
+      <div class="cat-sublink" data-anchor="anchor-content">Content Templates</div>
+
+      <div class="cat-divider"></div>
+
+      <div class="cat-link" onclick="showCat('sales', this)">
+        <span class="cat-link-dot"></span>
+        Sales
+        <span class="cat-count">7</span>
+      </div>
+      <div class="cat-sublink" data-anchor="anchor-decks">Presentations</div>
+      <div class="cat-sublink" data-anchor="anchor-sheets">One-Pagers & Sheets</div>
+
+      <div class="cat-divider"></div>
+
+      <div class="cat-link" onclick="showCat('product', this)">
+        <span class="cat-link-dot"></span>
+        Product
+        <span class="cat-count">6</span>
+      </div>
+      <div class="cat-sublink" data-anchor="anchor-specs">Tech Specs</div>
+      <div class="cat-sublink" data-anchor="anchor-setup">Setup & Maintenance</div>
+
+      <div class="cat-divider"></div>
+
+      <div class="cat-link" onclick="showCat('legal', this)">
+        <span class="cat-link-dot"></span>
+        Legal & Operations
+        <span class="cat-count">3</span>
+      </div>
+      <div class="cat-sublink" data-anchor="anchor-warranty">Warranty & Returns</div>
+      <div class="cat-sublink" data-anchor="anchor-orders">Order Process</div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="downloads-content">
+
+      <div class="page-header">
+        <div class="page-header-text">
+          <h1 class="page-title">Resources <em>& Downloads</em></h1>
+          <p class="page-desc">All Levitask assets in one place. Download what you need — presentations, brand files, product specs, and more.</p>
+        </div>
+        <div class="page-stats">
+          <div class="page-stat"><div class="page-stat-val">24</div><div class="page-stat-lbl">Total files</div></div>
+          <div class="page-stat"><div class="page-stat-val">3</div><div class="page-stat-lbl">New this month</div></div>
+        </div>
+      </div>
+
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <div class="search-bar">
+          <svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="5"/><path d="M10 10l3.5 3.5"/></svg>
+          <input type="text" placeholder="Search files…">
+        </div>
+        <div class="filter-group">
+          <button class="filter-btn active" onclick="setFilter(this)">All</button>
+          <button class="filter-btn" onclick="setFilter(this)">PDF</button>
+          <button class="filter-btn" onclick="setFilter(this)">PPTX</button>
+          <button class="filter-btn" onclick="setFilter(this)">Images</button>
+        </div>
+      </div>
+
+      <!-- ══════════ MARKETING ══════════ -->
+      <div class="cat-section active" id="marketing">
+
+        <div class="section-header">
+          <div class="section-icon icon-marketing"><svg viewBox="0 0 17 17"><path d="M2 12l3-7 3 4 2-3 3 6"/><circle cx="14" cy="4" r="2"/></svg></div>
+          <div>
+            <div class="section-title">Marketing</div>
+            <div class="section-meta">Brand assets, product visuals, and content templates — 8 files</div>
+          </div>
+        </div>
+
+        <div class="resource-grid">
+
+          <div class="resource-card" id="anchor-brand">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h4M7 15h6M7 9h2"/></svg></div>
+              <span class="preview-badge badge-pdf">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Brand Guidelines — Distributor Edition</div>
+              <div class="resource-desc">Logo usage, color palette, typography, tone of voice, and do's & don'ts for distributor communications.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">4.2 MB</span>
+                  <span class="resource-date">Updated Jan 3, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-img"><svg viewBox="0 0 22 22"><rect x="3" y="3" width="16" height="16" rx="2"/><circle cx="8" cy="8" r="2"/><path d="M3 15l5-5 4 4 2-2 4 4"/></svg></div>
+              <span class="preview-badge badge-img">ZIP</span>
+              <span class="badge-new">New</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Product Photography Pack — Q1 2026</div>
+              <div class="resource-desc">High-resolution product shots: white background, lifestyle, detail views. Vision X & Vision Y. Print and digital ready.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">186 MB</span>
+                  <span class="resource-date">Updated Mar 1, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card" id="anchor-visuals">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-pptx"><svg viewBox="0 0 22 22"><rect x="2" y="4" width="18" height="14" rx="2"/><path d="M7 9h4a2 2 0 010 4H7V9z"/><path d="M11 11h3"/></svg></div>
+              <span class="preview-badge badge-pptx">PPTX</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Social Media Templates — Canva Pack</div>
+              <div class="resource-desc">Instagram, LinkedIn, and Facebook templates. Pre-branded with Levitask visual identity. Editable in Canva.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">12.4 MB</span>
+                  <span class="resource-date">Updated Feb 10, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card" id="anchor-content">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h4M7 15h6M7 9h2"/></svg></div>
+              <span class="preview-badge badge-pdf">PDF</span>
+              <span class="badge-new">New</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Copywriting Guide — Approved Messaging</div>
+              <div class="resource-desc">Pre-approved product descriptions, taglines, and key messages for distributors to use in their own channels.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">1.8 MB</span>
+                  <span class="resource-date">Updated Feb 28, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══════════ SALES ══════════ -->
+      <div class="cat-section" id="sales">
+
+        <div class="section-header">
+          <div class="section-icon icon-sales"><svg viewBox="0 0 17 17"><path d="M2 13l3-4 3 2 3-5 4 4"/></svg></div>
+          <div>
+            <div class="section-title">Sales</div>
+            <div class="section-meta">Presentations, one-pagers, and pricing sheets — 7 files</div>
+          </div>
+        </div>
+
+        <div class="resource-grid">
+
+          <div class="resource-card" id="anchor-decks">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-pptx"><svg viewBox="0 0 22 22"><rect x="2" y="4" width="18" height="14" rx="2"/><path d="M7 9h4a2 2 0 010 4H7V9z"/><path d="M11 11h3"/></svg></div>
+              <span class="preview-badge badge-pptx">PPTX</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Distributor Pitch Deck — Full Version</div>
+              <div class="resource-desc">Complete sales presentation: brand story, technology, product line, competitive positioning, and pricing. 32 slides.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">22.6 MB</span>
+                  <span class="resource-date">Updated Jan 15, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/></svg></div>
+              <span class="preview-badge badge-pdf">PDF</span>
+              <span class="badge-new">New</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">B2B Pricing Sheet — Q1 2026</div>
+              <div class="resource-desc">Distributor pricing, volume tiers, and margin structure. Confidential — not for sharing with end customers.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">0.4 MB</span>
+                  <span class="resource-date">Updated Mar 2, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card" id="anchor-sheets">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h8M7 15h5M7 9h4"/></svg></div>
+              <span class="preview-badge badge-pdf">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Vision Chair — Product One-Pager</div>
+              <div class="resource-desc">Single-page product summary for prospect leave-behinds. Available in A4 and US Letter. Vision X & Y versions.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">2.1 MB</span>
+                  <span class="resource-date">Updated Feb 5, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/></svg></div>
+              <span class="preview-badge badge-pdf">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">B2B ROI Calculator — Printable</div>
+              <div class="resource-desc">Leave-behind for corporate buyers. Calculates back pain cost vs. Vision Chair investment for a given headcount.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">0.8 MB</span>
+                  <span class="resource-date">Updated Jan 20, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══════════ PRODUCT ══════════ -->
+      <div class="cat-section" id="product">
+
+        <div class="section-header">
+          <div class="section-icon icon-product"><svg viewBox="0 0 17 17"><path d="M8.5 2L2 6v5l6.5 4L15 11V6z"/></svg></div>
+          <div>
+            <div class="section-title">Product</div>
+            <div class="section-meta">Technical specs, setup guides, and maintenance docs — 6 files</div>
+          </div>
+        </div>
+
+        <div class="resource-grid">
+
+          <div class="resource-card" id="anchor-specs">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h8M7 15h5M7 9h4"/></svg></div>
+              <span class="preview-badge badge-zip">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Technical Specifications — Vision X & Y</div>
+              <div class="resource-desc">Complete spec sheet: dimensions, weight capacity, adjustment ranges, materials, certifications. Vision X and Y side-by-side.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">1.2 MB</span>
+                  <span class="resource-date">Updated Jan 8, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card" id="anchor-setup">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/></svg></div>
+              <span class="preview-badge badge-zip">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Assembly & Setup Guide</div>
+              <div class="resource-desc">Step-by-step setup instructions with illustrations. Tool-free assembly in ~15 minutes. Suitable for end-customer distribution.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">3.6 MB</span>
+                  <span class="resource-date">Updated Dec 12, 2025</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><circle cx="11" cy="11" r="8"/><path d="M11 7v4l3 3"/></svg></div>
+              <span class="preview-badge badge-zip">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">T-Mech Mechanism — Technical Overview</div>
+              <div class="resource-desc">Engineering breakdown of the T-Mech knee pivot arc system. For technically-minded buyers and facilities managers.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">5.4 MB</span>
+                  <span class="resource-date">Updated Jan 8, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══════════ LEGAL & OPS ══════════ -->
+      <div class="cat-section" id="legal">
+
+        <div class="section-header">
+          <div class="section-icon icon-legal"><svg viewBox="0 0 17 17"><path d="M8.5 2v13M3 5l5.5-3L14 5M3 5l2.5 5M14 5l-2.5 5M5.5 10a2.5 2.5 0 005 0"/></svg></div>
+          <div>
+            <div class="section-title">Legal & Operations</div>
+            <div class="section-meta">Warranty, returns, and order process documentation — 3 files</div>
+          </div>
+        </div>
+
+        <div class="resource-grid">
+
+          <div class="resource-card" id="anchor-warranty">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M11 2l2 4h4l-3.5 3 1.5 4L11 11l-4 2 1.5-4L5 6h4z"/></svg></div>
+              <span class="preview-badge badge-zip">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Warranty Policy — Distributor Version</div>
+              <div class="resource-desc">5-year warranty terms, what's covered, claim process, and how to handle end-customer warranty requests as a distributor.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">0.6 MB</span>
+                  <span class="resource-date">Updated Dec 15, 2025</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card" id="anchor-orders">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M4 4h14v14H4z"/><path d="M8 4V2M14 4V2M4 10h14"/></svg></div>
+              <span class="preview-badge badge-zip">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Order Process & Lead Times</div>
+              <div class="resource-desc">How to place orders, current lead times by region, packaging specs, and shipping guidelines for distributors.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">0.9 MB</span>
+                  <span class="resource-date">Updated Jan 25, 2026</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/></svg></div>
+              <span class="preview-badge badge-zip">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Returns & Exchanges Policy</div>
+              <div class="resource-desc">Return window, condition requirements, exchange process, and responsibilities split between Levitask and the distributor.</div>
+              <div class="resource-footer">
+                <div class="resource-meta">
+                  <span class="resource-size">0.5 MB</span>
+                  <span class="resource-date">Updated Dec 15, 2025</span>
+                </div>
+                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+  function showCat(id, linkEl) {
+    document.querySelectorAll('.cat-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.cat-link').forEach(l => l.classList.remove('active'));
+    linkEl.classList.add('active');
+    document.querySelectorAll('.cat-sublink').forEach(s => s.classList.remove('scrolled'));
+    const firstSub = linkEl.nextElementSibling;
+    if (firstSub && firstSub.classList.contains('cat-sublink')) firstSub.classList.add('scrolled');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function setFilter(btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        document.querySelectorAll('.cat-sublink').forEach(s => s.classList.remove('scrolled'));
+        const match = document.querySelector(`.cat-sublink[data-anchor="${id}"]`);
+        if (match) match.classList.add('scrolled');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.resource-card[id]').forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>

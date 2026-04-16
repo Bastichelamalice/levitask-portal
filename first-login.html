@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Levitask — Welcome</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:#0a0a0a; --off-black:#111111; --surface:#161616; --surface-2:#1e1e1e;
+    --border:#2a2a2a; --border-light:#333333;
+    --text-primary:#f0ece4; --text-secondary:#8a8480; --text-muted:#4a4744;
+    --accent:#e8622a; --accent-dim:rgba(232,98,42,0.12); --accent-glow:rgba(232,98,42,0.06);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--black); color:var(--text-primary); font-family:'DM Sans',sans-serif; font-weight:300; min-height:100vh; display:flex; overflow-x:hidden; }
+
+  /* ─── SIDEBAR ─────────────────────────────────────────────────────── */
+  .sidebar { width:240px; min-height:100vh; background:var(--off-black); border-right:1px solid var(--border); display:flex; flex-direction:column; position:fixed; left:0; top:0; bottom:0; z-index:100; }
+  .sidebar-logo { padding:32px 28px 28px; border-bottom:1px solid var(--border); }
+  .sidebar-logo img { height:28px; filter:brightness(0) invert(1); opacity:0.9; }
+  .sidebar-logo .portal-label { font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-top:8px; font-weight:400; }
+  .sidebar-spacer { flex:1; }
+  .sidebar-footer { padding:20px 16px; border-top:1px solid var(--border); }
+  .sidebar-setup-note { font-size:11px; color:var(--text-muted); line-height:1.5; padding:10px 12px; }
+
+  /* ─── MAIN ─────────────────────────────────────────────────────────── */
+  .main { margin-left:240px; flex:1; display:flex; align-items:flex-start; justify-content:flex-start; min-height:100vh; }
+  .form-wrap { max-width:560px; padding:56px 64px 80px; width:100%; }
+
+  /* ─── TYPOGRAPHY ─────────────────────────────────────────────────── */
+  .eyebrow { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; font-weight:400; }
+  .page-title { font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300; line-height:1.1; margin-bottom:20px; letter-spacing:0.01em; }
+  .page-title em { font-style:italic; color:var(--text-secondary); }
+  .page-body { font-size:13px; color:var(--text-secondary); line-height:1.7; font-weight:300; margin-bottom:36px; }
+
+  /* ─── FORM ────────────────────────────────────────────────────────── */
+  .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  .field { display:flex; flex-direction:column; gap:6px; }
+  .field.full { grid-column:1 / -1; }
+  .field label { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); font-weight:400; }
+  .field input {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:11px 14px;
+    font-size:13px;
+    font-family:'DM Sans',sans-serif;
+    font-weight:300;
+    color:var(--text-primary);
+    outline:none;
+    transition:border-color 0.2s;
+  }
+  .field input::placeholder { color:var(--text-muted); }
+  .field input:focus { border-color:var(--border-light); }
+  .field input.error { border-color:var(--accent); }
+  .error-msg { font-size:11px; color:var(--accent); margin-top:20px; display:none; }
+  .error-msg.visible { display:block; }
+
+  .cta-row { margin-top:28px; }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <img src="https://framerusercontent.com/images/Q9KOo0ZOBzGxdPVBwSfYfVx9dE.png" alt="Levitask">
+    <div class="portal-label">Distributor Portal</div>
+  </div>
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-footer">
+    <div class="sidebar-setup-note">Your profile will appear here after setup.</div>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="form-wrap">
+    <div class="eyebrow">Levitask Distributor Portal</div>
+    <h1 class="page-title">Welcome.<br><em>Let's get you set up.</em></h1>
+    <p class="page-body">Before you begin, please take a moment to fill in your details below. This information will be used to personalise your experience on the portal.</p>
+
+    <div class="form-grid">
+      <div class="field">
+        <label for="firstName">First name</label>
+        <input type="text" id="firstName" placeholder="Jean" autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label for="lastName">Last name</label>
+        <input type="text" id="lastName" placeholder="Dupont" autocomplete="family-name">
+      </div>
+      <div class="field">
+        <label for="company">Company</label>
+        <input type="text" id="company" placeholder="Ekobor" autocomplete="organization">
+      </div>
+      <div class="field">
+        <label for="jobTitle">Job title</label>
+        <input type="text" id="jobTitle" placeholder="Sales Manager" autocomplete="organization-title">
+      </div>
+      <div class="field full">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="jean.dupont@ekobor.com" autocomplete="email">
+      </div>
+    </div>
+
+    <p class="error-msg" id="error-msg">Please fill in all fields before continuing.</p>
+
+    <div class="cta-row">
+      <a id="save-btn" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:#e8622a;color:white;border-radius:6px;font-size:13px;font-weight:400;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;">Save and enter the portal →</a>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Redirect immediately if user already has a profile
+  if (localStorage.getItem('levitask_user')) {
+    location.replace('dashboard.html');
+  }
+
+  document.getElementById('save-btn').addEventListener('click', function() {
+    const fields = ['firstName', 'lastName', 'company', 'jobTitle', 'email'];
+    let valid = true;
+
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      const empty = !el.value.trim();
+      el.classList.toggle('error', empty);
+      if (empty) valid = false;
+    });
+
+    const errMsg = document.getElementById('error-msg');
+    errMsg.classList.toggle('visible', !valid);
+
+    if (!valid) return;
+
+    localStorage.setItem('levitask_user', JSON.stringify({
+      firstName: document.getElementById('firstName').value.trim(),
+      lastName:  document.getElementById('lastName').value.trim(),
+      company:   document.getElementById('company').value.trim(),
+      jobTitle:  document.getElementById('jobTitle').value.trim(),
+      email:     document.getElementById('email').value.trim()
+    }));
+
+    location.replace('dashboard.html');
+  });
+
+  // Clear error border on input
+  ['firstName', 'lastName', 'company', 'jobTitle', 'email'].forEach(id => {
+    document.getElementById(id).addEventListener('input', function() {
+      this.classList.remove('error');
+      if (document.querySelectorAll('.field input.error').length === 0) {
+        document.getElementById('error-msg').classList.remove('visible');
+      }
+    });
+  });
+</script>
+</body>
+</html>

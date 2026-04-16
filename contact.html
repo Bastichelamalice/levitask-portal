@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Levitask — Contact & Support</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111111;
+    --surface: #161616;
+    --surface-2: #1e1e1e;
+    --border: #2a2a2a;
+    --border-light: #333333;
+    --text-primary: #f0ece4;
+    --text-secondary: #8a8480;
+    --text-muted: #4a4744;
+    --accent: #e8622a;
+    --accent-dim: rgba(232, 98, 42, 0.12);
+    --accent-glow: rgba(232, 98, 42, 0.06);
+    --green: #4a7c59;
+    --green-bright: #6dbf86;
+    --green-dim: rgba(74, 124, 89, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-weight: 300; min-height: 100vh; display: flex; }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar { width: 240px; min-height: 100vh; background: var(--off-black); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; left: 0; top: 0; bottom: 0; z-index: 100; }
+  .sidebar-logo { padding: 32px 28px 28px; border-bottom: 1px solid var(--border); }
+  .sidebar-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.9; }
+  .sidebar-logo .portal-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-top: 8px; font-weight: 400; }
+  .sidebar-nav { padding: 24px 16px; flex: 1; }
+  .nav-section-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); padding: 0 12px; margin-bottom: 8px; margin-top: 20px; }
+  .nav-section-label:first-child { margin-top: 0; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 6px; font-size: 13px; font-weight: 400; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; text-decoration: none; margin-bottom: 2px; }
+  .nav-item:hover { background: var(--surface); color: var(--text-primary); }
+  .nav-item.active { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(232,98,42,0.15); }
+  .nav-icon { width: 16px; height: 16px; opacity: 0.7; flex-shrink: 0; }
+  .nav-item.active .nav-icon { opacity: 1; }
+  .sidebar-footer { padding: 20px 16px; border-top: 1px solid var(--border); }
+  .distributor-badge { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--surface); border-radius: 8px; border: 1px solid var(--border); }
+  .distributor-avatar { width: 32px; height: 32px; background: var(--accent-dim); border-radius: 50%; border: 1px solid rgba(232,98,42,0.3); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+  .distributor-name { font-size: 12px; font-weight: 500; color: var(--text-primary); }
+  .distributor-role { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+
+  /* ─── MAIN ─── */
+  .main { margin-left: 240px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+  .topbar { padding: 20px 40px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--off-black); position: sticky; top: 0; z-index: 50; }
+  .topbar-left { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.02em; }
+  .topbar-left span { color: var(--text-muted); font-style: italic; }
+
+  /* ─── CONTENT ─── */
+  .page-content { flex: 1; padding: 48px 56px; max-width: 900px; animation: fadeUp 0.3s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ─── PAGE HEADER ─── */
+  .page-header { margin-bottom: 48px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; line-height: 1.1; margin-bottom: 10px; }
+  .page-title em { font-style: italic; color: var(--accent); }
+  .page-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; max-width: 520px; font-weight: 300; }
+
+  /* ─── SECTION LABEL ─── */
+  .section-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; font-weight: 400; }
+
+  /* ─── TEAM CONTACTS ─── */
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 56px; }
+
+  .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; transition: border-color 0.2s; position: relative; overflow: hidden; }
+  .contact-card:hover { border-color: var(--border-light); }
+  .contact-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background 0.2s; }
+  .contact-card:hover::before { background: var(--accent); }
+
+  .contact-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: var(--text-secondary); margin-bottom: 14px; letter-spacing: 0.04em; }
+
+  .contact-name { font-size: 15px; font-weight: 400; color: var(--text-primary); margin-bottom: 3px; }
+  .contact-role { font-size: 11px; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; font-weight: 400; }
+  .contact-domain { font-size: 12px; color: var(--text-secondary); line-height: 1.55; font-weight: 300; margin-bottom: 18px; }
+
+  .contact-divider { height: 1px; background: var(--border); margin-bottom: 16px; }
+
+  .contact-links { display: flex; flex-direction: column; gap: 8px; }
+  .contact-link { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .contact-link:hover { color: var(--accent); }
+  .contact-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.5; flex-shrink: 0; }
+
+  /* response time badge */
+  .response-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-bright); background: var(--green-dim); border: 1px solid rgba(74,124,89,0.3); padding: 3px 8px; border-radius: 3px; margin-top: 10px; }
+  .response-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green-bright); }
+
+  /* ─── DIVIDER ─── */
+  .page-divider { height: 1px; background: var(--border); margin-bottom: 48px; }
+
+  /* ─── FAQ ─── */
+  .faq-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 56px; }
+
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.2s; }
+  .faq-item:hover { border-color: var(--border-light); }
+  .faq-item.open { border-color: rgba(232,98,42,0.2); }
+
+  .faq-question { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; cursor: pointer; }
+  .faq-q-text { font-size: 13px; font-weight: 400; color: var(--text-primary); line-height: 1.4; }
+  .faq-item.open .faq-q-text { color: var(--accent); }
+  .faq-chevron { width: 16px; height: 16px; flex-shrink: 0; stroke: var(--text-muted); fill: none; stroke-width: 2; transition: transform 0.25s; }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); stroke: var(--accent); }
+
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
+  .faq-answer.open { max-height: 400px; }
+  .faq-answer-inner { padding: 0 20px 18px; border-top: 1px solid var(--border); padding-top: 14px; font-size: 13px; color: var(--text-secondary); line-height: 1.7; font-weight: 300; }
+  .faq-answer-inner strong { color: var(--text-primary); font-weight: 500; }
+
+  /* ─── CONTACT FORM ─── */
+  .form-container { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 36px; margin-bottom: 48px; }
+
+  .form-header { margin-bottom: 28px; }
+  .form-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; margin-bottom: 6px; }
+  .form-desc { font-size: 13px; color: var(--text-secondary); font-weight: 300; line-height: 1.55; }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); font-weight: 400; }
+
+  .form-input, .form-select, .form-textarea {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 11px 14px;
+    font-size: 13px;
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+  .form-select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%234a4744' stroke-width='2'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  .form-select option { background: var(--surface-2); color: var(--text-primary); }
+  .form-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+  .form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; }
+  .form-note { font-size: 11px; color: var(--text-muted); line-height: 1.5; max-width: 340px; }
+  .form-note strong { color: var(--text-secondary); font-weight: 400; }
+
+  .submit-btn { display: flex; align-items: center; gap: 8px; padding: 12px 28px; background: var(--accent); color: white; border: none; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; transition: opacity 0.2s; font-family: 'DM Sans', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+  .submit-btn:hover { opacity: 0.88; }
+  .submit-btn svg { width: 14px; height: 14px; stroke: white; fill: none; stroke-width: 2; }
+
+  /* success state */
+  .form-success { display: none; text-align: center; padding: 40px 20px; }
+  .form-success.show { display: block; }
+  .success-icon { width: 56px; height: 56px; background: var(--green-dim); border-radius: 50%; border: 1px solid rgba(74,124,89,0.4); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  .success-icon svg { width: 24px; height: 24px; stroke: var(--green-bright); fill: none; stroke-width: 2; }
+  .success-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; margin-bottom: 8px; }
+  .success-desc { font-size: 13px; color: var(--text-secondary); font-weight: 300; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <img src="https://framerusercontent.com/images/Q9KOo0ZOBzGxdPVBwSfYfVx9dE.png" alt="Levitask">
+    <div class="portal-label">Distributor Portal</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Navigation</div>
+    <a class="nav-item" href="dashboard.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>Dashboard</a>
+    <a class="nav-item" href="training-certification-V2.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 3 3.5.5-2.5 2.5.5 3.5L8 9l-3 1.5.5-3.5L3 4.5l3.5-.5z"/></svg>Training & Certification</a>
+    <a class="nav-item" href="product-knowledge.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h10"/></svg>Product Knowledge</a>
+    <a class="nav-item" href="sales-tools.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11l4-4 3 3 3-4 4 4"/></svg>Sales Tools</a>
+    <a class="nav-item" href="resources.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4M2 14h12"/></svg>Resources & Downloads</a>
+    <div class="nav-section-label">Support</div>
+    <a class="nav-item active" href="contact.html"><svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 7v5M8 4.5v.5"/></svg>Contact & Support</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="distributor-badge">
+      <div class="distributor-avatar">LB</div>
+      <div><div class="distributor-name">Loyal Brand</div><div class="distributor-role">Authorized Distributor</div></div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-left">Contact <span>& Support</span></div>
+  </div>
+
+  <div class="page-content">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1 class="page-title">Contact <em>& Support</em></h1>
+      <p class="page-desc">Reach the right person at Levitask directly, or send us a message via the form below. We're here to make sure you succeed.</p>
+    </div>
+
+    <!-- ─── TEAM CONTACTS ─── -->
+    <div class="section-label">Your Levitask Team</div>
+    <div class="team-grid">
+
+      <div class="contact-card">
+        <div class="contact-avatar">MG</div>
+        <div class="contact-name">Michael Gotfrid</div>
+        <div class="contact-role">CEO & Co-Founder</div>
+        <div class="contact-domain">Strategic questions, partnership discussions, escalations, and anything requiring a decision at the highest level.</div>
+        <div class="contact-divider"></div>
+        <div class="contact-links">
+          <a class="contact-link" href="/cdn-cgi/l/email-protection#e68b8f858e87838aa68a83908f9287958dc885898b">
+            <svg viewBox="0 0 13 13"><rect x="1" y="3" width="11" height="8" rx="1"/><path d="M1 3l5.5 4.5L12 3"/></svg>
+            <span class="__cf_email__" data-cfemail="177a7e747f76727b577b72617e6376647c3974787a">[email&#160;protected]</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-avatar">N</div>
+        <div class="contact-name">Nico</div>
+        <div class="contact-role">Head of Sales</div>
+        <div class="contact-domain">Your primary point of contact for sales support, pricing, volume orders, and day-to-day distributor operations.</div>
+        <div class="contact-divider"></div>
+        <div class="contact-links">
+          <a class="contact-link" href="/cdn-cgi/l/email-protection#dbb5b2b8b49bb7beadb2afbaa8b0f5b8b4b6">
+            <svg viewBox="0 0 13 13"><rect x="1" y="3" width="11" height="8" rx="1"/><path d="M1 3l5.5 4.5L12 3"/></svg>
+            <span class="__cf_email__" data-cfemail="640a0d070b240801120d1005170f4a070b09">[email&#160;protected]</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-avatar">AK</div>
+        <div class="contact-name">Aku</div>
+        <div class="contact-role">Head of Operations</div>
+        <div class="contact-domain">Logistics, order fulfillment, shipping, lead times, and any operational issue related to your orders.</div>
+        <div class="contact-divider"></div>
+        <div class="contact-links">
+          <a class="contact-link" href="/cdn-cgi/l/email-protection#ceafa5bb8ea2abb8a7baafbda5e0ada1a3">
+            <svg viewBox="0 0 13 13"><rect x="1" y="3" width="11" height="8" rx="1"/><path d="M1 3l5.5 4.5L12 3"/></svg>
+            <span class="__cf_email__" data-cfemail="5d3c36281d31382b34293c2e36733e3230">[email&#160;protected]</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-avatar">BL</div>
+        <div class="contact-name">Bastien</div>
+        <div class="contact-role">Head of Marketing</div>
+        <div class="contact-domain">Brand usage, marketing assets, co-marketing opportunities, portal access, and content-related questions.</div>
+        <div class="contact-divider"></div>
+        <div class="contact-links">
+          <a class="contact-link" href="/cdn-cgi/l/email-protection#e6848795928f8388a68a83908f9287958dc885898b">
+            <svg viewBox="0 0 13 13"><rect x="1" y="3" width="11" height="8" rx="1"/><path d="M1 3l5.5 4.5L12 3"/></svg>
+            <span class="__cf_email__" data-cfemail="caa8abb9bea3afa48aa6afbca3beabb9a1e4a9a5a7">[email&#160;protected]</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page-divider"></div>
+
+    <!-- ─── FAQ ─── -->
+    <div class="section-label">Frequently Asked Questions</div>
+    <div class="faq-list">
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <div class="faq-q-text">How do I place my first order?</div>
+          <svg class="faq-chevron" viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Contact <strong>Nico</strong> directly at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d8b6b1bbb798b4bdaeb1acb9abb3f6bbb7b5">[email&#160;protected]</a> with your desired quantities and delivery address. He will confirm availability, lead times, and pricing. You can also download the full Order Process guide in <strong>Resources & Downloads → Legal & Operations</strong>.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <div class="faq-q-text">What are current lead times?</div>
+          <svg class="faq-chevron" viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Lead times vary by region and order size. As a general guideline, standard orders ship within <strong>4–6 weeks</strong>. For up-to-date lead time information, contact Nico or refer to the Order Process document in Resources & Downloads.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <div class="faq-q-text">Can I use Levitask branding and assets in my own marketing?</div>
+          <svg class="faq-chevron" viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes — within the guidelines defined in the <strong>Brand Guidelines document</strong> available in Resources & Downloads. All usage must respect the approved color palette, logo rules, and tone of voice. If in doubt, contact <strong>Bastien</strong> before publishing.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <div class="faq-q-text">A customer wants to return a chair — what do I do?</div>
+          <svg class="faq-chevron" viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">First, refer to the <strong>Returns & Exchanges Policy</strong> in Resources & Downloads to check eligibility. Then contact <strong>Nico</strong> to initiate the return process. Do not accept a return without confirming with Levitask first — this protects both you and the customer.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <div class="faq-q-text">How do I request a demo unit?</div>
+          <svg class="faq-chevron" viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Demo units are available to active distributors. Contact <strong>Nico</strong> with your shipping address and the model(s) you need. Demo units are provided at a preferential rate and are expected to be used for customer-facing demonstrations.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <div class="faq-q-text">I've completed my training — how do I get my certification?</div>
+          <svg class="faq-chevron" viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Once you've marked all 5 training modules as complete, the <strong>Certification Assessment</strong> will unlock in the Training section. Complete the knowledge quiz with a passing score and your Levitask Certified Distributor certificate will be generated automatically. Questions? Contact <strong>Bastien</strong>.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <div class="faq-q-text">How do I get access to new portal features or updated assets?</div>
+          <svg class="faq-chevron" viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">The portal is updated regularly. New assets are flagged with a <strong>"New"</strong> badge in Resources & Downloads, and your Dashboard will show the latest updates each time you log in. For urgent requests or custom assets, contact <strong>Bastien</strong>.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page-divider"></div>
+
+    <!-- ─── CONTACT FORM ─── -->
+    <div class="form-container" id="form-container">
+      <div id="form-body">
+        <div class="form-header">
+          <div class="form-title">Send us a message</div>
+          <div class="form-desc">Not sure who to contact? Fill in the form and we'll route your message to the right person within 24 hours.</div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Your name</label>
+            <input class="form-input" type="text" placeholder="e.g. Jean Dupont">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Company</label>
+            <input class="form-input" type="text" placeholder="e.g. Loyal Brand">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email address</label>
+            <input class="form-input" type="email" placeholder="you@company.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Topic</label>
+            <select class="form-select">
+              <option value="" disabled selected>Select a topic…</option>
+              <option>Orders & Pricing</option>
+              <option>Product Questions</option>
+              <option>Marketing & Brand</option>
+              <option>Returns & Warranty</option>
+              <option>Portal Access</option>
+              <option>Partnership & Strategy</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="Describe your question or request in as much detail as possible…"></textarea>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <div class="form-note">We aim to respond within <strong>24–48 hours</strong> on business days. For urgent matters, contact Nico or Bastien directly.</div>
+          <button class="submit-btn" onclick="submitForm()">
+            Send Message
+            <svg viewBox="0 0 14 14"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-success" id="form-success">
+        <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11"/></svg></div>
+        <div class="success-title">Message sent.</div>
+        <div class="success-desc">We've received your message and will get back to you within 24–48 hours.<br>In the meantime, check the FAQ above — your answer might already be there.</div>
+      </div>
+    </div>
+
+  <

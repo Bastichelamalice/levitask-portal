@@ -160,6 +160,7 @@
   .download-btn svg { width: 12px; height: 12px; stroke: white; fill: none; stroke-width: 2; }
   .download-btn.secondary { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); }
   .download-btn.secondary:hover { border-color: var(--border-light); color: var(--text-primary); }
+  .coming-soon-tag { display: inline-flex; align-items: center; padding: 7px 14px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 4px; font-size: 11px; color: var(--text-muted); font-family: 'DM Sans', sans-serif; letter-spacing: 0.06em; cursor: default; }
 </style>
 </head>
 <body>
@@ -203,31 +204,24 @@
       <div class="cat-link active" onclick="showCat('marketing', this)">
         <span class="cat-link-dot"></span>
         Marketing
-        <span class="cat-count">8</span>
+        <span class="cat-count">4</span>
       </div>
-      <div class="cat-sublink" data-anchor="anchor-brand">Brand Assets</div>
-      <div class="cat-sublink" data-anchor="anchor-visuals">Product Visuals</div>
-      <div class="cat-sublink" data-anchor="anchor-content">Content Templates</div>
 
       <div class="cat-divider"></div>
 
       <div class="cat-link" onclick="showCat('sales', this)">
         <span class="cat-link-dot"></span>
         Sales
-        <span class="cat-count">7</span>
+        <span class="cat-count">4</span>
       </div>
-      <div class="cat-sublink" data-anchor="anchor-decks">Presentations</div>
-      <div class="cat-sublink" data-anchor="anchor-sheets">One-Pagers & Sheets</div>
 
       <div class="cat-divider"></div>
 
       <div class="cat-link" onclick="showCat('product', this)">
         <span class="cat-link-dot"></span>
         Product
-        <span class="cat-count">6</span>
+        <span class="cat-count">4</span>
       </div>
-      <div class="cat-sublink" data-anchor="anchor-specs">Tech Specs</div>
-      <div class="cat-sublink" data-anchor="anchor-setup">Setup & Maintenance</div>
 
       <div class="cat-divider"></div>
 
@@ -236,8 +230,6 @@
         Legal & Operations
         <span class="cat-count">3</span>
       </div>
-      <div class="cat-sublink" data-anchor="anchor-warranty">Warranty & Returns</div>
-      <div class="cat-sublink" data-anchor="anchor-orders">Order Process</div>
     </nav>
 
     <!-- CONTENT -->
@@ -257,27 +249,56 @@
           <div class="section-icon icon-marketing"><svg viewBox="0 0 17 17"><path d="M2 12l3-7 3 4 2-3 3 6"/><circle cx="14" cy="4" r="2"/></svg></div>
           <div>
             <div class="section-title">Marketing</div>
-            <div class="section-meta">Brand assets, product visuals, and content templates: 8 files</div>
+            <div class="section-meta">Brand assets and marketing materials: 4 files</div>
           </div>
         </div>
 
         <div class="resource-grid">
 
-          <div class="resource-card" id="anchor-brand">
+          <div class="resource-card">
             <div class="resource-preview">
               <div class="preview-pattern"></div>
               <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h4M7 15h6M7 9h2"/></svg></div>
               <span class="preview-badge badge-pdf">PDF</span>
             </div>
             <div class="resource-body">
-              <div class="resource-title">Brand Guidelines: Distributor Edition</div>
-              <div class="resource-desc">Logo usage, color palette, typography, tone of voice, and do's & don'ts for distributor communications.</div>
+              <div class="resource-title">Distributors Brand Guide</div>
+              <div class="resource-desc">Logo usage, color palette, typography, tone of voice, and guidelines for distributor communications.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">4.2 MB</span>
-                  <span class="resource-date">Updated Jan 3, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Apr 2026</span></div>
+                <a class="download-btn" href="Documents/Distributors Brand Guide.pdf" download><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h4M7 15h6M7 9h2"/></svg></div>
+              <span class="preview-badge badge-pdf">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Levitask Brochure</div>
+              <div class="resource-desc">Official Levitask product brochure. Shareable with prospects, showroom visitors, and B2B contacts.</div>
+              <div class="resource-footer">
+                <div class="resource-meta"><span class="resource-date">Apr 2026</span></div>
+                <a class="download-btn" href="Documents/Levitask Brochure.pdf" download><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-pptx"><svg viewBox="0 0 22 22"><rect x="2" y="4" width="18" height="14" rx="2"/><path d="M7 9h4a2 2 0 010 4H7V9z"/><path d="M11 11h3"/></svg></div>
+              <span class="preview-badge badge-pptx">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">Social Media Guidelines</div>
+              <div class="resource-desc">Guidelines for posting about Levitask on social media. Approved formats, hashtags, and tone for distributor accounts.</div>
+              <div class="resource-footer">
+                <div class="resource-meta"><span class="resource-date">Coming soon</span></div>
+                <span class="coming-soon-tag">Coming Soon</span>
               </div>
             </div>
           </div>
@@ -287,56 +308,13 @@
               <div class="preview-pattern"></div>
               <div class="preview-icon pi-img"><svg viewBox="0 0 22 22"><rect x="3" y="3" width="16" height="16" rx="2"/><circle cx="8" cy="8" r="2"/><path d="M3 15l5-5 4 4 2-2 4 4"/></svg></div>
               <span class="preview-badge badge-img">ZIP</span>
-              <span class="badge-new">New</span>
             </div>
             <div class="resource-body">
-              <div class="resource-title">Product Photography Pack: Q1 2026</div>
-              <div class="resource-desc">High-resolution product shots: white background, lifestyle, detail views. Vision X & Vision Y. Print and digital ready.</div>
+              <div class="resource-title">Logo Pack</div>
+              <div class="resource-desc">Levitask logo files in all formats: SVG, PNG, and PDF. Light and dark versions for all use cases.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">186 MB</span>
-                  <span class="resource-date">Updated Mar 1, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="resource-card" id="anchor-visuals">
-            <div class="resource-preview">
-              <div class="preview-pattern"></div>
-              <div class="preview-icon pi-pptx"><svg viewBox="0 0 22 22"><rect x="2" y="4" width="18" height="14" rx="2"/><path d="M7 9h4a2 2 0 010 4H7V9z"/><path d="M11 11h3"/></svg></div>
-              <span class="preview-badge badge-pptx">PPTX</span>
-            </div>
-            <div class="resource-body">
-              <div class="resource-title">Social Media Templates: Canva Pack</div>
-              <div class="resource-desc">Instagram, LinkedIn, and Facebook templates. Pre-branded with Levitask visual identity. Editable in Canva.</div>
-              <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">12.4 MB</span>
-                  <span class="resource-date">Updated Feb 10, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="resource-card" id="anchor-content">
-            <div class="resource-preview">
-              <div class="preview-pattern"></div>
-              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h4M7 15h6M7 9h2"/></svg></div>
-              <span class="preview-badge badge-pdf">PDF</span>
-              <span class="badge-new">New</span>
-            </div>
-            <div class="resource-body">
-              <div class="resource-title">Copywriting Guide: Approved Messaging</div>
-              <div class="resource-desc">Pre-approved product descriptions, taglines, and key messages for distributors to use in their own channels.</div>
-              <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">1.8 MB</span>
-                  <span class="resource-date">Updated Feb 28, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Coming soon</span></div>
+                <span class="coming-soon-tag">Coming Soon</span>
               </div>
             </div>
           </div>
@@ -351,27 +329,24 @@
           <div class="section-icon icon-sales"><svg viewBox="0 0 17 17"><path d="M2 13l3-4 3 2 3-5 4 4"/></svg></div>
           <div>
             <div class="section-title">Sales</div>
-            <div class="section-meta">Presentations, one-pagers, and pricing sheets: 7 files</div>
+            <div class="section-meta">Sales enablement documents and competitive tools: 4 files</div>
           </div>
         </div>
 
         <div class="resource-grid">
 
-          <div class="resource-card" id="anchor-decks">
+          <div class="resource-card">
             <div class="resource-preview">
               <div class="preview-pattern"></div>
-              <div class="preview-icon pi-pptx"><svg viewBox="0 0 22 22"><rect x="2" y="4" width="18" height="14" rx="2"/><path d="M7 9h4a2 2 0 010 4H7V9z"/><path d="M11 11h3"/></svg></div>
-              <span class="preview-badge badge-pptx">PPTX</span>
+              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h4M7 15h6M7 9h2"/></svg></div>
+              <span class="preview-badge badge-pdf">PDF</span>
             </div>
             <div class="resource-body">
-              <div class="resource-title">Distributor Pitch Deck: Full Version</div>
-              <div class="resource-desc">Complete sales presentation: brand story, technology, product line, competitive positioning, and pricing. 32 slides.</div>
+              <div class="resource-title">Levitask Scientific Studies</div>
+              <div class="resource-desc">Compiled scientific research backing the elevated seating posture. Use with health-conscious and B2B buyers.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">22.6 MB</span>
-                  <span class="resource-date">Updated Jan 15, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Apr 2026</span></div>
+                <a class="download-btn" href="Documents/levitask-scientific-studies.pdf" download><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</a>
               </div>
             </div>
           </div>
@@ -379,38 +354,31 @@
           <div class="resource-card">
             <div class="resource-preview">
               <div class="preview-pattern"></div>
-              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/></svg></div>
+              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h4M7 15h6M7 9h2"/></svg></div>
               <span class="preview-badge badge-pdf">PDF</span>
-              <span class="badge-new">New</span>
             </div>
             <div class="resource-body">
-              <div class="resource-title">B2B Pricing Sheet: Q1 2026</div>
-              <div class="resource-desc">Distributor pricing, volume tiers, and margin structure. Confidential: not for sharing with end customers.</div>
+              <div class="resource-title">Why Levitask Wins</div>
+              <div class="resource-desc">Competitive positioning document. Key differentiators, objection handling, and why customers choose Levitask over alternatives.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">0.4 MB</span>
-                  <span class="resource-date">Updated Mar 2, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Apr 2026</span></div>
+                <a class="download-btn" href="Documents/Why Levitask Wins.pdf" download><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</a>
               </div>
             </div>
           </div>
 
-          <div class="resource-card" id="anchor-sheets">
+          <div class="resource-card">
             <div class="resource-preview">
               <div class="preview-pattern"></div>
               <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h8M7 15h5M7 9h4"/></svg></div>
               <span class="preview-badge badge-pdf">PDF</span>
             </div>
             <div class="resource-body">
-              <div class="resource-title">Vision Chair: Product One-Pager</div>
-              <div class="resource-desc">Single-page product summary for prospect leave-behinds. Available in A4 and US Letter. Vision X & Y versions.</div>
+              <div class="resource-title">Cheat Sheet One Pager</div>
+              <div class="resource-desc">Quick-reference sales cheat sheet. Key specs, benefits, objection responses, and pricing overview on a single page.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">2.1 MB</span>
-                  <span class="resource-date">Updated Feb 5, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Coming soon</span></div>
+                <span class="coming-soon-tag">Coming Soon</span>
               </div>
             </div>
           </div>
@@ -418,18 +386,15 @@
           <div class="resource-card">
             <div class="resource-preview">
               <div class="preview-pattern"></div>
-              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/></svg></div>
+              <div class="preview-icon pi-pdf"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h8M7 15h5M7 9h4"/></svg></div>
               <span class="preview-badge badge-pdf">PDF</span>
             </div>
             <div class="resource-body">
-              <div class="resource-title">B2B ROI Calculator: Printable</div>
-              <div class="resource-desc">Leave-behind for corporate buyers. Calculates back pain cost vs. Vision Chair investment for a given headcount.</div>
+              <div class="resource-title">Competitor Analysis</div>
+              <div class="resource-desc">Side-by-side comparison of Levitask vs. key competitors. Features, price positioning, and talking points for each scenario.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">0.8 MB</span>
-                  <span class="resource-date">Updated Jan 20, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Coming soon</span></div>
+                <span class="coming-soon-tag">Coming Soon</span>
               </div>
             </div>
           </div>
@@ -444,46 +409,24 @@
           <div class="section-icon icon-product"><svg viewBox="0 0 17 17"><path d="M8.5 2L2 6v5l6.5 4L15 11V6z"/></svg></div>
           <div>
             <div class="section-title">Product</div>
-            <div class="section-meta">Technical specs, setup guides, and maintenance docs: 6 files</div>
+            <div class="section-meta">Technical specs, assembly guides, and warranty documents: 4 files</div>
           </div>
         </div>
 
         <div class="resource-grid">
 
-          <div class="resource-card" id="anchor-specs">
+          <div class="resource-card">
             <div class="resource-preview">
               <div class="preview-pattern"></div>
               <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h8M7 15h5M7 9h4"/></svg></div>
               <span class="preview-badge badge-zip">PDF</span>
             </div>
             <div class="resource-body">
-              <div class="resource-title">Technical Specifications: Vision X & Y</div>
-              <div class="resource-desc">Complete spec sheet: dimensions, weight capacity, adjustment ranges, materials, certifications. Vision X and Y side-by-side.</div>
+              <div class="resource-title">Vision Chair Tech Specs</div>
+              <div class="resource-desc">Complete spec sheet: dimensions, weight capacity, adjustment ranges, materials, and certifications for Vision X and Y.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">1.2 MB</span>
-                  <span class="resource-date">Updated Jan 8, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="resource-card" id="anchor-setup">
-            <div class="resource-preview">
-              <div class="preview-pattern"></div>
-              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/></svg></div>
-              <span class="preview-badge badge-zip">PDF</span>
-            </div>
-            <div class="resource-body">
-              <div class="resource-title">Assembly & Setup Guide</div>
-              <div class="resource-desc">Step-by-step setup instructions with illustrations. Tool-free assembly in ~15 minutes. Suitable for end-customer distribution.</div>
-              <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">3.6 MB</span>
-                  <span class="resource-date">Updated Dec 12, 2025</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Apr 2026</span></div>
+                <a class="download-btn" href="Documents/Vision Chair Tech Specs.pdf" download><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</a>
               </div>
             </div>
           </div>
@@ -491,18 +434,47 @@
           <div class="resource-card">
             <div class="resource-preview">
               <div class="preview-pattern"></div>
-              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><circle cx="11" cy="11" r="8"/><path d="M11 7v4l3 3"/></svg></div>
+              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/><path d="M7 12h4M7 15h6M7 9h2"/></svg></div>
               <span class="preview-badge badge-zip">PDF</span>
             </div>
             <div class="resource-body">
-              <div class="resource-title">T-Mech Mechanism: Technical Overview</div>
-              <div class="resource-desc">Engineering breakdown of the T-Mech knee pivot arc system. For technically-minded buyers and facilities managers.</div>
+              <div class="resource-title">Vision Chair First Experience Guide</div>
+              <div class="resource-desc">Step-by-step guide for new users experiencing the Vision Chair for the first time. Ideal for showroom demos and onboarding.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">5.4 MB</span>
-                  <span class="resource-date">Updated Jan 8, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Apr 2026</span></div>
+                <a class="download-btn" href="Documents/Vision-Chair-First Experience Guide.pdf" download><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/></svg></div>
+              <span class="preview-badge badge-zip">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">VX Assembly & Warranty</div>
+              <div class="resource-desc">Assembly instructions and warranty documentation for the Vision X. Suitable for end-customer distribution.</div>
+              <div class="resource-footer">
+                <div class="resource-meta"><span class="resource-date">Apr 2026</span></div>
+                <a class="download-btn" href="Documents/VX Assembly & Warranty.pdf" download><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-preview">
+              <div class="preview-pattern"></div>
+              <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M4 2h10l4 4v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M14 2v4h4"/></svg></div>
+              <span class="preview-badge badge-zip">PDF</span>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">VY Assembly & Warranty</div>
+              <div class="resource-desc">Assembly instructions and warranty documentation for the Vision Y. Suitable for end-customer distribution.</div>
+              <div class="resource-footer">
+                <div class="resource-meta"><span class="resource-date">Apr 2026</span></div>
+                <a class="download-btn" href="Documents/VY Assembly & Warranty.pdf" download><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</a>
               </div>
             </div>
           </div>
@@ -523,7 +495,7 @@
 
         <div class="resource-grid">
 
-          <div class="resource-card" id="anchor-warranty">
+          <div class="resource-card">
             <div class="resource-preview">
               <div class="preview-pattern"></div>
               <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M11 2l2 4h4l-3.5 3 1.5 4L11 11l-4 2 1.5-4L5 6h4z"/></svg></div>
@@ -531,18 +503,15 @@
             </div>
             <div class="resource-body">
               <div class="resource-title">Warranty Policy: Distributor Version</div>
-              <div class="resource-desc">5-year warranty terms, what's covered, claim process, and how to handle end-customer warranty requests as a distributor.</div>
+              <div class="resource-desc">Warranty terms, what's covered, claim process, and how to handle end-customer warranty requests as a distributor.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">0.6 MB</span>
-                  <span class="resource-date">Updated Dec 15, 2025</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Coming soon</span></div>
+                <span class="coming-soon-tag">Coming Soon</span>
               </div>
             </div>
           </div>
 
-          <div class="resource-card" id="anchor-orders">
+          <div class="resource-card">
             <div class="resource-preview">
               <div class="preview-pattern"></div>
               <div class="preview-icon pi-doc"><svg viewBox="0 0 22 22"><path d="M4 4h14v14H4z"/><path d="M8 4V2M14 4V2M4 10h14"/></svg></div>
@@ -552,11 +521,8 @@
               <div class="resource-title">Order Process & Lead Times</div>
               <div class="resource-desc">How to place orders, current lead times by region, packaging specs, and shipping guidelines for distributors.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">0.9 MB</span>
-                  <span class="resource-date">Updated Jan 25, 2026</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Coming soon</span></div>
+                <span class="coming-soon-tag">Coming Soon</span>
               </div>
             </div>
           </div>
@@ -568,14 +534,11 @@
               <span class="preview-badge badge-zip">PDF</span>
             </div>
             <div class="resource-body">
-              <div class="resource-title">Returns & Exchanges Policy</div>
+              <div class="resource-title">Return & Exchange Policy</div>
               <div class="resource-desc">Return window, condition requirements, exchange process, and responsibilities split between Levitask and the distributor.</div>
               <div class="resource-footer">
-                <div class="resource-meta">
-                  <span class="resource-size">0.5 MB</span>
-                  <span class="resource-date">Updated Dec 15, 2025</span>
-                </div>
-                <button class="download-btn"><svg viewBox="0 0 12 12"><path d="M6 1v7M3 5l3 3 3-3M1 10h10"/></svg> Download</button>
+                <div class="resource-meta"><span class="resource-date">Coming soon</span></div>
+                <span class="coming-soon-tag">Coming Soon</span>
               </div>
             </div>
           </div>
@@ -593,29 +556,8 @@
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('.cat-link').forEach(l => l.classList.remove('active'));
     linkEl.classList.add('active');
-    document.querySelectorAll('.cat-sublink').forEach(s => s.classList.remove('scrolled'));
-    const firstSub = linkEl.nextElementSibling;
-    if (firstSub && firstSub.classList.contains('cat-sublink')) firstSub.classList.add('scrolled');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-  function setFilter(btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        document.querySelectorAll('.cat-sublink').forEach(s => s.classList.remove('scrolled'));
-        const match = document.querySelector(`.cat-sublink[data-anchor="${id}"]`);
-        if (match) match.classList.add('scrolled');
-      }
-    });
-  }, { threshold: 0.4 });
-
-  document.querySelectorAll('.resource-card[id]').forEach(card => observer.observe(card));
 </script>
 
 <script>

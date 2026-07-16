@@ -747,7 +747,7 @@
             <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
           </div>
           <div class="progress-meta">
-            <span class="progress-meta-left" id="progress-label">0 of 5 modules complete</span>
+            <span class="progress-meta-left" id="progress-label">0 of 7 modules complete</span>
             <span class="progress-meta-right" id="progress-pct">0%</span>
           </div>
         </div>
@@ -882,7 +882,7 @@
 
   // ─── TRAINING PROGRESS ──────────────────────────────────────────────────────
   (function() {
-    const MODULE_NAMES = ['The Foundation', 'The Product', 'The Science', 'The Market', 'The Sale'];
+    const MODULE_NAMES = ['The Foundation', 'The Product', 'The Science', 'The Market', 'The Sale', 'Distributor Operations & After-Sales', 'Product Specifications & Fit'];
 
     let progress = null;
     try {
@@ -893,27 +893,27 @@
     // Build default if no progress
     if (!progress || !progress.moduleProgress) {
       progress = { moduleProgress: {} };
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= 7; i++) {
         progress.moduleProgress[i] = { status: 'not-started', sectionsCompleted: [] };
       }
     }
 
     // Count completed modules
     let completedCount = 0;
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 7; i++) {
       if ((progress.moduleProgress[i] || {}).status === 'completed') completedCount++;
     }
 
-    const pct = Math.round((completedCount / 5) * 100);
+    const pct = Math.round((completedCount / 7) * 100);
     document.getElementById('progress-fill').style.width = pct + '%';
-    document.getElementById('progress-label').textContent = completedCount + ' of 5 modules complete';
+    document.getElementById('progress-label').textContent = completedCount + ' of 7 modules complete';
     document.getElementById('progress-pct').textContent = pct + '%';
 
     // Render module list
     const list = document.getElementById('module-list');
     let html = '';
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 7; i++) {
       const mp = progress.moduleProgress[i] || { status: 'not-started', sectionsCompleted: [] };
       const prevCompleted = i === 1 || (progress.moduleProgress[i - 1] || {}).status === 'completed';
       const unlocked = prevCompleted;
